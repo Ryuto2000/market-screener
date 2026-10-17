@@ -24,6 +24,10 @@ PULLBACK_BAND = 0.03
 MAX_STOP_DIST = 0.15
 OVERHEAT_200 = 0.40     # close > 200MA +40% (rule: notify only)
 RSI_HOT = 80
+GAP_MIN = 0.04          # power gap: open >= +4% over prior close ...
+GAP_VOL = 2.0           # ... on >= 2x the 50-day average volume
+GAP_LOOKBACK = 20
+NOISE_ATR = 2.0         # stop closer than 2 ATR = inside normal daily noise
 
 
 @dataclass
@@ -63,6 +67,18 @@ class Metrics:
     bb_pctb: float = math.nan        # Bollinger %b (20, 2): 1 = upper band
     pct_above_sma200: float = math.nan
     day_range_pos: float = math.nan  # where today's close sits in today's range (0 = low, 1 = high)
+    # volatility, gaps, base and volume quality
+    atr14: float = math.nan
+    atr_pct: float = math.nan        # ATR(14) / close
+    stop_atr_mult: float = math.nan  # distance to the -8% stop in ATRs
+    gap_date: str | None = None
+    gap_pct: float | None = None
+    gap_held: bool | None = None     # close still above the close before the gap
+    base_depth: float = math.nan     # (high - low) / high of the 63 sessions before the breakout (or today)
+    base_vol_dryup: float = math.nan # avg volume of the 10 sessions before the breakout / 50-day avg
+    base_range_contraction: float = math.nan  # stdev of returns, last 10 vs prior 50 sessions before the breakout
+    updown_vol_50: float = math.nan  # volume on up days / volume on down days, last 50 sessions
+    plus: list = field(default_factory=list)  # supportive signals (the flags list holds the warnings)
 
     def to_dict(self) -> dict:
         d = asdict(self)
@@ -177,6 +193,7 @@ def compute(df: pd.DataFrame, bench_ret_6m: float | None) -> Metrics:
     if m.vol_ratio and m.vol_ratio > 5:
         m.flags.append("volume_spike_5x")
     secondary(df, m)
+    structure(df, m)
     return m
 
 
@@ -237,6 +254,76 @@ def secondary(df: pd.DataFrame, m: Metrics) -> None:
         m.flags.append("macd_divergence")
     if (m.vol_ratio or 0) >= BREAKOUT_VOL_MULT and m.close < op and (m.day_range_pos or 1) <= 0.3:
         m.flags.append("heavy_selling_day")
+
+
+def atr(df: pd.DataFrame, n: int = 14) -> pd.Series:
+    pc = df["Close"].shift(1)
+    tr = pd.concat([df["High"] - df["Low"], (df["High"] - pc).abs(), (df["Low"] - pc).abs()], axis=1).max(axis=1)
+    return tr.ewm(alpha=1 / n, adjust=False).mean()
+
+
+def distribution_days(df: pd.DataFrame, n: int = 25, drop: float = -0.002) -> int:
+    """Sessions in the last n where the index (ETF) fell at least 0.2% on higher volume than the day before."""
+    df = _clean(df)
+    if len(df) < n + 1:
+        return 0
+    r = df["Close"].pct_change()
+    up_vol = df["Volume"] > df["Volume"].shift(1)
+    return int(((r <= drop) & up_vol).iloc[-n:].sum())
+
+
+def structure(df: pd.DataFrame, m: Metrics) -> None:
+    """ATR-based stop check, power gaps, base quality and up/down volume."""
+    n = len(df)
+    c, v, o = df["Close"], df["Volume"], df["Open"]
+    a = atr(df)
+    m.atr14 = float(a.iloc[-1])
+    m.atr_pct = m.atr14 / m.close if m.close else math.nan
+    m.stop_atr_mult = (m.close - m.stop_8pct) / m.atr14 if m.atr14 > 0 else math.nan
+    if m.stop_atr_mult < NOISE_ATR:
+        m.flags.append("stop_inside_noise")
+
+    # power gap within the last GAP_LOOKBACK sessions (most recent first)
+    vol50 = v.rolling(50).mean().shift(1)
+    for i in range(n - 1, max(n - 1 - GAP_LOOKBACK, 50), -1):
+        prev = float(c.iloc[i - 1])
+        g = float(o.iloc[i]) / prev - 1 if prev > 0 else 0
+        if g >= GAP_MIN and v.iloc[i] >= GAP_VOL * vol50.iloc[i]:
+            m.gap_date, m.gap_pct = str(df.index[i].date()), round(g, 4)
+            m.gap_held = bool(m.close > prev)
+            m.plus.append("power_gap" if m.gap_held else "power_gap_failed")
+            if not m.gap_held:
+                m.flags.append("gap_filled")
+            break
+
+    # base before the breakout (or before today when there is no breakout)
+    ref = n - 1
+    if m.breakout_date:
+        ref = int(df.index.get_indexer([pd.Timestamp(m.breakout_date)])[0])
+    if ref >= LOOKBACK_3M + 50:
+        base = df.iloc[ref - LOOKBACK_3M:ref]
+        hi, lo = float(base["High"].max()), float(base["Low"].min())
+        m.base_depth = (hi - lo) / hi if hi > 0 else math.nan
+        v50 = float(v.iloc[ref - 50:ref].mean())
+        m.base_vol_dryup = float(v.iloc[ref - 10:ref].mean()) / v50 if v50 > 0 else math.nan
+        rets = c.pct_change()
+        s10 = float(rets.iloc[ref - 10:ref].std())
+        s50 = float(rets.iloc[ref - 60:ref - 10].std())
+        m.base_range_contraction = s10 / s50 if s50 > 0 else math.nan
+        if m.base_depth <= 0.25 and m.base_vol_dryup < 0.85 and m.base_range_contraction < 0.8:
+            m.plus.append("tight_base")
+        if m.base_depth > 0.35:
+            m.flags.append("deep_base")
+
+    # accumulation: volume on up days vs down days, last 50 sessions
+    d = c.diff().iloc[-50:]
+    vv = v.iloc[-50:]
+    up, dn = float(vv[d > 0].sum()), float(vv[d < 0].sum())
+    m.updown_vol_50 = up / dn if dn > 0 else math.nan
+    if m.updown_vol_50 >= 1.3:
+        m.plus.append("accumulation")
+    elif m.updown_vol_50 < 0.8:
+        m.flags.append("distribution")
 
 
 def benchmark_ret_6m(df: pd.DataFrame) -> float | None:

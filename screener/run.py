@@ -185,7 +185,10 @@ def main(market: str) -> int:
         state = None
     regime = {"benchmark_close": blast, "benchmark_sma50": b50, "benchmark_sma200": b200, "benchmark_state": state,
               "pct_above_sma50": _pct(lambda m: m.close > m.sma50), "pct_above_sma200": _pct(lambda m: m.close > m.sma200),
-              "pct_trend_template": _pct(lambda m: m.trend_ok)}
+              "pct_trend_template": _pct(lambda m: m.trend_ok),
+              "benchmark_distribution_days_25": ind.distribution_days(bench_df) if bench_df is not None else None}
+    if (regime["benchmark_distribution_days_25"] or 0) >= 5:
+        regime["caution"] = "5+ distribution days in 25 sessions"
     log(f"regime: {regime}")
 
     trend = [(tk, m) for tk, m in rows if m.trend_ok]
