@@ -21,3 +21,15 @@ def test_patch_no_intraday():
     d = pd.DataFrame({"Open": [1.0], "High": [1.0], "Low": [1.0], "Close": [1.0], "Volume": [1.0]},
                      index=pd.to_datetime(["2026-10-14"]))
     assert len(patch(d, None)) == 1
+
+
+def test_official_close_overrides_rebuilt_session(monkeypatch):
+    import screener.fetch as f
+    df = pd.DataFrame({"Open": [1.0, 3.0], "High": [1.0, 3.6], "Low": [1.0, 2.9], "Close": [1.0, 3.54], "Volume": [1.0, 15.0]},
+                      index=pd.to_datetime(["2026-10-15", "2026-10-16"]))
+    df.attrs["close_source"] = "60m"
+    monkeypatch.setattr(f, "_chart_meta", lambda t: {"price": 3.55, "volume": 20.0, "high": 3.6, "low": 2.9,
+                                                     "date": pd.Timestamp("2026-10-16")})
+    data = {"X.T": df}
+    assert f.official_closes(data, ["X.T"]) == 1
+    assert data["X.T"]["Close"].iloc[-1] == 3.55 and data["X.T"].attrs["close_source"] == "official"

@@ -8,6 +8,9 @@ from __future__ import annotations
 
 import sys
 import time
+from concurrent.futures import ThreadPoolExecutor
+
+import requests
 
 import pandas as pd
 import yfinance as yf
@@ -102,10 +105,53 @@ def _download_group(tickers: list[str], period: str, chunk: int, auto_adjust: bo
         for t in part:
             if t in d:
                 try:
+                    valid = d[t].dropna(subset=["Close"])
+                    idx = valid.index.tz_localize(None) if valid.index.tz is not None else valid.index
+                    valid_last = idx.max() if len(idx) else None
                     out[t] = patch(d[t], h.get(t))
+                    if not out[t].empty and (valid_last is None or out[t].index.max() > valid_last):
+                        out[t].attrs["close_source"] = "60m"
                 except Exception as e:  # noqa: BLE001
                     _log(f"patch failed {t}: {e}")
                     out[t] = d[t].dropna(subset=["Close"])
         _log(f"downloaded {min(s + chunk, len(tickers))}/{len(tickers)}")
         time.sleep(1)
+    rebuilt = [t for t, df in out.items() if df.attrs.get("close_source") == "60m"]
+    if rebuilt:
+        fixed = official_closes(out, rebuilt)
+        _log(f"latest session rebuilt from 60m bars: {len(rebuilt)}, official close applied: {fixed}")
     return out
+
+
+def _chart_meta(t: str) -> dict | None:
+    """Yahoo chart meta. regularMarketPrice is the official last price, including the closing auction."""
+    try:
+        r = requests.get(f"https://query1.finance.yahoo.com/v8/finance/chart/{t}?range=1d&interval=1d",
+                         headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
+        m = r.json()["chart"]["result"][0]["meta"]
+        ts = pd.Timestamp(m["regularMarketTime"], unit="s", tz="UTC").tz_convert(m.get("exchangeTimezoneName", "UTC"))
+        return {"price": m.get("regularMarketPrice"), "volume": m.get("regularMarketVolume"),
+                "high": m.get("regularMarketDayHigh"), "low": m.get("regularMarketDayLow"),
+                "date": pd.Timestamp(ts.date())}
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def official_closes(data: dict[str, pd.DataFrame], tickers: list[str], workers: int = 12) -> int:
+    """Replace the 60m-rebuilt latest session with Yahoo's official session values where available."""
+    with ThreadPoolExecutor(max_workers=workers) as ex:
+        metas = dict(zip(tickers, ex.map(_chart_meta, tickers)))
+    fixed = 0
+    for t, m in metas.items():
+        df = data[t]
+        if not m or not m.get("price") or df.empty or df.index[-1] != m["date"]:
+            continue
+        df = df.copy()
+        df.iloc[-1, df.columns.get_loc("Close")] = float(m["price"])
+        for col, key in (("Volume", "volume"), ("High", "high"), ("Low", "low")):
+            if m.get(key) and col in df.columns:
+                df.iloc[-1, df.columns.get_loc(col)] = float(m[key])
+        df.attrs["close_source"] = "official"
+        data[t] = df
+        fixed += 1
+    return fixed

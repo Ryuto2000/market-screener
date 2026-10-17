@@ -38,6 +38,7 @@ def _r(x, nd=4):
 
 
 def row(df: pd.DataFrame) -> dict | None:
+    source = df.attrs.get("close_source")
     df = df.dropna(subset=["Close"])
     if df.empty:
         return None
@@ -52,6 +53,8 @@ def row(df: pd.DataFrame) -> dict | None:
         "rsi": _r(_rsi(c), 1), "r6m": _r(c.iloc[-1] / c.iloc[-127] - 1) if len(c) > 127 else None,
         # last 60 closes, oldest first (ends at "d") — for "highest close since entry"
         "c60": [_r(x) for x in c.iloc[-60:].tolist()],
+        # source of the latest close: "official" (Yahoo quote), "60m" (rebuilt from hourly bars) or "d" (daily bar)
+        "cs": {"official": "o", "60m": "h"}.get(source, "d"),
     }
 
 
@@ -70,7 +73,7 @@ def write(market: str, prices: dict[str, pd.DataFrame], names: dict[str, str]) -
         "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "market": market,
         "keys": "d=date c=close pc=prev close h/l=high/low v=volume s20/s50/s200=SMA h3m/h52=3m/52w high "
-                "rsi=RSI14 r6m=6m return c60=last 60 closes oldest first n=name",
+                "rsi=RSI14 r6m=6m return c60=last 60 closes oldest first n=name cs=close source (d daily bar, o official quote, h hourly rebuild)",
         "note": "Actual (unadjusted) prices. The latest JP session may be rebuilt from 60m bars, so its close can differ slightly from the official close.",
         "prices": out,
     }

@@ -39,14 +39,14 @@ covers all domestic stocks listed on the TSE Prime, Standard and Growth markets.
 | File | Content |
 |---|---|
 | `jp.json`, `us.json` | `A` (top 40), `B` (top 40), `trigger_but_failed`, `market_regime` (benchmark trend and breadth), counts, errors |
-| `prices_jp.json`, `prices_us.json` | price table for every priced ticker plus `extras.txt` (indices, FX, common ETFs). Keys: `d` date, `c` close, `pc` previous close, `h`/`l` high/low, `v` volume, `s20`/`s50`/`s200` SMAs, `h3m`/`h52` highs, `rsi` RSI(14), `r6m` 6-month return, `c60` last 60 closes (oldest first), `n` name |
+| `prices_jp.json`, `prices_us.json` | price table for every priced ticker plus `extras.txt` (indices, FX, common ETFs). Keys: `d` date, `c` close, `pc` previous close, `h`/`l` high/low, `v` volume, `s20`/`s50`/`s200` SMAs, `h3m`/`h52` highs, `rsi` RSI(14), `r6m` 6-month return, `c60` last 60 closes (oldest first), `n` name, `cs` source of the latest close (`d` daily bar, `o` official quote, `h` hourly rebuild) |
 | `history/<date>_<market>.json` | daily A/B lists, for checking how the picks did later |
 | `logs/` | log of the latest run |
 
 ## Data caveats
 
 - Prices come from Yahoo Finance via [yfinance](https://github.com/ranaroussi/yfinance) (unofficial). It can break or lag.
-- Yahoo often leaves the latest Tokyo daily bar empty for hours after the close; the screener rebuilds that session from 60-minute bars, so its close can differ slightly from the official close.
+- Yahoo often leaves the latest Tokyo daily bar empty for hours after the close. The screener rebuilds that session from 60-minute bars and then replaces the close, high, low and volume with Yahoo's official quote (`cs` = `o`). If the quote is unavailable the hourly value stays (`cs` = `h`) and can differ slightly from the official close.
 - Quarterly fundamentals for most Tokyo listings are not available from Yahoo, so JP results carry `fin_unknown`.
 - Prices are actual traded prices (split-adjusted, not dividend-adjusted).
 
