@@ -320,7 +320,7 @@ def structure(df: pd.DataFrame, m: Metrics) -> None:
     vv = v.iloc[-50:]
     up, dn = float(vv[d > 0].sum()), float(vv[d < 0].sum())
     m.updown_vol_50 = up / dn if dn > 0 else math.nan
-    if m.updown_vol_50 >= 1.3:
+    if m.updown_vol_50 >= 1.5:
         m.plus.append("accumulation")
     elif m.updown_vol_50 < 0.8:
         m.flags.append("distribution")
