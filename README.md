@@ -13,7 +13,7 @@ covers all domestic stocks listed on the TSE Prime, Standard and Growth markets.
 
 | Run | When (UTC) | Notes |
 |---|---|---|
-| Japan | 06:50 Mon–Fri (15:50 JST) | after the 15:30 close |
+| Japan | 06:35 Mon–Fri (15:35 JST) | after the 15:30 close; takes about 10 minutes |
 | US | 22:15 Mon–Fri | after the close in both summer and winter time |
 | Manual | Actions → `screen` → Run workflow | input `jp` or `us` |
 

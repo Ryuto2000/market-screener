@@ -2,7 +2,7 @@ name: screen
 
 on:
   schedule:
-    - cron: "50 6 * * 1-5"   # JP: 15:50 JST (after the 15:30 close)
+    - cron: "35 6 * * 1-5"   # JP: 15:35 JST (after the 15:30 close)
     - cron: "15 22 * * 1-5"  # US: after the close in both summer and winter time
   workflow_dispatch:
     inputs:
@@ -34,7 +34,7 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "market=${{ inputs.market }}" >> "$GITHUB_OUTPUT"
-          elif [ "${{ github.event.schedule }}" = "50 6 * * 1-5" ]; then
+          elif [ "${{ github.event.schedule }}" = "35 6 * * 1-5" ]; then
             echo "market=jp" >> "$GITHUB_OUTPUT"
           else
             echo "market=us" >> "$GITHUB_OUTPUT"
