@@ -22,6 +22,8 @@ NEAR_HIGH = 0.03
 PULLBACK_WINDOW = 20  # breakout within the last ~4 weeks
 PULLBACK_BAND = 0.03
 MAX_STOP_DIST = 0.15
+OVERHEAT_200 = 0.40     # close > 200MA +40% (rule: notify only)
+RSI_HOT = 80
 
 
 @dataclass
@@ -52,6 +54,15 @@ class Metrics:
     stop_struct: float | None = None
     stop_struct_dist: float | None = None
     flags: list = field(default_factory=list)
+    # secondary indicators: shown and flagged, never used as hard filters
+    rsi14: float = math.nan
+    macd: float = math.nan
+    macd_signal: float = math.nan
+    macd_hist: float = math.nan
+    macd_hist_3d: float = math.nan   # change of the histogram over 3 sessions
+    bb_pctb: float = math.nan        # Bollinger %b (20, 2): 1 = upper band
+    pct_above_sma200: float = math.nan
+    day_range_pos: float = math.nan  # where today's close sits in today's range (0 = low, 1 = high)
 
     def to_dict(self) -> dict:
         d = asdict(self)
@@ -165,7 +176,67 @@ def compute(df: pd.DataFrame, bench_ret_6m: float | None) -> Metrics:
             m.flags.append("wide_stop")
     if m.vol_ratio and m.vol_ratio > 5:
         m.flags.append("volume_spike_5x")
+    secondary(df, m)
     return m
+
+
+def rsi(c: pd.Series, n: int = 14) -> pd.Series:
+    d = c.diff()
+    up = d.clip(lower=0).ewm(alpha=1 / n, adjust=False).mean()
+    dn = (-d.clip(upper=0)).ewm(alpha=1 / n, adjust=False).mean()
+    out = 100 - 100 / (1 + up / dn.replace(0, math.nan))
+    return out.where(dn > 0, 100.0)
+
+
+def macd(c: pd.Series, fast: int = 12, slow: int = 26, sig: int = 9):
+    line = c.ewm(span=fast, adjust=False).mean() - c.ewm(span=slow, adjust=False).mean()
+    signal = line.ewm(span=sig, adjust=False).mean()
+    return line, signal, line - signal
+
+
+def _bearish_divergence(c: pd.Series, line: pd.Series, recent: int = 10, lookback: int = 120) -> bool:
+    """Price makes a higher closing high in the last `recent` sessions than the
+    prior peak within `lookback`, while the MACD line stays below its value at
+    that prior peak."""
+    if len(c) < lookback + recent:
+        return False
+    prior = c.iloc[-(lookback + recent):-recent]
+    j = prior.idxmax()
+    if c.iloc[-recent:].max() <= prior.max():
+        return False
+    return float(line.iloc[-recent:].max()) < float(line.loc[j])
+
+
+def secondary(df: pd.DataFrame, m: Metrics) -> None:
+    """MACD / RSI / Bollinger / candle checks. They add numbers and flags for the
+    human review; the A/B rules ignore them until history shows they help."""
+    c = df["Close"]
+    r = rsi(c)
+    m.rsi14 = float(r.iloc[-1])
+    line, signal, hist = macd(c)
+    m.macd, m.macd_signal, m.macd_hist = float(line.iloc[-1]), float(signal.iloc[-1]), float(hist.iloc[-1])
+    m.macd_hist_3d = float(hist.iloc[-1] - hist.iloc[-4])
+    mid = c.rolling(20).mean()
+    sd = c.rolling(20).std(ddof=0)
+    width = 4 * float(sd.iloc[-1])
+    m.bb_pctb = (m.close - (float(mid.iloc[-1]) - 2 * float(sd.iloc[-1]))) / width if width > 0 else math.nan
+    m.pct_above_sma200 = m.close / m.sma200 - 1
+    hi, lo, op = float(df["High"].iloc[-1]), float(df["Low"].iloc[-1]), float(df["Open"].iloc[-1])
+    m.day_range_pos = (m.close - lo) / (hi - lo) if hi > lo else math.nan
+
+    if m.rsi14 > RSI_HOT or m.pct_above_sma200 > OVERHEAT_200:
+        m.flags.append("overheat")
+    if m.bb_pctb > 1:
+        m.flags.append("above_upper_band")
+    h = hist.iloc[-3:]
+    if h.iloc[-1] > 0 and h.iloc[-1] < h.iloc[-2] < h.iloc[-3]:
+        m.flags.append("macd_fading")
+    if line.iloc[-1] < signal.iloc[-1] and line.iloc[-2] >= signal.iloc[-2]:
+        m.flags.append("macd_dead_cross")
+    if _bearish_divergence(c, line):
+        m.flags.append("macd_divergence")
+    if (m.vol_ratio or 0) >= BREAKOUT_VOL_MULT and m.close < op and (m.day_range_pos or 1) <= 0.3:
+        m.flags.append("heavy_selling_day")
 
 
 def benchmark_ret_6m(df: pd.DataFrame) -> float | None:

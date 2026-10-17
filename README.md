@@ -31,8 +31,9 @@ covers all domestic stocks listed on the TSE Prime, Standard and Growth markets.
 | Fundamentals (US) | latest quarter revenue and operating income up year over year |
 | Earnings | at least 5 sessions to the next report (when known) |
 | Flags | `fin_unknown`, `wide_stop` (structural stop >15% away), `crypto_related`, `turnover_gt_mcap` (speculative spike), `volume_spike_5x` |
+| Secondary (shown, not filtered) | `rsi14`, `macd` / `macd_signal` / `macd_hist` (12-26-9) and its 3-session change, Bollinger `%b` (20, 2), `pct_above_sma200`, `day_range_pos`. Flags: `overheat` (RSI > 80 or > 40% above the 200-day SMA), `above_upper_band`, `macd_fading` (positive histogram shrinking 2 sessions in a row), `macd_dead_cross`, `macd_divergence` (higher closing high with a lower MACD than at the prior peak within 120 sessions), `heavy_selling_day` (down day closing in the bottom 30% of its range on ≥ 1.5× volume) |
 
-`rank_hint`: **A** = every check passes, **B** = everything except the trigger. `trigger_but_failed` lists names with a trigger that failed another check.
+`rank_hint`: **A** = every check passes, **B** = everything except the trigger. `trigger_but_failed` lists names with a trigger that failed another check. The secondary indicators never change `rank_hint`; they are there for review and to test later (with `history/`) whether any of them predicts weaker follow-through.
 
 ## Outputs (`data/`)
 

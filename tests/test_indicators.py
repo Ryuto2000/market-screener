@@ -76,3 +76,39 @@ def test_stop_struct_below_close():
     m = ind.compute(frame(uptrend()), 0.0)
     assert m.stop_struct is None or m.stop_struct < m.close
     assert abs(m.stop_8pct / m.close - 0.92) < 1e-9
+
+
+def test_secondary_indicators_present():
+    m = ind.compute(frame(uptrend()), 0.0)
+    assert 0 <= m.rsi14 <= 100
+    assert m.macd > 0 and not np.isnan(m.macd_hist)
+    assert not np.isnan(m.bb_pctb)
+
+
+def test_heavy_selling_day_flag():
+    c = list(uptrend(300, drift=0.002))
+    df = frame(c)
+    # last bar: opened high, closed near the low on 2x volume
+    df.iloc[-1, df.columns.get_loc("Open")] = c[-1] * 1.03
+    df.iloc[-1, df.columns.get_loc("High")] = c[-1] * 1.035
+    df.iloc[-1, df.columns.get_loc("Low")] = c[-1] * 0.998
+    df.iloc[-1, df.columns.get_loc("Volume")] = 2e6
+    m = ind.compute(df, 0.0)
+    assert "heavy_selling_day" in m.flags, m.flags
+
+
+def test_overheat_flag_on_steep_rise():
+    m = ind.compute(frame(uptrend(300, drift=0.01)), 0.0)
+    assert "overheat" in m.flags
+
+
+def test_bearish_divergence():
+    # strong rally to a peak, pullback, then a slow grind to a marginally higher high
+    c = list(uptrend(200, drift=0.001))
+    p = c[-1]
+    c += [p * (1 + 0.012 * i) for i in range(1, 31)]          # fast rally
+    top = c[-1]
+    c += [top * (1 - 0.004 * i) for i in range(1, 41)]        # pullback
+    low = c[-1]
+    c += [low + (top * 1.01 - low) * i / 40 for i in range(1, 41)]  # slow climb to a new high
+    assert ind._bearish_divergence(pd.Series(c), ind.macd(pd.Series(c))[0])
