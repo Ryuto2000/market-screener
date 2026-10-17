@@ -41,20 +41,20 @@ $7255.T: possibly delisted; no price data found  (period=5d)
 patch failed 7183.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 patch failed 7255.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 downloaded 2700/3737
-$7490.T: possibly delisted; no price data found  (period=5d)
 $7709.T: possibly delisted; no price data found  (period=5d)
+$7490.T: possibly delisted; no price data found  (period=5d)
 
 2 Failed downloads:
-['7490.T', '7709.T']: possibly delisted; no price data found  (period=5d)
+['7709.T', '7490.T']: possibly delisted; no price data found  (period=5d)
 patch failed 7490.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 patch failed 7709.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 downloaded 2850/3737
-$7851.T: possibly delisted; no price data found  (period=5d)
-$7985.T: possibly delisted; no price data found  (period=5d)
 $7946.T: possibly delisted; no price data found  (period=5d)
+$7985.T: possibly delisted; no price data found  (period=5d)
+$7851.T: possibly delisted; no price data found  (period=5d)
 
 3 Failed downloads:
-['7851.T', '7985.T', '7946.T']: possibly delisted; no price data found  (period=5d)
+['7946.T', '7985.T', '7851.T']: possibly delisted; no price data found  (period=5d)
 patch failed 7851.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 patch failed 7946.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 patch failed 7985.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
@@ -74,6 +74,7 @@ $3670.T: possibly delisted; no price data found  (period=5d)
 ['3670.T']: possibly delisted; no price data found  (period=5d)
 patch failed 3670.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 downloaded 3737/3737
+latest session rebuilt from 60m bars: 11, official close applied: 10
 downloaded 1/1
 last bar dates: {'2026-10-16': 3690, '2026-09-30': 9, '2026-10-08': 3}
 liquid & enough history: 1149
