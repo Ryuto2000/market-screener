@@ -1,0 +1,18 @@
+warning: no symbol table found at https://en.wikipedia.org/wiki/Nasdaq-100
+universe: 903
+downloaded 1/1
+benchmark last bars: ['2026-10-14', '2026-10-15', '2026-10-16']
+downloaded 1/1
+downloaded 150/919
+downloaded 300/919
+downloaded 450/919
+downloaded 600/919
+downloaded 750/919
+downloaded 900/919
+downloaded 919/919
+last bar dates: {'2026-10-16': 903}
+liquid & enough history: 900
+trend + RS pass: 130
+fundamentals known: 126/130
+price table: 920 tickers
+done: A=49 B=46 errors=0

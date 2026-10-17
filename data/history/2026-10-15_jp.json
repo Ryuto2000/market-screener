@@ -1,0 +1,74 @@
+{
+ "generated_at": "2026-10-16T15:17:17+00:00",
+ "market": "jp",
+ "data_date": "2026-10-15",
+ "benchmark": {
+  "ticker": "1306.T",
+  "name": "TOPIX (1306)",
+  "ret_6m": 0.0716
+ },
+ "counts": {
+  "A": 1,
+  "B": 0
+ },
+ "A": [
+  {
+   "ticker": "7267.T",
+   "code": "7267",
+   "name": "本田技研工業",
+   "market": "プライム",
+   "sector": "輸送用機器",
+   "ok": true,
+   "reason": "",
+   "date": "2026-10-15",
+   "close": 1776.0,
+   "sma20": 1692.4488,
+   "sma50": 1660.4569,
+   "sma200": 1473.869,
+   "sma200_20ago": 1452.0925,
+   "high_52w": 1785.5,
+   "high_3m": 1785.5,
+   "pct_from_52w_high": -0.0053,
+   "ret_6m": 0.4125,
+   "vol_ratio": 1.3679,
+   "turnover_20d": 25184029010.4559,
+   "trend_ok": true,
+   "trend_detail": {
+    "sma50_gt_sma200": true,
+    "close_gt_sma50": true,
+    "sma200_rising": true,
+    "within_15pct_of_52w_high": true,
+    "rs_beats_benchmark": true
+   },
+   "triggers": [
+    "b_near_high"
+   ],
+   "breakout_level": null,
+   "breakout_date": null,
+   "entry_limit": 1839.065,
+   "chase_ok": true,
+   "stop_8pct": 1633.92,
+   "stop_struct": 1675.5243,
+   "stop_struct_dist": 0.0566,
+   "flags": [],
+   "market_cap": 6997697307942.5,
+   "liquidity_ok": true,
+   "next_earnings": "2026-11-05",
+   "bdays_to_earnings": 14,
+   "rev_yoy": 0.1351,
+   "op_income_yoy": 1.1738,
+   "fin_quarter": "2026-06-30",
+   "checks": {
+    "liquidity": true,
+    "not_excluded": true,
+    "trigger": true,
+    "chase_ok": true,
+    "fundamentals": true,
+    "earnings_ok": true
+   },
+   "rank_hint": "A",
+   "rs_excess": 0.3408
+  }
+ ],
+ "B": []
+}
