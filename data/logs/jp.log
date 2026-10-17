@@ -50,11 +50,11 @@ patch failed 7490.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] 
 patch failed 7709.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 downloaded 2850/3737
 $7851.T: possibly delisted; no price data found  (period=5d)
-$7946.T: possibly delisted; no price data found  (period=5d)
 $7985.T: possibly delisted; no price data found  (period=5d)
+$7946.T: possibly delisted; no price data found  (period=5d)
 
 3 Failed downloads:
-['7851.T', '7946.T', '7985.T']: possibly delisted; no price data found  (period=5d)
+['7851.T', '7985.T', '7946.T']: possibly delisted; no price data found  (period=5d)
 patch failed 7851.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 patch failed 7946.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 patch failed 7985.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp

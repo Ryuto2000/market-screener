@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-17T09:56:08+00:00",
+ "generated_at": "2026-10-17T10:59:15+00:00",
  "market": "jp",
  "data_date": "2026-10-16",
  "benchmark": {
@@ -2511,7 +2511,7 @@
     "wide_stop",
     "fin_unknown"
    ],
-   "market_cap": 38299594470.0,
+   "market_cap": 38479807470.0,
    "liquidity_ok": true,
    "next_earnings": null,
    "bdays_to_earnings": null,
