@@ -1,0 +1,420 @@
+{
+ "generated_at": "2026-10-18T10:15:46+00:00",
+ "market": "jp",
+ "signals": 2598,
+ "note": "signals passing screener/rules.py; no fees; same price data as the backtest",
+ "results": {
+  "intraday": {
+   "current: stop -8%, BE at +8%, 1/3 at +16%": {
+    "n": 2598,
+    "win_rate": 0.381,
+    "not_losing_-1%": 0.54,
+    "avg_win": 0.1833,
+    "avg_loss": -0.0604,
+    "expectancy": 0.0326,
+    "profit_factor": 1.87,
+    "days_median": 37.0,
+    "by_year": {
+     "2022": -0.0092,
+     "2023": 0.0385,
+     "2024": 0.002,
+     "2025": 0.0788,
+     "2026": 0.0011
+    }
+   },
+   "stop -6%": {
+    "n": 2598,
+    "win_rate": 0.321,
+    "not_losing_-1%": 0.457,
+    "avg_win": 0.1881,
+    "avg_loss": -0.0498,
+    "expectancy": 0.0265,
+    "profit_factor": 1.78,
+    "days_median": 24.0,
+    "by_year": {
+     "2022": -0.0081,
+     "2023": 0.0278,
+     "2024": 0.0035,
+     "2025": 0.0665,
+     "2026": 0.0009
+    }
+   },
+   "stop -10%": {
+    "n": 2598,
+    "win_rate": 0.42,
+    "not_losing_-1%": 0.594,
+    "avg_win": 0.1808,
+    "avg_loss": -0.0687,
+    "expectancy": 0.036,
+    "profit_factor": 1.9,
+    "days_median": 44.0,
+    "by_year": {
+     "2022": -0.0039,
+     "2023": 0.0477,
+     "2024": -0.0034,
+     "2025": 0.0851,
+     "2026": 0.001
+    }
+   },
+   "stop -12%": {
+    "n": 2598,
+    "win_rate": 0.446,
+    "not_losing_-1%": 0.63,
+    "avg_win": 0.1779,
+    "avg_loss": -0.0749,
+    "expectancy": 0.038,
+    "profit_factor": 1.92,
+    "days_median": 51.0,
+    "by_year": {
+     "2022": 0.0009,
+     "2023": 0.0536,
+     "2024": -0.0072,
+     "2025": 0.0879,
+     "2026": 0.0018
+    }
+   },
+   "stop -15%": {
+    "n": 2598,
+    "win_rate": 0.477,
+    "not_losing_-1%": 0.672,
+    "avg_win": 0.1745,
+    "avg_loss": -0.0808,
+    "expectancy": 0.041,
+    "profit_factor": 1.97,
+    "days_median": 59.0,
+    "by_year": {
+     "2022": 0.0188,
+     "2023": 0.0602,
+     "2024": -0.015,
+     "2025": 0.091,
+     "2026": 0.0078
+    }
+   },
+   "stop 3x ATR (6-12%)": {
+    "n": 2598,
+    "win_rate": 0.353,
+    "not_losing_-1%": 0.508,
+    "avg_win": 0.1878,
+    "avg_loss": -0.057,
+    "expectancy": 0.0294,
+    "profit_factor": 1.8,
+    "days_median": 32.0,
+    "by_year": {
+     "2022": -0.0132,
+     "2023": 0.0346,
+     "2024": 0.0015,
+     "2025": 0.0729,
+     "2026": 0.0005
+    }
+   },
+   "BE stop at +1% (after +8%)": {
+    "n": 2598,
+    "win_rate": 0.535,
+    "not_losing_-1%": 0.548,
+    "avg_win": 0.1288,
+    "avg_loss": -0.0797,
+    "expectancy": 0.0319,
+    "profit_factor": 1.86,
+    "days_median": 36.0,
+    "by_year": {
+     "2022": -0.0082,
+     "2023": 0.0376,
+     "2024": 0.002,
+     "2025": 0.0767,
+     "2026": 0.0019
+    }
+   },
+   "BE only after +12%": {
+    "n": 2598,
+    "win_rate": 0.421,
+    "not_losing_-1%": 0.486,
+    "avg_win": 0.179,
+    "avg_loss": -0.0734,
+    "expectancy": 0.0328,
+    "profit_factor": 1.77,
+    "days_median": 42.0,
+    "by_year": {
+     "2022": -0.0109,
+     "2023": 0.0397,
+     "2024": -0.0022,
+     "2025": 0.0826,
+     "2026": 0.0005
+    }
+   },
+   "stop -10%, BE after +12%": {
+    "n": 2598,
+    "win_rate": 0.472,
+    "not_losing_-1%": 0.544,
+    "avg_win": 0.1758,
+    "avg_loss": -0.0856,
+    "expectancy": 0.0378,
+    "profit_factor": 1.84,
+    "days_median": 52.0,
+    "by_year": {
+     "2022": -0.0052,
+     "2023": 0.0521,
+     "2024": -0.0077,
+     "2025": 0.0903,
+     "2026": 0.0017
+    }
+   },
+   "half at +8%, rest as current": {
+    "n": 2598,
+    "win_rate": 0.556,
+    "not_losing_-1%": 0.559,
+    "avg_win": 0.1051,
+    "avg_loss": -0.0826,
+    "expectancy": 0.0218,
+    "profit_factor": 1.59,
+    "days_median": 31.0,
+    "by_year": {
+     "2022": -0.014,
+     "2023": 0.0281,
+     "2024": 0.0027,
+     "2025": 0.048,
+     "2026": 0.0052
+    }
+   },
+   "all out at +10%": {
+    "n": 2598,
+    "win_rate": 0.492,
+    "not_losing_-1%": 0.554,
+    "avg_win": 0.1166,
+    "avg_loss": -0.0725,
+    "expectancy": 0.0204,
+    "profit_factor": 1.55,
+    "days_median": 21.0,
+    "by_year": {
+     "2022": -0.0123,
+     "2023": 0.028,
+     "2024": 0.0054,
+     "2025": 0.0356,
+     "2026": 0.0134
+    }
+   },
+   "all out at +16%": {
+    "n": 2598,
+    "win_rate": 0.381,
+    "not_losing_-1%": 0.54,
+    "avg_win": 0.1712,
+    "avg_loss": -0.0604,
+    "expectancy": 0.0279,
+    "profit_factor": 1.75,
+    "days_median": 27.0,
+    "by_year": {
+     "2022": -0.0076,
+     "2023": 0.0376,
+     "2024": 0.0049,
+     "2025": 0.055,
+     "2026": 0.0096
+    }
+   }
+  },
+  "close": {
+   "current: stop -8%, BE at +8%, 1/3 at +16%": {
+    "n": 2598,
+    "win_rate": 0.459,
+    "not_losing_-1%": 0.508,
+    "avg_win": 0.1702,
+    "avg_loss": -0.0783,
+    "expectancy": 0.0358,
+    "profit_factor": 1.84,
+    "days_median": 44.0,
+    "by_year": {
+     "2022": -0.0085,
+     "2023": 0.0449,
+     "2024": -0.011,
+     "2025": 0.0888,
+     "2026": 0.0102
+    }
+   },
+   "stop -6%": {
+    "n": 2598,
+    "win_rate": 0.405,
+    "not_losing_-1%": 0.451,
+    "avg_win": 0.1729,
+    "avg_loss": -0.0653,
+    "expectancy": 0.0312,
+    "profit_factor": 1.8,
+    "days_median": 34.0,
+    "by_year": {
+     "2022": -0.0097,
+     "2023": 0.034,
+     "2024": -0.0059,
+     "2025": 0.0801,
+     "2026": 0.0095
+    }
+   },
+   "stop -10%": {
+    "n": 2598,
+    "win_rate": 0.495,
+    "not_losing_-1%": 0.548,
+    "avg_win": 0.1668,
+    "avg_loss": -0.089,
+    "expectancy": 0.0377,
+    "profit_factor": 1.84,
+    "days_median": 52.0,
+    "by_year": {
+     "2022": 0.0032,
+     "2023": 0.0513,
+     "2024": -0.016,
+     "2025": 0.0914,
+     "2026": 0.0092
+    }
+   },
+   "stop -12%": {
+    "n": 2598,
+    "win_rate": 0.525,
+    "not_losing_-1%": 0.581,
+    "avg_win": 0.1645,
+    "avg_loss": -0.0955,
+    "expectancy": 0.041,
+    "profit_factor": 1.9,
+    "days_median": 60.0,
+    "by_year": {
+     "2022": 0.0114,
+     "2023": 0.0586,
+     "2024": -0.0218,
+     "2025": 0.0964,
+     "2026": 0.0135
+    }
+   },
+   "stop -15%": {
+    "n": 2598,
+    "win_rate": 0.551,
+    "not_losing_-1%": 0.61,
+    "avg_win": 0.162,
+    "avg_loss": -0.1018,
+    "expectancy": 0.0436,
+    "profit_factor": 1.95,
+    "days_median": 67.0,
+    "by_year": {
+     "2022": 0.0202,
+     "2023": 0.0654,
+     "2024": -0.0233,
+     "2025": 0.0958,
+     "2026": 0.0173
+    }
+   },
+   "stop 3x ATR (6-12%)": {
+    "n": 2598,
+    "win_rate": 0.437,
+    "not_losing_-1%": 0.486,
+    "avg_win": 0.1716,
+    "avg_loss": -0.0747,
+    "expectancy": 0.033,
+    "profit_factor": 1.79,
+    "days_median": 41.0,
+    "by_year": {
+     "2022": -0.0166,
+     "2023": 0.0397,
+     "2024": -0.0108,
+     "2025": 0.0851,
+     "2026": 0.0109
+    }
+   },
+   "BE stop at +1% (after +8%)": {
+    "n": 2598,
+    "win_rate": 0.504,
+    "not_losing_-1%": 0.539,
+    "avg_win": 0.1528,
+    "avg_loss": -0.0824,
+    "expectancy": 0.0361,
+    "profit_factor": 1.88,
+    "days_median": 43.0,
+    "by_year": {
+     "2022": -0.0083,
+     "2023": 0.0444,
+     "2024": -0.0085,
+     "2025": 0.0885,
+     "2026": 0.0098
+    }
+   },
+   "BE only after +12%": {
+    "n": 2598,
+    "win_rate": 0.477,
+    "not_losing_-1%": 0.5,
+    "avg_win": 0.1745,
+    "avg_loss": -0.0874,
+    "expectancy": 0.0374,
+    "profit_factor": 1.82,
+    "days_median": 51.0,
+    "by_year": {
+     "2022": -0.0095,
+     "2023": 0.048,
+     "2024": -0.0136,
+     "2025": 0.0936,
+     "2026": 0.0105
+    }
+   },
+   "stop -10%, BE after +12%": {
+    "n": 2598,
+    "win_rate": 0.52,
+    "not_losing_-1%": 0.549,
+    "avg_win": 0.1707,
+    "avg_loss": -0.1014,
+    "expectancy": 0.0402,
+    "profit_factor": 1.83,
+    "days_median": 59.0,
+    "by_year": {
+     "2022": 0.002,
+     "2023": 0.0563,
+     "2024": -0.0179,
+     "2025": 0.0963,
+     "2026": 0.0108
+    }
+   },
+   "half at +8%, rest as current": {
+    "n": 2598,
+    "win_rate": 0.587,
+    "not_losing_-1%": 0.591,
+    "avg_win": 0.1103,
+    "avg_loss": -0.0936,
+    "expectancy": 0.026,
+    "profit_factor": 1.67,
+    "days_median": 39.0,
+    "by_year": {
+     "2022": -0.0166,
+     "2023": 0.0363,
+     "2024": -0.0043,
+     "2025": 0.0573,
+     "2026": 0.0116
+    }
+   },
+   "all out at +10%": {
+    "n": 2598,
+    "win_rate": 0.542,
+    "not_losing_-1%": 0.562,
+    "avg_win": 0.1136,
+    "avg_loss": -0.087,
+    "expectancy": 0.0218,
+    "profit_factor": 1.55,
+    "days_median": 24.0,
+    "by_year": {
+     "2022": -0.0132,
+     "2023": 0.0328,
+     "2024": -0.0001,
+     "2025": 0.0374,
+     "2026": 0.0182
+    }
+   },
+   "all out at +16%": {
+    "n": 2598,
+    "win_rate": 0.46,
+    "not_losing_-1%": 0.508,
+    "avg_win": 0.1552,
+    "avg_loss": -0.0784,
+    "expectancy": 0.029,
+    "profit_factor": 1.68,
+    "days_median": 32.0,
+    "by_year": {
+     "2022": -0.0068,
+     "2023": 0.043,
+     "2024": -0.0052,
+     "2025": 0.0577,
+     "2026": 0.0152
+    }
+   }
+  }
+ }
+}
