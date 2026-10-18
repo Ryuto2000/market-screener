@@ -47,6 +47,10 @@ def summarize(ev: pd.DataFrame) -> dict:
             "exits": {k: int(v) for k, v in ev[f"{mode}_exit"].value_counts().items()},
             "share_of_profit_top10pct": _f(r.nlargest(max(1, len(r) // 10)).sum() / r[r > 0].sum()) if (r > 0).any() else None,
         }
+        if f"{mode}_added" in ev:
+            ad = ev[f"{mode}_added"].fillna(False).astype(bool)
+            out[f"rules_{mode}"]["added_share"] = _f(ad.mean())
+            out[f"rules_{mode}"]["add_lot_mean"] = _f(ev.loc[ad, f"{mode}_add_ret"].mean()) if ad.any() else None
     return out
 
 
@@ -123,6 +127,10 @@ def markdown(title: str, res: dict, notes: list[str]) -> str:
         top = f"{x['share_of_profit_top10pct']:.0%}" if x["share_of_profit_top10pct"] is not None else "-"
         lines.append(f"| {mode} stop | {x['n']} | {x['win_rate']:.0%} | {aw} | {al} | {x['expectancy']:.2%} | {pf} | "
                      f"{x['days_win_median']}/{x['days_loss_median']} | {top} |")
+    adds = [f"{m}: added in {a[f'rules_{m}']['added_share']:.0%}, add lot mean {a[f'rules_{m}']['add_lot_mean']:.2%} of the initial position"
+            for m in ("intraday", "close") if a[f"rules_{m}"].get("add_lot_mean") is not None]
+    if adds:
+        lines += ["", "Add-on: " + "; ".join(adds) + "."]
     for name in ("by_year", "by_regime", "by_distribution_days", "by_rs_rating"):
         if name in res:
             lines += ["", f"## {name}", "", "| group | n | win rate | expectancy | 20d mean |", "|---|---|---|---|---|"]

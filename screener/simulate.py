@@ -1,14 +1,19 @@
 """Follow a signal forward: fixed-horizon returns, excursions and the exit-rule simulation.
 
-The exit rules mirror the ones the screener's README describes for momentum trades:
+Exit rules for momentum trades (from 2026-10-18, chosen with screener.variants):
 - stop at -8% of the entry;
-- close >= +8%  -> stop raised to the entry;
-- close >= +16% -> sell 1/3 at the next open, stop = max(+8%, 50-day SMA);
-- after that, every 5 sessions the stop is raised to max(highest close * 0.85, 50-day SMA); it never goes down.
+- close >= +8% -> stop raised to the entry +1%;
+- from then on the stop is max(entry +1%, highest high since entry -10%), updated daily; it never goes down;
+- no partial profit taking;
+- one add-on of half the initial size at the next open when the close is >= +8% and above the prior
+  3-month high (the stop is already at entry +1%).
 
 Two stop styles are simulated: "intraday" (a resting stop order fills at the stop, or at the open
 if the open gaps below it) and "close" (the stop is checked on the close and the position is sold
 at the next open, as with odd-lot orders that cannot rest as stops).
+
+Returns are on the initial position: P&L of all lots / initial entry notional.
+The previous rules (until 2026-10-18) are available as OLD_RULES for comparison.
 """
 from __future__ import annotations
 
@@ -17,12 +22,15 @@ import math
 import pandas as pd
 
 HORIZONS = (5, 10, 20, 40, 60)
-MAX_HOLD = 120
+MAX_HOLD = 250        # about a year; the live rules have no time limit
 STOP = 0.08
-BREAKEVEN_AT = 0.08
-TRIM_AT = 0.16
-TRAIL = 0.15
-TRAIL_EVERY = 5
+TARGET = 0.16         # only for the descriptive "first hit" statistic
+LOOKBACK_3M = 63
+
+RULES = dict(stop=0.08, be_at=0.08, be_level=0.01, hi_trail=0.10, trim_at=None,
+             add="skill", add_frac=0.5, add_after_trim=True)
+OLD_RULES = dict(stop=0.08, be_at=0.08, be_level=0.0, hi_trail=None, trim_at=0.16, trim_frac=1 / 3,
+                 trail=0.15, add=None)
 
 
 def _r(x: float | None, nd: int = 4):
@@ -48,66 +56,120 @@ def forward(df: pd.DataFrame, entry_i: int) -> dict:
         if l[j] <= entry * (1 - STOP):
             first = "stop"
             break
-        if c[j] >= entry * (1 + TRIM_AT):
+        if c[j] >= entry * (1 + TARGET):
             first = "target"
             break
     out["first_hit"] = first
     return out
 
 
-def exit_rules(df: pd.DataFrame, entry_i: int, mode: str = "intraday") -> dict:
-    """Simulate the exit ladder. Returns the blended return of the position and how it ended."""
+def exit_rules(df: pd.DataFrame, ei: int, mode: str = "intraday", stop: float = 0.08, be_at: float = 0.08,
+               be_level: float = 0.01, trim_at: float | None = None, trim_frac: float = 1 / 3,
+               full_at: float | None = None, trail: float = 0.15, hi_trail: float | None = 0.10,
+               max_hold: int = MAX_HOLD, atr_mult: float | None = None, atr_pct: float | None = None,
+               atr_bounds: tuple[float, float] = (0.06, 0.12), add: str | None = "skill", add_frac: float = 0.5,
+               add_pb: float = 0.08, add_after_trim: bool = True) -> dict:
+    """Simulate the exit ladder (defaults = current rules) with every level as a parameter.
+
+    Legacy ladder (OLD_RULES): trim_frac of the position at the next open after a close >= trim_at,
+    stop then max(entry * (1 + trim_at / 2), 50-day SMA), and every 5 sessions max(highest close * (1 - trail), SMA50).
+    add: None, "skill" (close >= +8% and above the prior 3-month high) or "rebreak" (a pullback of add_pb from the
+    highest close, then a close above it). Both need the stop at or above the entry.
+
+    Returns ret (P&L / initial notional), days, exit, stage (0 none, 1 stop at/above entry, 2 trimmed),
+    added (bool) and add_ret (P&L of the add lot / initial notional).
+    """
     o, h, l, c = (df[k].to_numpy(float) for k in ("Open", "High", "Low", "Close"))
     sma50 = df["Close"].rolling(50).mean().to_numpy(float)
-    n = len(df)
-    entry = o[entry_i]
-    stop = entry * (1 - STOP)
-    stage = 0
-    remaining = 1.0
-    realized = 0.0
-    trim_pending = False
-    sell_next_open = False
-    high_close = entry
-    last = min(n, entry_i + MAX_HOLD)
-    for j in range(entry_i, last):
-        # orders executed at today's open
-        if sell_next_open:
-            realized += remaining * (o[j] / entry - 1)
-            return _done(realized, j - entry_i, "stop_close", stage)
-        if trim_pending:
-            realized += (1 / 3) * (o[j] / entry - 1)
-            remaining -= 1 / 3
-            trim_pending = False
-        # resting stop order during the session
+    hi63 = df["High"].rolling(LOOKBACK_3M).max().shift(1).to_numpy(float)
+    n, e = len(df), o[ei]
+    if atr_mult is not None and atr_pct is not None and not math.isnan(atr_pct):
+        stop = min(max(atr_mult * atr_pct, atr_bounds[0]), atr_bounds[1])
+    sl = e * (1 - stop)
+    qty, cost = 1.0, e            # position in units of the initial lot, average cost
+    pnl = 0.0                     # realized P&L in price units per initial lot
+    add_qty, add_px, add_pnl = 0.0, None, 0.0
+    stage, trim_q, sell, add_pending, added = 0, 0.0, False, False, False
+    hc, hh = e, e                 # highest close / high since entry
+    peak, pulled = e, False       # for the re-break add
+    last = min(n, ei + max_hold)
+
+    def close_all(px):
+        nonlocal pnl, add_pnl
+        pnl += qty * (px - cost)
+        if add_qty:
+            add_pnl += add_qty * (px - add_px)
+
+    def out(days, reason):
+        return {"ret": _r(pnl / e), "days": int(days), "exit": reason, "stage": stage,
+                "added": added, "add_ret": _r(add_pnl / e)}
+
+    for j in range(ei, last):
+        # orders at today's open
+        if sell:
+            close_all(o[j])
+            return out(j - ei, "stop_close")
+        if trim_q:
+            q = min(trim_q, qty)
+            pnl += q * (o[j] - cost)
+            if add_qty:  # the add lot shares the trim pro rata
+                aq = add_qty * q / qty
+                add_pnl += aq * (o[j] - add_px)
+                add_qty -= aq
+            qty -= q
+            trim_q = 0.0
+            if qty <= 1e-9:
+                return out(j - ei, "target")
+        if add_pending:
+            cost = (qty * cost + add_frac * o[j]) / (qty + add_frac)
+            qty += add_frac
+            add_qty, add_px, added, add_pending = add_frac, o[j], True, False
+        # stop during the session (intraday) or on the close
         if mode == "intraday":
-            if o[j] <= stop:
-                realized += remaining * (o[j] / entry - 1)
-                return _done(realized, j - entry_i, "stop_gap", stage)
-            if l[j] <= stop:
-                realized += remaining * (stop / entry - 1)
-                return _done(realized, j - entry_i, "stop", stage)
-        elif c[j] < stop:
-            sell_next_open = True
+            if o[j] <= sl:
+                close_all(o[j])
+                return out(j - ei, "stop_gap")
+            if l[j] <= sl:
+                close_all(sl)
+                return out(j - ei, "stop")
+        elif c[j] < sl:
+            sell = True
             continue
         # end-of-day updates
-        high_close = max(high_close, c[j])
-        if stage < 1 and c[j] >= entry * (1 + BREAKEVEN_AT):
-            stop = max(stop, entry)
+        m50 = 0 if math.isnan(sma50[j]) else sma50[j]
+        prev_peak = peak
+        hc, hh = max(hc, c[j]), max(hh, h[j])
+        if full_at is not None and c[j] >= e * (1 + full_at):
+            trim_q = qty
+            continue
+        if stage < 1 and c[j] >= e * (1 + be_at):
+            sl = max(sl, e * (1 + be_level))
             stage = 1
-        if stage < 2 and c[j] >= entry * (1 + TRIM_AT):
-            trim_pending = True
+        if hi_trail is not None and stage >= 1:
+            sl = max(sl, hh * (1 - hi_trail))
+        if trim_at is not None and stage < 2 and c[j] >= e * (1 + trim_at):
+            trim_q = qty * trim_frac
             stage = 2
-            stop = max(stop, entry * (1 + BREAKEVEN_AT), sma50[j] if not math.isnan(sma50[j]) else 0)
-        elif stage >= 2 and (j - entry_i) % TRAIL_EVERY == 0:
-            stop = max(stop, high_close * (1 - TRAIL), sma50[j] if not math.isnan(sma50[j]) else 0)
+            sl = max(sl, e * (1 + trim_at / 2), m50)
+        elif stage >= 2 and (j - ei) % 5 == 0:
+            sl = max(sl, hc * (1 - trail), m50)
+        elif trim_at is None and stage >= 1 and hi_trail is None and (j - ei) % 5 == 0:
+            sl = max(sl, hc * (1 - trail), m50)
+        # add-on signal (bought at the next open); needs the stop at or above the entry
+        if add and not added and not add_pending and stage >= 1 and (add_after_trim or stage < 2) and sl >= e:
+            if add == "skill":
+                ok = c[j] >= e * (1 + be_at) and not math.isnan(hi63[j]) and c[j] > hi63[j]
+            else:
+                ok = pulled and prev_peak >= e * (1 + be_at) and c[j] > prev_peak
+            if ok:
+                add_pending = True
+        if c[j] > peak:
+            peak, pulled = c[j], False
+        elif c[j] <= peak * (1 - add_pb):
+            pulled = True
     j = last - 1
-    realized += remaining * (c[j] / entry - 1)
-    reason = "max_hold" if last - entry_i >= MAX_HOLD else "open"
-    return _done(realized, j - entry_i + 1, reason, stage)
-
-
-def _done(ret: float, days: int, reason: str, stage: int) -> dict:
-    return {"ret": _r(ret), "days": int(days), "exit": reason, "stage": stage}
+    close_all(c[j])
+    return out(j - ei + 1, "max_hold" if last - ei >= max_hold else "open")
 
 
 def follow(df: pd.DataFrame, entry_i: int) -> dict:

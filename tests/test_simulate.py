@@ -30,13 +30,26 @@ def test_close_stop_sells_next_open():
     assert r["exit"] == "stop_close" and abs(r["ret"] + 0.09) < 1e-9
 
 
-def test_trim_and_breakeven():
-    # rally to +20% then collapse: 1/3 sold at the open after +16%, rest stopped at +8% or higher
+def test_trailing_from_high_with_add():
+    # rally to +21% then collapse (80 flat sessions so the 3-month high exists): stop trails 10% under the high; half-size add at the open after +8%
     path = [100, 104, 109, 113, 117, 120, 121, 110, 100, 95]
-    df = flat_then(path)
-    r = sim.exit_rules(df, 60, "intraday")
-    assert r["stage"] == 2
-    assert r["ret"] > 0.08
+    r = sim.exit_rules(flat_then(path, pre=80), 80, "intraday")
+    assert r["added"] and r["stage"] == 1
+    assert 0.08 < r["ret"] < 0.11
+
+
+def test_breakeven_plus_one_and_add_loss():
+    # +8.5% close -> stop to +1%, add 0.5x at 108.5; fall back -> initial +1%, add lot -3.75%
+    r = sim.exit_rules(flat_then([100, 104, 108.5, 103, 100, 98], pre=80), 80, "intraday")
+    assert r["exit"] == "stop" and abs(r["ret"] - (0.01 - 0.0375)) < 1e-4
+    r0 = sim.exit_rules(flat_then([100, 104, 108.5, 103, 100, 98], pre=80), 80, "intraday", add=None)
+    assert abs(r0["ret"] - 0.01) < 1e-9
+
+
+def test_old_rules_trim():
+    path = [100, 104, 109, 113, 117, 120, 121, 110, 100, 95]
+    r = sim.exit_rules(flat_then(path), 60, "intraday", **sim.OLD_RULES)
+    assert r["stage"] == 2 and r["ret"] > 0.08
 
 
 def test_forward_horizons_and_first_hit():
