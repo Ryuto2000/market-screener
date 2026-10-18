@@ -51,6 +51,34 @@ Add-on: intraday: added in 55%, add lot mean 1.62% of the initial position; clos
 |---|---|---|---|---|
 | 90-99 | 252 | 42% | 5.26% | 2.5% |
 
+## by_benchmark_gap_at_entry
+
+| group | n | win rate | expectancy | 20d mean |
+|---|---|---|---|---|
+| -2..-1% | 8 (small) | 50% | 7.56% | -0.4% |
+| -1..+1% | 238 | 41% | 5.03% | 2.4% |
+| +1..+2% | 4 (small) | 75% | 17.58% | 14.6% |
+| >=+2% | 2 (small) | 50% | -1.18% | -0.8% |
+
+## by_stock_gap_at_entry
+
+| group | n | win rate | expectancy | 20d mean |
+|---|---|---|---|---|
+| <=-2% | 24 | 38% | -1.38% | 0.1% |
+| -2..0% | 103 | 47% | 8.57% | 2.0% |
+| 0..+2% | 99 | 38% | 2.92% | 2.5% |
+| +2..+4% | 14 (small) | 29% | 7.98% | 3.3% |
+| >=+4% | 12 (small) | 58% | 6.19% | 9.6% |
+
+## by_breadth50
+
+| group | n | win rate | expectancy | 20d mean |
+|---|---|---|---|---|
+| <45% | 7 (small) | 43% | 9.31% | -1.2% |
+| 45-60% | 51 | 31% | -1.17% | -0.2% |
+| 60-75% | 126 | 42% | 5.72% | 4.2% |
+| >=75% | 68 | 50% | 8.81% | 1.7% |
+
 ## signals (intraday-stop expectancy, with vs without)
 
 | signal | n with | win rate with | exp. with | exp. without | diff | stop first (with) |
@@ -123,6 +151,35 @@ Add-on: intraday: added in 47%, add lot mean 0.40% of the initial position; clos
 | 80-89 | 780 | 33% | 0.84% | 0.7% |
 | 90-99 | 963 | 36% | 2.59% | 2.0% |
 | <70 | 414 | 28% | -0.85% | 0.3% |
+
+## by_benchmark_gap_at_entry
+
+| group | n | win rate | expectancy | 20d mean |
+|---|---|---|---|---|
+| <=-2% | 26 | 27% | -1.22% | 2.9% |
+| -2..-1% | 108 | 23% | -2.31% | -0.5% |
+| -1..+1% | 2435 | 34% | 1.55% | 1.1% |
+| +1..+2% | 74 | 27% | 0.04% | 1.4% |
+| >=+2% | 6 (small) | 50% | 1.84% | 3.4% |
+
+## by_stock_gap_at_entry
+
+| group | n | win rate | expectancy | 20d mean |
+|---|---|---|---|---|
+| <=-2% | 122 | 37% | 3.21% | 1.6% |
+| -2..0% | 1093 | 34% | 1.95% | 0.9% |
+| 0..+2% | 1303 | 32% | 0.56% | 0.8% |
+| +2..+4% | 86 | 31% | 1.05% | 3.7% |
+| >=+4% | 45 | 33% | 3.82% | 2.4% |
+
+## by_breadth50
+
+| group | n | win rate | expectancy | 20d mean |
+|---|---|---|---|---|
+| <45% | 328 | 36% | 2.15% | 1.0% |
+| 45-60% | 730 | 34% | 1.56% | 0.6% |
+| 60-75% | 1131 | 31% | 0.46% | 1.5% |
+| >=75% | 460 | 35% | 2.51% | 0.6% |
 
 ## signals (intraday-stop expectancy, with vs without)
 
