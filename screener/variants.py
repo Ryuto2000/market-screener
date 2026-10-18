@@ -59,6 +59,16 @@ VARIANTS: dict[str, dict[str, dict]] = {
         "re-break: pullback >=8%, add 1x": {"add": "rebreak", "add_pb": 0.08, "add_frac": 1.0},
         "re-break >=8%, add 0.5x, also after the trim": {"add": "rebreak", "add_pb": 0.08, "add_frac": 0.5, "add_after_trim": True},
     },
+    "combined candidates": {
+        "BE +1%, current ladder, skill add 0.5x": {"be_level": 0.01, "add": "skill", "add_frac": 0.5},
+        "BE +1%, high -10%, no trim": {"be_level": 0.01, "hi_trail": 0.10, "trim_at": None},
+        "BE +1%, high -10%, no trim, skill add 0.5x": {"be_level": 0.01, "hi_trail": 0.10, "trim_at": None,
+                                                        "add": "skill", "add_frac": 0.5, "add_after_trim": True},
+        "BE +1%, high -10%, no trim, skill add 1x": {"be_level": 0.01, "hi_trail": 0.10, "trim_at": None,
+                                                      "add": "skill", "add_frac": 1.0, "add_after_trim": True},
+        "BE +1%, high -12%, no trim, skill add 0.5x": {"be_level": 0.01, "hi_trail": 0.12, "trim_at": None,
+                                                        "add": "skill", "add_frac": 0.5, "add_after_trim": True},
+    },
 }
 
 
