@@ -44,7 +44,7 @@ covers all domestic stocks listed on the TSE Prime, Standard and Growth markets.
 | File | Content |
 |---|---|
 | `jp.json`, `us.json` | `A` (top 40), `B` (top 40), `trigger_but_failed`, `market_regime` (benchmark trend and breadth), counts, errors |
-| `prices_jp.json`, `prices_us.json` | price table for every priced ticker plus `extras.txt` (indices, FX, common ETFs). Keys: `d` date, `c` close, `pc` previous close, `h`/`l` high/low, `v` volume, `s20`/`s50`/`s200` SMAs, `h3m`/`h52` highs, `rsi` RSI(14), `r6m` 6-month return, `c60` last 60 closes (oldest first), `n` name, `cs` source of the latest close (`d` daily bar, `o` official quote, `h` hourly rebuild) |
+| `prices_jp.json`, `prices_us.json` | price table for every priced ticker plus `extras.txt` (indices, FX, common ETFs). Keys: `d` date, `c` close, `pc` previous close, `h`/`l` high/low, `v` volume, `s20`/`s50`/`s200` SMAs, `h3m`/`h52` highs, `rsi` RSI(14), `r6m` 6-month return, `c60` and `h60` last 60 closes and highs (oldest first), `n` name, `cs` source of the latest close (`d` daily bar, `o` official quote, `h` hourly rebuild) |
 | `history/<date>_<market>.json` | daily A/B lists, for checking how the picks did later |
 | `logs/` | log of the latest run |
 
