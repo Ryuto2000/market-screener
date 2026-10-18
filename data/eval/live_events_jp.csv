@@ -1,2 +1,2 @@
-ticker,signal_date,rank,rs_rating,triggers,flags,plus,close,entry,entry_date,r5,r10,r20,r40,r60,sessions_seen,mfe60,mae60,first_hit,intraday_ret,intraday_days,intraday_exit,intraday_stage,close_ret,close_days,close_exit,close_stage
-7267.T,2026-10-15,A,,['b_near_high'],[],[],1776.0,1791.5,2026-10-16,,,,,,1,0.012,-0.0025,,0.0033,1,open,0,0.0033,1,open,0
+ticker,signal_date,rank,rs_rating,triggers,flags,plus,close,entry,entry_date,r5,r10,r20,r40,r60,sessions_seen,mfe60,mae60,first_hit,intraday_ret,intraday_days,intraday_exit,intraday_stage,intraday_added,intraday_add_ret,close_ret,close_days,close_exit,close_stage,close_added,close_add_ret
+7267.T,2026-10-15,A,,['b_near_high'],[],[],1776.0,1791.5,2026-10-16,,,,,,1,0.012,-0.0025,,0.0033,1,open,0,False,0.0,0.0033,1,open,0,False,0.0

@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-18T09:57:26+00:00",
+ "generated_at": "2026-10-18T10:55:19+00:00",
  "market": "us",
  "years": 5,
  "signals": 2649,
@@ -69,45 +69,49 @@
     "rules_intraday": {
      "n": 2649,
      "still_open": 28,
-     "win_rate": 0.299,
-     "avg_win": 0.1688,
-     "avg_loss": -0.0587,
-     "expectancy": 0.0094,
-     "median": -0.0253,
-     "profit_factor": 1.2274,
-     "best": 1.1839,
+     "win_rate": 0.3303,
+     "avg_win": 0.1781,
+     "avg_loss": -0.068,
+     "expectancy": 0.0133,
+     "median": -0.0642,
+     "profit_factor": 1.2914,
+     "best": 1.7987,
      "worst": -0.2314,
-     "days_median": 35.0,
-     "days_win_median": 72.0,
-     "days_loss_median": 23.0,
+     "days_median": 31.0,
+     "days_win_median": 62.0,
+     "days_loss_median": 22.0,
      "exits": {
-      "stop": 2086,
-      "stop_gap": 365,
-      "max_hold": 170,
+      "stop": 2203,
+      "stop_gap": 388,
+      "max_hold": 30,
       "open": 28
      },
-     "share_of_profit_top10pct": 0.5452
+     "share_of_profit_top10pct": 0.7218,
+     "added_share": 0.4711,
+     "add_lot_mean": 0.004
     },
     "rules_close": {
      "n": 2649,
-     "still_open": 39,
-     "win_rate": 0.3937,
-     "avg_win": 0.1515,
-     "avg_loss": -0.076,
-     "expectancy": 0.0136,
-     "median": -0.0249,
-     "profit_factor": 1.2951,
-     "best": 1.2352,
-     "worst": -0.2935,
-     "days_median": 44.0,
-     "days_win_median": 80.0,
+     "still_open": 36,
+     "win_rate": 0.3443,
+     "avg_win": 0.2094,
+     "avg_loss": -0.0805,
+     "expectancy": 0.0193,
+     "median": -0.0548,
+     "profit_factor": 1.3664,
+     "best": 2.7957,
+     "worst": -0.3465,
+     "days_median": 40.0,
+     "days_win_median": 74.0,
      "days_loss_median": 28.0,
      "exits": {
-      "stop_close": 2335,
-      "max_hold": 275,
-      "open": 39
+      "stop_close": 2555,
+      "max_hold": 58,
+      "open": 36
      },
-     "share_of_profit_top10pct": 0.5062
+     "share_of_profit_top10pct": 0.7008,
+     "added_share": 0.5232,
+     "add_lot_mean": 0.0049
     }
    },
    "by_year": {
@@ -165,43 +169,46 @@
      "rules_intraday": {
       "n": 90,
       "still_open": 0,
-      "win_rate": 0.1444,
-      "avg_win": 0.135,
-      "avg_loss": -0.0682,
-      "expectancy": -0.0389,
+      "win_rate": 0.1667,
+      "avg_win": 0.0649,
+      "avg_loss": -0.0748,
+      "expectancy": -0.0515,
       "median": -0.08,
-      "profit_factor": 0.334,
-      "best": 0.2505,
+      "profit_factor": 0.1737,
+      "best": 0.2425,
       "worst": -0.1597,
-      "days_median": 32.5,
-      "days_win_median": 80.0,
-      "days_loss_median": 29.0,
+      "days_median": 32.0,
+      "days_win_median": 50.0,
+      "days_loss_median": 28.0,
       "exits": {
-       "stop": 78,
-       "stop_gap": 11,
-       "max_hold": 1
+       "stop": 77,
+       "stop_gap": 13
       },
-      "share_of_profit_top10pct": 0.7939
+      "share_of_profit_top10pct": 0.9082,
+      "added_share": 0.2667,
+      "add_lot_mean": -0.0239
      },
      "rules_close": {
       "n": 90,
       "still_open": 0,
-      "win_rate": 0.2222,
-      "avg_win": 0.12,
-      "avg_loss": -0.0779,
-      "expectancy": -0.0339,
-      "median": -0.081,
-      "profit_factor": 0.4402,
-      "best": 0.4285,
+      "win_rate": 0.1889,
+      "avg_win": 0.1539,
+      "avg_loss": -0.0845,
+      "expectancy": -0.0394,
+      "median": -0.0828,
+      "profit_factor": 0.4244,
+      "best": 0.9749,
       "worst": -0.1404,
-      "days_median": 36.5,
-      "days_win_median": 89.0,
-      "days_loss_median": 32.5,
+      "days_median": 37.5,
+      "days_win_median": 83.0,
+      "days_loss_median": 33.0,
       "exits": {
-       "stop_close": 83,
-       "max_hold": 7
+       "stop_close": 89,
+       "max_hold": 1
       },
-      "share_of_profit_top10pct": 0.7138
+      "share_of_profit_top10pct": 0.928,
+      "added_share": 0.3111,
+      "add_lot_mean": -0.0109
      }
     },
     "2023": {
@@ -258,43 +265,47 @@
      "rules_intraday": {
       "n": 587,
       "still_open": 0,
-      "win_rate": 0.3578,
-      "avg_win": 0.1677,
-      "avg_loss": -0.0629,
-      "expectancy": 0.0196,
-      "median": -0.0027,
-      "profit_factor": 1.4862,
-      "best": 0.9035,
+      "win_rate": 0.3782,
+      "avg_win": 0.2159,
+      "avg_loss": -0.0715,
+      "expectancy": 0.0372,
+      "median": -0.038,
+      "profit_factor": 1.8361,
+      "best": 1.6897,
       "worst": -0.2314,
-      "days_median": 44.0,
-      "days_win_median": 83.5,
-      "days_loss_median": 25.0,
+      "days_median": 40.0,
+      "days_win_median": 80.0,
+      "days_loss_median": 24.0,
       "exits": {
-       "stop": 447,
-       "stop_gap": 82,
-       "max_hold": 58
+       "stop": 473,
+       "stop_gap": 94,
+       "max_hold": 20
       },
-      "share_of_profit_top10pct": 0.4615
+      "share_of_profit_top10pct": 0.668,
+      "added_share": 0.4906,
+      "add_lot_mean": 0.0187
      },
      "rules_close": {
       "n": 587,
       "still_open": 0,
-      "win_rate": 0.4361,
-      "avg_win": 0.1555,
-      "avg_loss": -0.0798,
-      "expectancy": 0.0228,
-      "median": -0.0149,
-      "profit_factor": 1.5077,
-      "best": 0.9035,
-      "worst": -0.2675,
-      "days_median": 56.0,
-      "days_win_median": 87.0,
+      "win_rate": 0.4003,
+      "avg_win": 0.2399,
+      "avg_loss": -0.0839,
+      "expectancy": 0.0457,
+      "median": -0.0465,
+      "profit_factor": 1.9083,
+      "best": 1.693,
+      "worst": -0.291,
+      "days_median": 51.0,
+      "days_win_median": 94.0,
       "days_loss_median": 30.0,
       "exits": {
-       "stop_close": 506,
-       "max_hold": 81
+       "stop_close": 555,
+       "max_hold": 32
       },
-      "share_of_profit_top10pct": 0.4465
+      "share_of_profit_top10pct": 0.6279,
+      "added_share": 0.5315,
+      "add_lot_mean": 0.0215
      }
     },
     "2024": {
@@ -351,43 +362,47 @@
      "rules_intraday": {
       "n": 907,
       "still_open": 0,
-      "win_rate": 0.3286,
-      "avg_win": 0.1772,
-      "avg_loss": -0.0541,
-      "expectancy": 0.0219,
-      "median": 0.0,
-      "profit_factor": 1.6026,
-      "best": 1.1839,
-      "worst": -0.1433,
-      "days_median": 43.0,
-      "days_win_median": 71.5,
-      "days_loss_median": 29.0,
+      "win_rate": 0.3594,
+      "avg_win": 0.1889,
+      "avg_loss": -0.0649,
+      "expectancy": 0.0264,
+      "median": -0.0314,
+      "profit_factor": 1.6346,
+      "best": 1.7987,
+      "worst": -0.1921,
+      "days_median": 39.0,
+      "days_win_median": 64.0,
+      "days_loss_median": 28.0,
       "exits": {
-       "stop": 715,
-       "stop_gap": 122,
-       "max_hold": 70
+       "stop": 773,
+       "stop_gap": 127,
+       "max_hold": 7
       },
-      "share_of_profit_top10pct": 0.5158
+      "share_of_profit_top10pct": 0.6755,
+      "added_share": 0.538,
+      "add_lot_mean": 0.0047
      },
      "rules_close": {
       "n": 907,
       "still_open": 0,
-      "win_rate": 0.43,
-      "avg_win": 0.1562,
-      "avg_loss": -0.0711,
-      "expectancy": 0.0266,
-      "median": -0.0116,
-      "profit_factor": 1.6558,
-      "best": 1.231,
-      "worst": -0.2398,
-      "days_median": 56.0,
-      "days_win_median": 81.5,
-      "days_loss_median": 33.0,
+      "win_rate": 0.3738,
+      "avg_win": 0.2128,
+      "avg_loss": -0.0784,
+      "expectancy": 0.0304,
+      "median": -0.0416,
+      "profit_factor": 1.6192,
+      "best": 2.7957,
+      "worst": -0.2726,
+      "days_median": 48.0,
+      "days_win_median": 72.0,
+      "days_loss_median": 35.0,
       "exits": {
-       "stop_close": 799,
-       "max_hold": 108
+       "stop_close": 894,
+       "max_hold": 13
       },
-      "share_of_profit_top10pct": 0.4669
+      "share_of_profit_top10pct": 0.6744,
+      "added_share": 0.5921,
+      "add_lot_mean": 0.0039
      }
     },
     "2025": {
@@ -444,43 +459,47 @@
      "rules_intraday": {
       "n": 544,
       "still_open": 0,
-      "win_rate": 0.2831,
-      "avg_win": 0.1798,
-      "avg_loss": -0.0603,
-      "expectancy": 0.0076,
+      "win_rate": 0.318,
+      "avg_win": 0.1767,
+      "avg_loss": -0.0691,
+      "expectancy": 0.0091,
       "median": -0.08,
-      "profit_factor": 1.1766,
-      "best": 0.7448,
+      "profit_factor": 1.1933,
+      "best": 1.0145,
       "worst": -0.2062,
-      "days_median": 33.0,
-      "days_win_median": 70.0,
-      "days_loss_median": 21.0,
+      "days_median": 29.0,
+      "days_win_median": 56.0,
+      "days_loss_median": 19.0,
       "exits": {
-       "stop": 437,
-       "stop_gap": 76,
-       "max_hold": 31
+       "stop": 463,
+       "stop_gap": 78,
+       "max_hold": 3
       },
-      "share_of_profit_top10pct": 0.5735
+      "share_of_profit_top10pct": 0.7151,
+      "added_share": 0.4614,
+      "add_lot_mean": 0.0029
      },
      "rules_close": {
       "n": 544,
       "still_open": 0,
-      "win_rate": 0.3934,
-      "avg_win": 0.1646,
-      "avg_loss": -0.078,
-      "expectancy": 0.0174,
-      "median": -0.0228,
-      "profit_factor": 1.3676,
-      "best": 1.2352,
-      "worst": -0.2935,
-      "days_median": 44.0,
-      "days_win_median": 79.5,
-      "days_loss_median": 25.0,
+      "win_rate": 0.3309,
+      "avg_win": 0.2314,
+      "avg_loss": -0.0803,
+      "expectancy": 0.0228,
+      "median": -0.0492,
+      "profit_factor": 1.4246,
+      "best": 1.4206,
+      "worst": -0.3465,
+      "days_median": 38.0,
+      "days_win_median": 72.0,
+      "days_loss_median": 27.5,
       "exits": {
-       "stop_close": 480,
-       "max_hold": 64
+       "stop_close": 532,
+       "max_hold": 12
       },
-      "share_of_profit_top10pct": 0.5338
+      "share_of_profit_top10pct": 0.6893,
+      "added_share": 0.5386,
+      "add_lot_mean": 0.0051
      }
     },
     "2026": {
@@ -537,45 +556,47 @@
      "rules_intraday": {
       "n": 521,
       "still_open": 28,
-      "win_rate": 0.2246,
-      "avg_win": 0.1388,
-      "avg_loss": -0.0582,
-      "expectancy": -0.0139,
+      "win_rate": 0.2668,
+      "avg_win": 0.1062,
+      "avg_loss": -0.0672,
+      "expectancy": -0.0209,
       "median": -0.08,
-      "profit_factor": 0.6911,
-      "best": 0.9206,
-      "worst": -0.1461,
-      "days_median": 21.0,
-      "days_win_median": 44.0,
-      "days_loss_median": 17.0,
+      "profit_factor": 0.5755,
+      "best": 0.849,
+      "worst": -0.1529,
+      "days_median": 19.0,
+      "days_win_median": 31.5,
+      "days_loss_median": 16.0,
       "exits": {
-       "stop": 409,
-       "stop_gap": 74,
-       "open": 28,
-       "max_hold": 10
+       "stop": 417,
+       "stop_gap": 76,
+       "open": 28
       },
-      "share_of_profit_top10pct": 0.6403
+      "share_of_profit_top10pct": 0.7938,
+      "added_share": 0.3781,
+      "add_lot_mean": -0.0144
      },
      "rules_close": {
       "n": 521,
-      "still_open": 39,
-      "win_rate": 0.3129,
-      "avg_win": 0.1205,
-      "avg_loss": -0.0771,
-      "expectancy": -0.0152,
-      "median": -0.0676,
-      "profit_factor": 0.7122,
-      "best": 0.89,
+      "still_open": 36,
+      "win_rate": 0.2706,
+      "avg_win": 0.1291,
+      "avg_loss": -0.0797,
+      "expectancy": -0.0232,
+      "median": -0.0721,
+      "profit_factor": 0.6012,
+      "best": 0.7964,
       "worst": -0.1977,
-      "days_median": 26.0,
-      "days_win_median": 46.5,
+      "days_median": 24.0,
+      "days_win_median": 40.0,
       "days_loss_median": 22.0,
       "exits": {
-       "stop_close": 467,
-       "open": 39,
-       "max_hold": 15
+       "stop_close": 485,
+       "open": 36
       },
-      "share_of_profit_top10pct": 0.5899
+      "share_of_profit_top10pct": 0.7787,
+      "added_share": 0.4146,
+      "add_lot_mean": -0.0147
      }
     }
    },
@@ -633,46 +654,50 @@
      },
      "rules_intraday": {
       "n": 492,
-      "still_open": 4,
-      "win_rate": 0.2988,
-      "avg_win": 0.1498,
-      "avg_loss": -0.0562,
-      "expectancy": 0.0054,
-      "median": -0.0116,
-      "profit_factor": 1.1358,
-      "best": 0.3761,
+      "still_open": 3,
+      "win_rate": 0.3171,
+      "avg_win": 0.1875,
+      "avg_loss": -0.0657,
+      "expectancy": 0.0146,
+      "median": -0.0539,
+      "profit_factor": 1.3252,
+      "best": 1.1058,
       "worst": -0.1418,
-      "days_median": 46.5,
-      "days_win_median": 90.5,
-      "days_loss_median": 32.0,
+      "days_median": 43.0,
+      "days_win_median": 87.0,
+      "days_loss_median": 30.0,
       "exits": {
-       "stop": 376,
-       "stop_gap": 62,
-       "max_hold": 50,
-       "open": 4
+       "stop": 403,
+       "stop_gap": 73,
+       "max_hold": 13,
+       "open": 3
       },
-      "share_of_profit_top10pct": 0.4944
+      "share_of_profit_top10pct": 0.7276,
+      "added_share": 0.4858,
+      "add_lot_mean": 0.0041
      },
      "rules_close": {
       "n": 492,
-      "still_open": 7,
-      "win_rate": 0.4065,
-      "avg_win": 0.1292,
-      "avg_loss": -0.0731,
-      "expectancy": 0.0092,
-      "median": -0.0175,
-      "profit_factor": 1.2111,
-      "best": 0.636,
-      "worst": -0.2928,
-      "days_median": 56.0,
-      "days_win_median": 93.0,
-      "days_loss_median": 33.0,
+      "still_open": 6,
+      "win_rate": 0.3272,
+      "avg_win": 0.2195,
+      "avg_loss": -0.074,
+      "expectancy": 0.022,
+      "median": -0.0514,
+      "profit_factor": 1.4419,
+      "best": 1.3576,
+      "worst": -0.291,
+      "days_median": 51.5,
+      "days_win_median": 103.0,
+      "days_loss_median": 36.0,
       "exits": {
-       "stop_close": 404,
-       "max_hold": 81,
-       "open": 7
+       "stop_close": 461,
+       "max_hold": 25,
+       "open": 6
       },
-      "share_of_profit_top10pct": 0.4517
+      "share_of_profit_top10pct": 0.6869,
+      "added_share": 0.5305,
+      "add_lot_mean": 0.006
      }
     },
     "80-89": {
@@ -728,46 +753,50 @@
      },
      "rules_intraday": {
       "n": 780,
-      "still_open": 9,
-      "win_rate": 0.3064,
-      "avg_win": 0.1537,
-      "avg_loss": -0.062,
-      "expectancy": 0.0041,
+      "still_open": 10,
+      "win_rate": 0.3346,
+      "avg_win": 0.166,
+      "avg_loss": -0.0708,
+      "expectancy": 0.0084,
       "median": -0.08,
-      "profit_factor": 1.0951,
-      "best": 0.442,
+      "profit_factor": 1.1789,
+      "best": 1.6897,
       "worst": -0.2314,
-      "days_median": 36.0,
-      "days_win_median": 71.0,
-      "days_loss_median": 24.0,
+      "days_median": 33.0,
+      "days_win_median": 64.0,
+      "days_loss_median": 23.0,
       "exits": {
-       "stop": 607,
+       "stop": 640,
        "stop_gap": 123,
-       "max_hold": 41,
-       "open": 9
+       "open": 10,
+       "max_hold": 7
       },
-      "share_of_profit_top10pct": 0.4993
+      "share_of_profit_top10pct": 0.7091,
+      "added_share": 0.4628,
+      "add_lot_mean": 0.0024
      },
      "rules_close": {
       "n": 780,
-      "still_open": 12,
-      "win_rate": 0.3872,
-      "avg_win": 0.1478,
-      "avg_loss": -0.0784,
-      "expectancy": 0.0092,
-      "median": -0.0307,
-      "profit_factor": 1.1914,
-      "best": 0.5895,
+      "still_open": 11,
+      "win_rate": 0.3526,
+      "avg_win": 0.183,
+      "avg_loss": -0.0832,
+      "expectancy": 0.0107,
+      "median": -0.062,
+      "profit_factor": 1.198,
+      "best": 1.693,
       "worst": -0.2675,
-      "days_median": 46.0,
-      "days_win_median": 82.0,
+      "days_median": 42.0,
+      "days_win_median": 80.0,
       "days_loss_median": 28.0,
       "exits": {
-       "stop_close": 695,
-       "max_hold": 73,
-       "open": 12
+       "stop_close": 756,
+       "max_hold": 13,
+       "open": 11
       },
-      "share_of_profit_top10pct": 0.4767
+      "share_of_profit_top10pct": 0.6955,
+      "added_share": 0.5064,
+      "add_lot_mean": 0.0026
      }
     },
     "90-99": {
@@ -823,46 +852,50 @@
      },
      "rules_intraday": {
       "n": 963,
-      "still_open": 10,
-      "win_rate": 0.3115,
-      "avg_win": 0.203,
-      "avg_loss": -0.0592,
-      "expectancy": 0.0225,
-      "median": -0.0127,
-      "profit_factor": 1.5521,
-      "best": 1.1839,
+      "still_open": 9,
+      "win_rate": 0.3562,
+      "avg_win": 0.1974,
+      "avg_loss": -0.069,
+      "expectancy": 0.0259,
+      "median": -0.0412,
+      "profit_factor": 1.5829,
+      "best": 1.7987,
       "worst": -0.2062,
-      "days_median": 22.0,
-      "days_win_median": 59.5,
-      "days_loss_median": 14.0,
+      "days_median": 19.0,
+      "days_win_median": 42.0,
+      "days_loss_median": 13.0,
       "exits": {
-       "stop": 796,
-       "stop_gap": 131,
-       "max_hold": 26,
-       "open": 10
+       "stop": 814,
+       "stop_gap": 137,
+       "open": 9,
+       "max_hold": 3
       },
-      "share_of_profit_top10pct": 0.5706
+      "share_of_profit_top10pct": 0.7068,
+      "added_share": 0.4746,
+      "add_lot_mean": 0.0105
      },
      "rules_close": {
       "n": 963,
-      "still_open": 14,
-      "win_rate": 0.4029,
-      "avg_win": 0.1821,
-      "avg_loss": -0.0789,
-      "expectancy": 0.0263,
-      "median": -0.0261,
-      "profit_factor": 1.5573,
-      "best": 1.2352,
-      "worst": -0.2935,
-      "days_median": 32.0,
-      "days_win_median": 63.0,
+      "still_open": 12,
+      "win_rate": 0.3707,
+      "avg_win": 0.2433,
+      "avg_loss": -0.087,
+      "expectancy": 0.0355,
+      "median": -0.0564,
+      "profit_factor": 1.6479,
+      "best": 2.7957,
+      "worst": -0.3465,
+      "days_median": 28.0,
+      "days_win_median": 55.0,
       "days_loss_median": 19.0,
       "exits": {
-       "stop_close": 903,
-       "max_hold": 46,
-       "open": 14
+       "stop_close": 946,
+       "open": 12,
+       "max_hold": 5
       },
-      "share_of_profit_top10pct": 0.5283
+      "share_of_profit_top10pct": 0.6968,
+      "added_share": 0.541,
+      "add_lot_mean": 0.0114
      }
     },
     "<70": {
@@ -918,46 +951,50 @@
      },
      "rules_intraday": {
       "n": 414,
-      "still_open": 5,
-      "win_rate": 0.256,
-      "avg_win": 0.1325,
-      "avg_loss": -0.0544,
-      "expectancy": -0.0065,
-      "median": -0.0271,
-      "profit_factor": 0.8382,
-      "best": 0.5549,
-      "worst": -0.1186,
-      "days_median": 53.0,
-      "days_win_median": 103.5,
+      "still_open": 6,
+      "win_rate": 0.2778,
+      "avg_win": 0.1353,
+      "avg_loss": -0.0638,
+      "expectancy": -0.0085,
+      "median": -0.0728,
+      "profit_factor": 0.8157,
+      "best": 1.0145,
+      "worst": -0.1678,
+      "days_median": 50.0,
+      "days_win_median": 91.5,
       "days_loss_median": 36.0,
       "exits": {
-       "stop": 307,
-       "max_hold": 53,
-       "stop_gap": 49,
-       "open": 5
+       "stop": 346,
+       "stop_gap": 55,
+       "max_hold": 7,
+       "open": 6
       },
-      "share_of_profit_top10pct": 0.571
+      "share_of_profit_top10pct": 0.7616,
+      "added_share": 0.4614,
+      "add_lot_mean": -0.0087
      },
      "rules_close": {
       "n": 414,
-      "still_open": 6,
-      "win_rate": 0.3696,
-      "avg_win": 0.11,
-      "avg_loss": -0.0682,
-      "expectancy": -0.0023,
-      "median": -0.0238,
-      "profit_factor": 0.9458,
-      "best": 0.5493,
+      "still_open": 7,
+      "win_rate": 0.2874,
+      "avg_win": 0.1554,
+      "avg_loss": -0.0697,
+      "expectancy": -0.005,
+      "median": -0.051,
+      "profit_factor": 0.8989,
+      "best": 1.4206,
       "worst": -0.1699,
-      "days_median": 63.0,
-      "days_win_median": 104.5,
-      "days_loss_median": 41.0,
+      "days_median": 61.0,
+      "days_win_median": 113.0,
+      "days_loss_median": 45.0,
       "exits": {
-       "stop_close": 333,
-       "max_hold": 75,
-       "open": 6
+       "stop_close": 392,
+       "max_hold": 15,
+       "open": 7
       },
-      "share_of_profit_top10pct": 0.5109
+      "share_of_profit_top10pct": 0.7142,
+      "added_share": 0.5048,
+      "add_lot_mean": -0.0083
      }
     }
    },
@@ -1016,43 +1053,47 @@
      "rules_intraday": {
       "n": 96,
       "still_open": 0,
-      "win_rate": 0.1667,
-      "avg_win": 0.1455,
-      "avg_loss": -0.06,
-      "expectancy": -0.0257,
+      "win_rate": 0.2188,
+      "avg_win": 0.1333,
+      "avg_loss": -0.0685,
+      "expectancy": -0.0243,
       "median": -0.08,
-      "profit_factor": 0.4851,
-      "best": 0.2505,
+      "profit_factor": 0.5455,
+      "best": 0.6122,
       "worst": -0.1305,
-      "days_median": 35.5,
-      "days_win_median": 75.5,
-      "days_loss_median": 29.5,
+      "days_median": 35.0,
+      "days_win_median": 58.0,
+      "days_loss_median": 28.0,
       "exits": {
-       "stop": 86,
-       "stop_gap": 9,
+       "stop": 84,
+       "stop_gap": 11,
        "max_hold": 1
       },
-      "share_of_profit_top10pct": 0.6612
+      "share_of_profit_top10pct": 0.8538,
+      "added_share": 0.375,
+      "add_lot_mean": -0.0108
      },
      "rules_close": {
       "n": 96,
       "still_open": 0,
-      "win_rate": 0.2812,
-      "avg_win": 0.1168,
-      "avg_loss": -0.0774,
-      "expectancy": -0.0228,
-      "median": -0.0769,
-      "profit_factor": 0.5908,
-      "best": 0.4285,
+      "win_rate": 0.2292,
+      "avg_win": 0.1861,
+      "avg_loss": -0.0838,
+      "expectancy": -0.0219,
+      "median": -0.0798,
+      "profit_factor": 0.6603,
+      "best": 0.9749,
       "worst": -0.1404,
-      "days_median": 39.0,
-      "days_win_median": 75.0,
-      "days_loss_median": 29.0,
+      "days_median": 39.5,
+      "days_win_median": 90.0,
+      "days_loss_median": 31.5,
       "exits": {
-       "stop_close": 90,
-       "max_hold": 6
+       "stop_close": 95,
+       "max_hold": 1
       },
-      "share_of_profit_top10pct": 0.6008
+      "share_of_profit_top10pct": 0.8468,
+      "added_share": 0.3958,
+      "add_lot_mean": -0.0064
      }
     },
     "mixed": {
@@ -1108,46 +1149,50 @@
      },
      "rules_intraday": {
       "n": 542,
-      "still_open": 3,
-      "win_rate": 0.2786,
-      "avg_win": 0.1645,
-      "avg_loss": -0.0632,
-      "expectancy": 0.0002,
+      "still_open": 4,
+      "win_rate": 0.2878,
+      "avg_win": 0.197,
+      "avg_loss": -0.0701,
+      "expectancy": 0.0067,
       "median": -0.08,
-      "profit_factor": 1.0047,
-      "best": 0.9394,
+      "profit_factor": 1.135,
+      "best": 1.3724,
       "worst": -0.1841,
-      "days_median": 33.0,
-      "days_win_median": 86.0,
-      "days_loss_median": 25.0,
+      "days_median": 31.0,
+      "days_win_median": 67.0,
+      "days_loss_median": 24.0,
       "exits": {
-       "stop": 416,
-       "stop_gap": 72,
-       "max_hold": 51,
-       "open": 3
+       "stop": 460,
+       "stop_gap": 71,
+       "max_hold": 7,
+       "open": 4
       },
-      "share_of_profit_top10pct": 0.5964
+      "share_of_profit_top10pct": 0.7739,
+      "added_share": 0.4133,
+      "add_lot_mean": 0.0087
      },
      "rules_close": {
       "n": 542,
-      "still_open": 3,
-      "win_rate": 0.3672,
-      "avg_win": 0.145,
-      "avg_loss": -0.0773,
-      "expectancy": 0.0043,
-      "median": -0.0404,
-      "profit_factor": 1.0879,
-      "best": 0.8974,
-      "worst": -0.1981,
-      "days_median": 47.0,
-      "days_win_median": 96.5,
-      "days_loss_median": 29.0,
+      "still_open": 5,
+      "win_rate": 0.3155,
+      "avg_win": 0.218,
+      "avg_loss": -0.0803,
+      "expectancy": 0.0139,
+      "median": -0.0676,
+      "profit_factor": 1.2522,
+      "best": 2.0465,
+      "worst": -0.2647,
+      "days_median": 43.0,
+      "days_win_median": 93.0,
+      "days_loss_median": 30.0,
       "exits": {
-       "stop_close": 455,
-       "max_hold": 84,
-       "open": 3
+       "stop_close": 520,
+       "max_hold": 17,
+       "open": 5
       },
-      "share_of_profit_top10pct": 0.5384
+      "share_of_profit_top10pct": 0.737,
+      "added_share": 0.4723,
+      "add_lot_mean": 0.009
      }
     },
     "uptrend": {
@@ -1203,46 +1248,50 @@
      },
      "rules_intraday": {
       "n": 2011,
-      "still_open": 25,
-      "win_rate": 0.3108,
-      "avg_win": 0.1704,
-      "avg_loss": -0.0573,
-      "expectancy": 0.0135,
-      "median": -0.0028,
-      "profit_factor": 1.3417,
-      "best": 1.1839,
+      "still_open": 24,
+      "win_rate": 0.3471,
+      "avg_win": 0.1752,
+      "avg_loss": -0.0674,
+      "expectancy": 0.0168,
+      "median": -0.035,
+      "profit_factor": 1.3826,
+      "best": 1.7987,
       "worst": -0.2314,
-      "days_median": 35.0,
-      "days_win_median": 70.0,
-      "days_loss_median": 22.0,
+      "days_median": 31.0,
+      "days_win_median": 60.0,
+      "days_loss_median": 21.0,
       "exits": {
-       "stop": 1584,
-       "stop_gap": 284,
-       "max_hold": 118,
-       "open": 25
+       "stop": 1659,
+       "stop_gap": 306,
+       "open": 24,
+       "max_hold": 22
       },
-      "share_of_profit_top10pct": 0.5294
+      "share_of_profit_top10pct": 0.7029,
+      "added_share": 0.4913,
+      "add_lot_mean": 0.0035
      },
      "rules_close": {
       "n": 2011,
-      "still_open": 36,
-      "win_rate": 0.4063,
-      "avg_win": 0.1542,
-      "avg_loss": -0.0755,
-      "expectancy": 0.0178,
-      "median": -0.019,
-      "profit_factor": 1.3979,
-      "best": 1.2352,
-      "worst": -0.2935,
-      "days_median": 44.0,
-      "days_win_median": 77.0,
-      "days_loss_median": 26.0,
+      "still_open": 31,
+      "win_rate": 0.3575,
+      "avg_win": 0.2081,
+      "avg_loss": -0.0803,
+      "expectancy": 0.0228,
+      "median": -0.0477,
+      "profit_factor": 1.4413,
+      "best": 2.7957,
+      "worst": -0.3465,
+      "days_median": 39.0,
+      "days_win_median": 70.0,
+      "days_loss_median": 28.0,
       "exits": {
-       "stop_close": 1790,
-       "max_hold": 185,
-       "open": 36
+       "stop_close": 1940,
+       "max_hold": 40,
+       "open": 31
       },
-      "share_of_profit_top10pct": 0.4951
+      "share_of_profit_top10pct": 0.6859,
+      "added_share": 0.543,
+      "add_lot_mean": 0.0043
      }
     }
    },
@@ -1300,45 +1349,50 @@
      },
      "rules_intraday": {
       "n": 923,
-      "still_open": 0,
-      "win_rate": 0.3218,
-      "avg_win": 0.1755,
-      "avg_loss": -0.0587,
-      "expectancy": 0.0167,
-      "median": -0.0078,
-      "profit_factor": 1.4189,
-      "best": 1.1839,
-      "worst": -0.1841,
-      "days_median": 39.0,
-      "days_win_median": 78.0,
-      "days_loss_median": 26.0,
+      "still_open": 2,
+      "win_rate": 0.3434,
+      "avg_win": 0.1815,
+      "avg_loss": -0.0679,
+      "expectancy": 0.0178,
+      "median": -0.0404,
+      "profit_factor": 1.3995,
+      "best": 1.7987,
+      "worst": -0.1855,
+      "days_median": 34.0,
+      "days_win_median": 69.0,
+      "days_loss_median": 25.0,
       "exits": {
-       "stop": 741,
-       "stop_gap": 118,
-       "max_hold": 64
+       "stop": 775,
+       "stop_gap": 137,
+       "max_hold": 9,
+       "open": 2
       },
-      "share_of_profit_top10pct": 0.5176
+      "share_of_profit_top10pct": 0.6943,
+      "added_share": 0.4951,
+      "add_lot_mean": 0.0044
      },
      "rules_close": {
       "n": 923,
-      "still_open": 3,
-      "win_rate": 0.415,
-      "avg_win": 0.1572,
-      "avg_loss": -0.0752,
-      "expectancy": 0.0212,
-      "median": -0.0159,
-      "profit_factor": 1.4816,
-      "best": 1.231,
-      "worst": -0.2398,
-      "days_median": 50.5,
-      "days_win_median": 82.0,
+      "still_open": 2,
+      "win_rate": 0.3608,
+      "avg_win": 0.2103,
+      "avg_loss": -0.08,
+      "expectancy": 0.0247,
+      "median": -0.0519,
+      "profit_factor": 1.4829,
+      "best": 2.7957,
+      "worst": -0.291,
+      "days_median": 44.0,
+      "days_win_median": 84.0,
       "days_loss_median": 29.0,
       "exits": {
-       "stop_close": 815,
-       "max_hold": 105,
-       "open": 3
+       "stop_close": 902,
+       "max_hold": 19,
+       "open": 2
       },
-      "share_of_profit_top10pct": 0.4803
+      "share_of_profit_top10pct": 0.6854,
+      "added_share": 0.5417,
+      "add_lot_mean": 0.0062
      }
     },
     ">=5": {
@@ -1394,46 +1448,50 @@
      },
      "rules_intraday": {
       "n": 1726,
-      "still_open": 28,
-      "win_rate": 0.2868,
-      "avg_win": 0.1648,
-      "avg_loss": -0.0586,
-      "expectancy": 0.0054,
-      "median": -0.0457,
-      "profit_factor": 1.13,
-      "best": 0.9394,
+      "still_open": 26,
+      "win_rate": 0.3233,
+      "avg_win": 0.1761,
+      "avg_loss": -0.0681,
+      "expectancy": 0.0109,
+      "median": -0.08,
+      "profit_factor": 1.2356,
+      "best": 1.6897,
       "worst": -0.2314,
-      "days_median": 33.0,
-      "days_win_median": 69.5,
-      "days_loss_median": 22.0,
+      "days_median": 29.0,
+      "days_win_median": 58.0,
+      "days_loss_median": 21.0,
       "exits": {
-       "stop": 1345,
-       "stop_gap": 247,
-       "max_hold": 106,
-       "open": 28
+       "stop": 1428,
+       "stop_gap": 251,
+       "open": 26,
+       "max_hold": 21
       },
-      "share_of_profit_top10pct": 0.5618
+      "share_of_profit_top10pct": 0.7378,
+      "added_share": 0.4583,
+      "add_lot_mean": 0.0038
      },
      "rules_close": {
       "n": 1726,
-      "still_open": 36,
-      "win_rate": 0.3824,
-      "avg_win": 0.1482,
-      "avg_loss": -0.0763,
-      "expectancy": 0.0095,
-      "median": -0.0284,
-      "profit_factor": 1.202,
-      "best": 1.2352,
-      "worst": -0.2935,
-      "days_median": 41.0,
-      "days_win_median": 75.0,
-      "days_loss_median": 27.0,
+      "still_open": 34,
+      "win_rate": 0.3355,
+      "avg_win": 0.2089,
+      "avg_loss": -0.0807,
+      "expectancy": 0.0165,
+      "median": -0.0573,
+      "profit_factor": 1.3069,
+      "best": 2.0465,
+      "worst": -0.3465,
+      "days_median": 38.0,
+      "days_win_median": 69.0,
+      "days_loss_median": 28.0,
       "exits": {
-       "stop_close": 1520,
-       "max_hold": 170,
-       "open": 36
+       "stop_close": 1653,
+       "max_hold": 39,
+       "open": 34
       },
-      "share_of_profit_top10pct": 0.5212
+      "share_of_profit_top10pct": 0.7096,
+      "added_share": 0.5133,
+      "add_lot_mean": 0.0042
      }
     }
    },
@@ -1442,240 +1500,240 @@
      "with": {
       "n": 1890,
       "enough": true,
-      "win_rate": 0.2937,
-      "expectancy": 0.008,
+      "win_rate": 0.327,
+      "expectancy": 0.0099,
       "r20_mean": 0.0118,
       "stop_first": 0.4974
      },
      "without": {
       "n": 759,
       "enough": true,
-      "win_rate": 0.3123,
-      "expectancy": 0.0127,
+      "win_rate": 0.3386,
+      "expectancy": 0.0217,
       "r20_mean": 0.0063,
       "stop_first": 0.4888
      },
-     "diff_expectancy": -0.0048,
+     "diff_expectancy": -0.0118,
      "diff_r20": 0.0056
     },
     "flags:deep_base": {
      "with": {
       "n": 295,
       "enough": true,
-      "win_rate": 0.3492,
-      "expectancy": 0.0401,
+      "win_rate": 0.3932,
+      "expectancy": 0.0418,
       "r20_mean": 0.0477,
       "stop_first": 0.5695
      },
      "without": {
       "n": 2354,
       "enough": true,
-      "win_rate": 0.2927,
-      "expectancy": 0.0055,
+      "win_rate": 0.3224,
+      "expectancy": 0.0097,
       "r20_mean": 0.0056,
       "stop_first": 0.4856
      },
-     "diff_expectancy": 0.0346,
+     "diff_expectancy": 0.0321,
      "diff_r20": 0.0421
     },
     "flags:distribution": {
      "with": {
       "n": 18,
       "enough": false,
-      "win_rate": 0.1667,
-      "expectancy": -0.0337,
+      "win_rate": 0.2778,
+      "expectancy": -0.0356,
       "r20_mean": -0.0165,
       "stop_first": 0.6111
      },
      "without": {
       "n": 2631,
       "enough": true,
-      "win_rate": 0.2999,
-      "expectancy": 0.0096,
+      "win_rate": 0.3307,
+      "expectancy": 0.0136,
       "r20_mean": 0.0104,
       "stop_first": 0.4941
      },
-     "diff_expectancy": -0.0433,
+     "diff_expectancy": -0.0492,
      "diff_r20": -0.0269
     },
     "flags:heavy_selling_day": {
      "with": {
       "n": 117,
       "enough": true,
-      "win_rate": 0.3162,
-      "expectancy": 0.0068,
+      "win_rate": 0.3504,
+      "expectancy": 0.0085,
       "r20_mean": 0.0036,
       "stop_first": 0.5214
      },
      "without": {
       "n": 2532,
       "enough": true,
-      "win_rate": 0.2982,
-      "expectancy": 0.0095,
+      "win_rate": 0.3294,
+      "expectancy": 0.0135,
       "r20_mean": 0.0105,
       "stop_first": 0.4937
      },
-     "diff_expectancy": -0.0026,
+     "diff_expectancy": -0.005,
      "diff_r20": -0.007
     },
     "flags:macd_divergence": {
      "with": {
       "n": 1194,
       "enough": true,
-      "win_rate": 0.2998,
-      "expectancy": 0.0086,
+      "win_rate": 0.3392,
+      "expectancy": 0.0141,
       "r20_mean": 0.0115,
       "stop_first": 0.5092
      },
      "without": {
       "n": 1455,
       "enough": true,
-      "win_rate": 0.2983,
-      "expectancy": 0.0099,
+      "win_rate": 0.323,
+      "expectancy": 0.0126,
       "r20_mean": 0.0092,
       "stop_first": 0.4832
      },
-     "diff_expectancy": -0.0013,
+     "diff_expectancy": 0.0015,
      "diff_r20": 0.0023
     },
     "flags:macd_fading": {
      "with": {
       "n": 50,
       "enough": true,
-      "win_rate": 0.5,
-      "expectancy": 0.073,
+      "win_rate": 0.56,
+      "expectancy": 0.0841,
       "r20_mean": 0.0205,
       "stop_first": 0.3
      },
      "without": {
       "n": 2599,
       "enough": true,
-      "win_rate": 0.2951,
-      "expectancy": 0.0081,
+      "win_rate": 0.3259,
+      "expectancy": 0.0119,
       "r20_mean": 0.01,
       "stop_first": 0.4987
      },
-     "diff_expectancy": 0.0649,
+     "diff_expectancy": 0.0722,
      "diff_r20": 0.0104
     },
     "flags:overheat": {
      "with": {
       "n": 548,
       "enough": true,
-      "win_rate": 0.2956,
-      "expectancy": 0.0172,
+      "win_rate": 0.3431,
+      "expectancy": 0.0193,
       "r20_mean": 0.0203,
       "stop_first": 0.5474
      },
      "without": {
       "n": 2101,
       "enough": true,
-      "win_rate": 0.2999,
-      "expectancy": 0.0073,
+      "win_rate": 0.327,
+      "expectancy": 0.0117,
       "r20_mean": 0.0076,
       "stop_first": 0.4812
      },
-     "diff_expectancy": 0.0099,
+     "diff_expectancy": 0.0076,
      "diff_r20": 0.0126
     },
     "flags:stop_inside_noise": {
      "with": {
       "n": 238,
       "enough": true,
-      "win_rate": 0.2689,
-      "expectancy": 0.0242,
+      "win_rate": 0.3361,
+      "expectancy": 0.0231,
       "r20_mean": 0.0254,
       "stop_first": 0.6765
      },
      "without": {
       "n": 2411,
       "enough": true,
-      "win_rate": 0.3019,
-      "expectancy": 0.0079,
+      "win_rate": 0.3297,
+      "expectancy": 0.0123,
       "r20_mean": 0.0088,
       "stop_first": 0.477
      },
-     "diff_expectancy": 0.0163,
+     "diff_expectancy": 0.0108,
      "diff_r20": 0.0167
     },
     "flags:volume_spike_5x": {
      "with": {
       "n": 40,
       "enough": true,
-      "win_rate": 0.5,
-      "expectancy": 0.0703,
+      "win_rate": 0.575,
+      "expectancy": 0.0751,
       "r20_mean": 0.0395,
       "stop_first": 0.425
      },
      "without": {
       "n": 2609,
       "enough": true,
-      "win_rate": 0.2959,
-      "expectancy": 0.0084,
+      "win_rate": 0.3266,
+      "expectancy": 0.0123,
       "r20_mean": 0.0098,
       "stop_first": 0.496
      },
-     "diff_expectancy": 0.0619,
+     "diff_expectancy": 0.0628,
      "diff_r20": 0.0298
     },
     "plus:accumulation": {
      "with": {
       "n": 1205,
       "enough": true,
-      "win_rate": 0.3029,
-      "expectancy": 0.0125,
+      "win_rate": 0.3378,
+      "expectancy": 0.0158,
       "r20_mean": 0.0132,
       "stop_first": 0.4871
      },
      "without": {
       "n": 1444,
       "enough": true,
-      "win_rate": 0.2957,
-      "expectancy": 0.0067,
+      "win_rate": 0.3241,
+      "expectancy": 0.0112,
       "r20_mean": 0.0078,
       "stop_first": 0.5014
      },
-     "diff_expectancy": 0.0059,
+     "diff_expectancy": 0.0046,
      "diff_r20": 0.0054
     },
     "plus:power_gap": {
      "with": {
       "n": 501,
       "enough": true,
-      "win_rate": 0.3333,
-      "expectancy": 0.0237,
+      "win_rate": 0.3812,
+      "expectancy": 0.0265,
       "r20_mean": 0.0209,
       "stop_first": 0.509
      },
      "without": {
       "n": 2148,
       "enough": true,
-      "win_rate": 0.291,
-      "expectancy": 0.006,
+      "win_rate": 0.3184,
+      "expectancy": 0.0102,
       "r20_mean": 0.0077,
       "stop_first": 0.4916
      },
-     "diff_expectancy": 0.0178,
+     "diff_expectancy": 0.0163,
      "diff_r20": 0.0131
     },
     "plus:tight_base": {
      "with": {
       "n": 209,
       "enough": true,
-      "win_rate": 0.2775,
-      "expectancy": 0.0094,
+      "win_rate": 0.2823,
+      "expectancy": 0.0075,
       "r20_mean": 0.0044,
       "stop_first": 0.4737
      },
      "without": {
       "n": 2440,
       "enough": true,
-      "win_rate": 0.3008,
-      "expectancy": 0.0093,
+      "win_rate": 0.3344,
+      "expectancy": 0.0138,
       "r20_mean": 0.0107,
       "stop_first": 0.4967
      },
-     "diff_expectancy": 0.0,
+     "diff_expectancy": -0.0062,
      "diff_r20": -0.0064
     }
    }
@@ -1735,43 +1793,45 @@
     "rules_intraday": {
      "n": 252,
      "still_open": 0,
-     "win_rate": 0.3849,
-     "avg_win": 0.2149,
-     "avg_loss": -0.0554,
-     "expectancy": 0.0486,
-     "median": 0.0,
-     "profit_factor": 2.4267,
-     "best": 1.1839,
+     "win_rate": 0.4206,
+     "avg_win": 0.2167,
+     "avg_loss": -0.0666,
+     "expectancy": 0.0526,
+     "median": -0.0267,
+     "profit_factor": 2.3627,
+     "best": 1.7987,
      "worst": -0.1584,
-     "days_median": 26.0,
-     "days_win_median": 62.0,
+     "days_median": 22.0,
+     "days_win_median": 44.0,
      "days_loss_median": 14.0,
      "exits": {
-      "stop": 210,
-      "stop_gap": 33,
-      "max_hold": 9
+      "stop": 216,
+      "stop_gap": 36
      },
-     "share_of_profit_top10pct": 0.5251
+     "share_of_profit_top10pct": 0.6629,
+     "added_share": 0.5516,
+     "add_lot_mean": 0.0162
     },
     "rules_close": {
      "n": 252,
      "still_open": 0,
-     "win_rate": 0.4643,
-     "avg_win": 0.1997,
-     "avg_loss": -0.0759,
-     "expectancy": 0.0521,
-     "median": -0.0085,
-     "profit_factor": 2.2796,
-     "best": 1.231,
+     "win_rate": 0.4246,
+     "avg_win": 0.2795,
+     "avg_loss": -0.0842,
+     "expectancy": 0.0703,
+     "median": -0.0348,
+     "profit_factor": 2.4508,
+     "best": 2.7957,
      "worst": -0.2398,
-     "days_median": 37.5,
-     "days_win_median": 67.0,
+     "days_median": 27.5,
+     "days_win_median": 50.0,
      "days_loss_median": 19.0,
      "exits": {
-      "stop_close": 238,
-      "max_hold": 14
+      "stop_close": 252
      },
-     "share_of_profit_top10pct": 0.4838
+     "share_of_profit_top10pct": 0.6733,
+     "added_share": 0.5992,
+     "add_lot_mean": 0.0231
     }
    },
    "by_year": {
@@ -1829,43 +1889,45 @@
      "rules_intraday": {
       "n": 69,
       "still_open": 0,
-      "win_rate": 0.4493,
-      "avg_win": 0.1806,
-      "avg_loss": -0.055,
-      "expectancy": 0.0509,
-      "median": 0.0,
-      "profit_factor": 2.6804,
-      "best": 0.526,
+      "win_rate": 0.4058,
+      "avg_win": 0.1975,
+      "avg_loss": -0.0628,
+      "expectancy": 0.0428,
+      "median": -0.0229,
+      "profit_factor": 2.1477,
+      "best": 0.8244,
       "worst": -0.1584,
-      "days_median": 38.0,
-      "days_win_median": 76.0,
-      "days_loss_median": 18.0,
+      "days_median": 30.0,
+      "days_win_median": 62.0,
+      "days_loss_median": 19.0,
       "exits": {
-       "stop": 51,
-       "stop_gap": 13,
-       "max_hold": 5
+       "stop": 53,
+       "stop_gap": 16
       },
-      "share_of_profit_top10pct": 0.3564
+      "share_of_profit_top10pct": 0.5618,
+      "added_share": 0.6087,
+      "add_lot_mean": 0.004
      },
      "rules_close": {
       "n": 69,
       "still_open": 0,
-      "win_rate": 0.5362,
-      "avg_win": 0.1608,
-      "avg_loss": -0.0792,
-      "expectancy": 0.0495,
-      "median": 0.0048,
-      "profit_factor": 2.3476,
-      "best": 0.526,
+      "win_rate": 0.4493,
+      "avg_win": 0.2169,
+      "avg_loss": -0.0838,
+      "expectancy": 0.0513,
+      "median": -0.0351,
+      "profit_factor": 2.1127,
+      "best": 0.9203,
       "worst": -0.1996,
-      "days_median": 57.0,
-      "days_win_median": 81.0,
-      "days_loss_median": 19.0,
+      "days_median": 46.0,
+      "days_win_median": 85.0,
+      "days_loss_median": 19.5,
       "exits": {
-       "stop_close": 63,
-       "max_hold": 6
+       "stop_close": 69
       },
-      "share_of_profit_top10pct": 0.3343
+      "share_of_profit_top10pct": 0.4989,
+      "added_share": 0.6232,
+      "add_lot_mean": 0.0102
      }
     },
     "2024": {
@@ -1922,43 +1984,45 @@
      "rules_intraday": {
       "n": 154,
       "still_open": 0,
-      "win_rate": 0.3831,
-      "avg_win": 0.2238,
-      "avg_loss": -0.0541,
-      "expectancy": 0.0524,
-      "median": 0.0,
-      "profit_factor": 2.5694,
-      "best": 1.1839,
+      "win_rate": 0.4545,
+      "avg_win": 0.2275,
+      "avg_loss": -0.0678,
+      "expectancy": 0.0665,
+      "median": -0.0224,
+      "profit_factor": 2.7986,
+      "best": 1.7987,
       "worst": -0.1211,
-      "days_median": 29.0,
-      "days_win_median": 56.0,
-      "days_loss_median": 18.0,
+      "days_median": 24.0,
+      "days_win_median": 38.0,
+      "days_loss_median": 14.5,
       "exits": {
-       "stop": 132,
-       "stop_gap": 18,
-       "max_hold": 4
+       "stop": 136,
+       "stop_gap": 18
       },
-      "share_of_profit_top10pct": 0.5231
+      "share_of_profit_top10pct": 0.6483,
+      "added_share": 0.5584,
+      "add_lot_mean": 0.0234
      },
      "rules_close": {
       "n": 154,
       "still_open": 0,
-      "win_rate": 0.461,
-      "avg_win": 0.2173,
-      "avg_loss": -0.0736,
-      "expectancy": 0.0605,
-      "median": -0.0102,
-      "profit_factor": 2.5272,
-      "best": 1.231,
+      "win_rate": 0.4416,
+      "avg_win": 0.3007,
+      "avg_loss": -0.0834,
+      "expectancy": 0.0862,
+      "median": -0.0321,
+      "profit_factor": 2.85,
+      "best": 2.7957,
       "worst": -0.2398,
-      "days_median": 39.5,
-      "days_win_median": 64.0,
-      "days_loss_median": 20.0,
+      "days_median": 30.0,
+      "days_win_median": 43.5,
+      "days_loss_median": 22.0,
       "exits": {
-       "stop_close": 146,
-       "max_hold": 8
+       "stop_close": 154
       },
-      "share_of_profit_top10pct": 0.4784
+      "share_of_profit_top10pct": 0.6719,
+      "added_share": 0.6169,
+      "add_lot_mean": 0.0287
      }
     },
     "2025": {
@@ -2016,40 +2080,44 @@
       "n": 10,
       "still_open": 0,
       "win_rate": 0.3,
-      "avg_win": 0.5328,
+      "avg_win": 0.3961,
       "avg_loss": -0.08,
-      "expectancy": 0.1038,
+      "expectancy": 0.0628,
       "median": -0.08,
-      "profit_factor": 2.8541,
-      "best": 0.7448,
+      "profit_factor": 2.1218,
+      "best": 0.9534,
       "worst": -0.08,
-      "days_median": 14.0,
-      "days_win_median": 79.0,
+      "days_median": 13.5,
+      "days_win_median": 47.0,
       "days_loss_median": 13.0,
       "exits": {
        "stop": 9,
        "stop_gap": 1
       },
-      "share_of_profit_top10pct": 0.466
+      "share_of_profit_top10pct": 0.8024,
+      "added_share": 0.3,
+      "add_lot_mean": 0.0814
      },
      "rules_close": {
       "n": 10,
       "still_open": 0,
-      "win_rate": 0.3,
-      "avg_win": 0.4565,
-      "avg_loss": -0.0874,
-      "expectancy": 0.0758,
-      "median": -0.0713,
-      "profit_factor": 2.239,
-      "best": 0.6771,
+      "win_rate": 0.2,
+      "avg_win": 1.1283,
+      "avg_loss": -0.0853,
+      "expectancy": 0.1574,
+      "median": -0.078,
+      "profit_factor": 3.3049,
+      "best": 1.3616,
       "worst": -0.17,
       "days_median": 19.0,
-      "days_win_median": 80.0,
-      "days_loss_median": 15.0,
+      "days_win_median": 44.5,
+      "days_loss_median": 15.5,
       "exits": {
        "stop_close": 10
       },
-      "share_of_profit_top10pct": 0.4944
+      "share_of_profit_top10pct": 0.6034,
+      "added_share": 0.4,
+      "add_lot_mean": 0.1346
      }
     },
     "2026": {
@@ -2106,41 +2174,45 @@
      "rules_intraday": {
       "n": 19,
       "still_open": 0,
-      "win_rate": 0.2105,
-      "avg_win": 0.1106,
-      "avg_loss": -0.0534,
-      "expectancy": -0.0189,
+      "win_rate": 0.2632,
+      "avg_win": 0.0659,
+      "avg_loss": -0.0641,
+      "expectancy": -0.0299,
       "median": -0.08,
-      "profit_factor": 0.5521,
-      "best": 0.12,
+      "profit_factor": 0.3669,
+      "best": 0.1071,
       "worst": -0.0817,
-      "days_median": 7.0,
-      "days_win_median": 36.5,
-      "days_loss_median": 6.0,
+      "days_median": 6.0,
+      "days_win_median": 26.0,
+      "days_loss_median": 5.0,
       "exits": {
        "stop": 18,
        "stop_gap": 1
       },
-      "share_of_profit_top10pct": 0.2711
+      "share_of_profit_top10pct": 0.3251,
+      "added_share": 0.4211,
+      "add_lot_mean": -0.0212
      },
      "rules_close": {
       "n": 19,
       "still_open": 0,
       "win_rate": 0.3158,
-      "avg_win": 0.1036,
-      "avg_loss": -0.077,
-      "expectancy": -0.0199,
-      "median": -0.047,
-      "profit_factor": 0.6215,
-      "best": 0.1784,
-      "worst": -0.1285,
-      "days_median": 17.0,
-      "days_win_median": 37.5,
+      "avg_win": 0.079,
+      "avg_loss": -0.0893,
+      "expectancy": -0.0361,
+      "median": -0.0691,
+      "profit_factor": 0.4085,
+      "best": 0.2272,
+      "worst": -0.1512,
+      "days_median": 10.0,
+      "days_win_median": 32.0,
       "days_loss_median": 8.0,
       "exits": {
        "stop_close": 19
       },
-      "share_of_profit_top10pct": 0.287
+      "share_of_profit_top10pct": 0.479,
+      "added_share": 0.4737,
+      "add_lot_mean": -0.0234
      }
     }
    },
@@ -2199,43 +2271,45 @@
      "rules_intraday": {
       "n": 252,
       "still_open": 0,
-      "win_rate": 0.3849,
-      "avg_win": 0.2149,
-      "avg_loss": -0.0554,
-      "expectancy": 0.0486,
-      "median": 0.0,
-      "profit_factor": 2.4267,
-      "best": 1.1839,
+      "win_rate": 0.4206,
+      "avg_win": 0.2167,
+      "avg_loss": -0.0666,
+      "expectancy": 0.0526,
+      "median": -0.0267,
+      "profit_factor": 2.3627,
+      "best": 1.7987,
       "worst": -0.1584,
-      "days_median": 26.0,
-      "days_win_median": 62.0,
+      "days_median": 22.0,
+      "days_win_median": 44.0,
       "days_loss_median": 14.0,
       "exits": {
-       "stop": 210,
-       "stop_gap": 33,
-       "max_hold": 9
+       "stop": 216,
+       "stop_gap": 36
       },
-      "share_of_profit_top10pct": 0.5251
+      "share_of_profit_top10pct": 0.6629,
+      "added_share": 0.5516,
+      "add_lot_mean": 0.0162
      },
      "rules_close": {
       "n": 252,
       "still_open": 0,
-      "win_rate": 0.4643,
-      "avg_win": 0.1997,
-      "avg_loss": -0.0759,
-      "expectancy": 0.0521,
-      "median": -0.0085,
-      "profit_factor": 2.2796,
-      "best": 1.231,
+      "win_rate": 0.4246,
+      "avg_win": 0.2795,
+      "avg_loss": -0.0842,
+      "expectancy": 0.0703,
+      "median": -0.0348,
+      "profit_factor": 2.4508,
+      "best": 2.7957,
       "worst": -0.2398,
-      "days_median": 37.5,
-      "days_win_median": 67.0,
+      "days_median": 27.5,
+      "days_win_median": 50.0,
       "days_loss_median": 19.0,
       "exits": {
-       "stop_close": 238,
-       "max_hold": 14
+       "stop_close": 252
       },
-      "share_of_profit_top10pct": 0.4838
+      "share_of_profit_top10pct": 0.6733,
+      "added_share": 0.5992,
+      "add_lot_mean": 0.0231
      }
     }
    },
@@ -2294,43 +2368,45 @@
      "rules_intraday": {
       "n": 252,
       "still_open": 0,
-      "win_rate": 0.3849,
-      "avg_win": 0.2149,
-      "avg_loss": -0.0554,
-      "expectancy": 0.0486,
-      "median": 0.0,
-      "profit_factor": 2.4267,
-      "best": 1.1839,
+      "win_rate": 0.4206,
+      "avg_win": 0.2167,
+      "avg_loss": -0.0666,
+      "expectancy": 0.0526,
+      "median": -0.0267,
+      "profit_factor": 2.3627,
+      "best": 1.7987,
       "worst": -0.1584,
-      "days_median": 26.0,
-      "days_win_median": 62.0,
+      "days_median": 22.0,
+      "days_win_median": 44.0,
       "days_loss_median": 14.0,
       "exits": {
-       "stop": 210,
-       "stop_gap": 33,
-       "max_hold": 9
+       "stop": 216,
+       "stop_gap": 36
       },
-      "share_of_profit_top10pct": 0.5251
+      "share_of_profit_top10pct": 0.6629,
+      "added_share": 0.5516,
+      "add_lot_mean": 0.0162
      },
      "rules_close": {
       "n": 252,
       "still_open": 0,
-      "win_rate": 0.4643,
-      "avg_win": 0.1997,
-      "avg_loss": -0.0759,
-      "expectancy": 0.0521,
-      "median": -0.0085,
-      "profit_factor": 2.2796,
-      "best": 1.231,
+      "win_rate": 0.4246,
+      "avg_win": 0.2795,
+      "avg_loss": -0.0842,
+      "expectancy": 0.0703,
+      "median": -0.0348,
+      "profit_factor": 2.4508,
+      "best": 2.7957,
       "worst": -0.2398,
-      "days_median": 37.5,
-      "days_win_median": 67.0,
+      "days_median": 27.5,
+      "days_win_median": 50.0,
       "days_loss_median": 19.0,
       "exits": {
-       "stop_close": 238,
-       "max_hold": 14
+       "stop_close": 252
       },
-      "share_of_profit_top10pct": 0.4838
+      "share_of_profit_top10pct": 0.6733,
+      "added_share": 0.5992,
+      "add_lot_mean": 0.0231
      }
     }
    },
@@ -2389,43 +2465,45 @@
      "rules_intraday": {
       "n": 252,
       "still_open": 0,
-      "win_rate": 0.3849,
-      "avg_win": 0.2149,
-      "avg_loss": -0.0554,
-      "expectancy": 0.0486,
-      "median": 0.0,
-      "profit_factor": 2.4267,
-      "best": 1.1839,
+      "win_rate": 0.4206,
+      "avg_win": 0.2167,
+      "avg_loss": -0.0666,
+      "expectancy": 0.0526,
+      "median": -0.0267,
+      "profit_factor": 2.3627,
+      "best": 1.7987,
       "worst": -0.1584,
-      "days_median": 26.0,
-      "days_win_median": 62.0,
+      "days_median": 22.0,
+      "days_win_median": 44.0,
       "days_loss_median": 14.0,
       "exits": {
-       "stop": 210,
-       "stop_gap": 33,
-       "max_hold": 9
+       "stop": 216,
+       "stop_gap": 36
       },
-      "share_of_profit_top10pct": 0.5251
+      "share_of_profit_top10pct": 0.6629,
+      "added_share": 0.5516,
+      "add_lot_mean": 0.0162
      },
      "rules_close": {
       "n": 252,
       "still_open": 0,
-      "win_rate": 0.4643,
-      "avg_win": 0.1997,
-      "avg_loss": -0.0759,
-      "expectancy": 0.0521,
-      "median": -0.0085,
-      "profit_factor": 2.2796,
-      "best": 1.231,
+      "win_rate": 0.4246,
+      "avg_win": 0.2795,
+      "avg_loss": -0.0842,
+      "expectancy": 0.0703,
+      "median": -0.0348,
+      "profit_factor": 2.4508,
+      "best": 2.7957,
       "worst": -0.2398,
-      "days_median": 37.5,
-      "days_win_median": 67.0,
+      "days_median": 27.5,
+      "days_win_median": 50.0,
       "days_loss_median": 19.0,
       "exits": {
-       "stop_close": 238,
-       "max_hold": 14
+       "stop_close": 252
       },
-      "share_of_profit_top10pct": 0.4838
+      "share_of_profit_top10pct": 0.6733,
+      "added_share": 0.5992,
+      "add_lot_mean": 0.0231
      }
     }
    },
@@ -2434,40 +2512,40 @@
      "with": {
       "n": 180,
       "enough": true,
-      "win_rate": 0.3889,
-      "expectancy": 0.0544,
+      "win_rate": 0.4222,
+      "expectancy": 0.0506,
       "r20_mean": 0.0309,
       "stop_first": 0.4556
      },
      "without": {
       "n": 72,
       "enough": true,
-      "win_rate": 0.375,
-      "expectancy": 0.0343,
+      "win_rate": 0.4167,
+      "expectancy": 0.0576,
       "r20_mean": 0.0086,
       "stop_first": 0.5278
      },
-     "diff_expectancy": 0.0201,
+     "diff_expectancy": -0.007,
      "diff_r20": 0.0223
     },
     "flags:deep_base": {
      "with": {
       "n": 73,
       "enough": true,
-      "win_rate": 0.411,
-      "expectancy": 0.0631,
+      "win_rate": 0.4521,
+      "expectancy": 0.0645,
       "r20_mean": 0.0516,
       "stop_first": 0.5342
      },
      "without": {
       "n": 179,
       "enough": true,
-      "win_rate": 0.3743,
-      "expectancy": 0.0427,
+      "win_rate": 0.4078,
+      "expectancy": 0.0477,
       "r20_mean": 0.0135,
       "stop_first": 0.4525
      },
-     "diff_expectancy": 0.0203,
+     "diff_expectancy": 0.0168,
      "diff_r20": 0.0381
     },
     "flags:heavy_selling_day": {
@@ -2475,39 +2553,39 @@
       "n": 13,
       "enough": false,
       "win_rate": 0.4615,
-      "expectancy": 0.0315,
+      "expectancy": 0.0016,
       "r20_mean": -0.0078,
       "stop_first": 0.4615
      },
      "without": {
       "n": 239,
       "enough": true,
-      "win_rate": 0.3808,
-      "expectancy": 0.0496,
+      "win_rate": 0.4184,
+      "expectancy": 0.0554,
       "r20_mean": 0.0263,
       "stop_first": 0.477
      },
-     "diff_expectancy": -0.018,
+     "diff_expectancy": -0.0538,
      "diff_r20": -0.0341
     },
     "flags:macd_divergence": {
      "with": {
       "n": 102,
       "enough": true,
-      "win_rate": 0.5196,
-      "expectancy": 0.0763,
+      "win_rate": 0.5294,
+      "expectancy": 0.0824,
       "r20_mean": 0.0458,
       "stop_first": 0.3824
      },
      "without": {
       "n": 150,
       "enough": true,
-      "win_rate": 0.2933,
-      "expectancy": 0.0298,
+      "win_rate": 0.3467,
+      "expectancy": 0.0323,
       "r20_mean": 0.0101,
       "stop_first": 0.54
      },
-     "diff_expectancy": 0.0465,
+     "diff_expectancy": 0.0501,
      "diff_r20": 0.0356
     },
     "flags:macd_fading": {
@@ -2515,119 +2593,119 @@
       "n": 4,
       "enough": false,
       "win_rate": 0.25,
-      "expectancy": 0.0069,
+      "expectancy": -0.0139,
       "r20_mean": 0.0195,
       "stop_first": 0.5
      },
      "without": {
       "n": 248,
       "enough": true,
-      "win_rate": 0.3871,
-      "expectancy": 0.0493,
+      "win_rate": 0.4234,
+      "expectancy": 0.0537,
       "r20_mean": 0.0246,
       "stop_first": 0.4758
      },
-     "diff_expectancy": -0.0424,
+     "diff_expectancy": -0.0676,
      "diff_r20": -0.0051
     },
     "flags:overheat": {
      "with": {
       "n": 139,
       "enough": true,
-      "win_rate": 0.3525,
-      "expectancy": 0.0439,
+      "win_rate": 0.3957,
+      "expectancy": 0.0465,
       "r20_mean": 0.0228,
       "stop_first": 0.5108
      },
      "without": {
       "n": 113,
       "enough": true,
-      "win_rate": 0.4248,
-      "expectancy": 0.0545,
+      "win_rate": 0.4513,
+      "expectancy": 0.0601,
       "r20_mean": 0.0267,
       "stop_first": 0.4336
      },
-     "diff_expectancy": -0.0106,
+     "diff_expectancy": -0.0136,
      "diff_r20": -0.0039
     },
     "flags:stop_inside_noise": {
      "with": {
       "n": 53,
       "enough": true,
-      "win_rate": 0.3019,
-      "expectancy": 0.0309,
+      "win_rate": 0.3962,
+      "expectancy": 0.032,
       "r20_mean": 0.0287,
       "stop_first": 0.6415
      },
      "without": {
       "n": 199,
       "enough": true,
-      "win_rate": 0.407,
-      "expectancy": 0.0534,
+      "win_rate": 0.4271,
+      "expectancy": 0.0581,
       "r20_mean": 0.0234,
       "stop_first": 0.4322
      },
-     "diff_expectancy": -0.0225,
+     "diff_expectancy": -0.0261,
      "diff_r20": 0.0053
     },
     "flags:volume_spike_5x": {
      "with": {
       "n": 4,
       "enough": false,
-      "win_rate": 0.25,
-      "expectancy": -0.0134,
+      "win_rate": 0.5,
+      "expectancy": -0.0146,
       "r20_mean": 0.053,
       "stop_first": 0.75
      },
      "without": {
       "n": 248,
       "enough": true,
-      "win_rate": 0.3871,
-      "expectancy": 0.0496,
+      "win_rate": 0.4194,
+      "expectancy": 0.0537,
       "r20_mean": 0.0241,
       "stop_first": 0.4718
      },
-     "diff_expectancy": -0.063,
+     "diff_expectancy": -0.0683,
      "diff_r20": 0.0289
     },
     "plus:accumulation": {
      "with": {
       "n": 156,
       "enough": true,
-      "win_rate": 0.3846,
-      "expectancy": 0.0483,
+      "win_rate": 0.4295,
+      "expectancy": 0.0425,
       "r20_mean": 0.0257,
       "stop_first": 0.4615
      },
      "without": {
       "n": 96,
       "enough": true,
-      "win_rate": 0.3854,
-      "expectancy": 0.0492,
+      "win_rate": 0.4062,
+      "expectancy": 0.069,
       "r20_mean": 0.0227,
       "stop_first": 0.5
      },
-     "diff_expectancy": -0.0009,
+     "diff_expectancy": -0.0266,
      "diff_r20": 0.0029
     },
     "plus:power_gap": {
      "with": {
       "n": 81,
       "enough": true,
-      "win_rate": 0.358,
-      "expectancy": 0.0265,
+      "win_rate": 0.4074,
+      "expectancy": 0.012,
       "r20_mean": 0.0219,
       "stop_first": 0.5062
      },
      "without": {
       "n": 171,
       "enough": true,
-      "win_rate": 0.3977,
-      "expectancy": 0.0591,
+      "win_rate": 0.4269,
+      "expectancy": 0.0718,
       "r20_mean": 0.0258,
       "stop_first": 0.462
      },
-     "diff_expectancy": -0.0326,
+     "diff_expectancy": -0.0598,
      "diff_r20": -0.0038
     },
     "plus:tight_base": {
@@ -2635,19 +2713,19 @@
       "n": 10,
       "enough": false,
       "win_rate": 0.3,
-      "expectancy": 0.0418,
+      "expectancy": 0.0626,
       "r20_mean": -0.0467,
       "stop_first": 0.6
      },
      "without": {
       "n": 242,
       "enough": true,
-      "win_rate": 0.3884,
-      "expectancy": 0.0489,
+      "win_rate": 0.4256,
+      "expectancy": 0.0522,
       "r20_mean": 0.0275,
       "stop_first": 0.4711
      },
-     "diff_expectancy": -0.0071,
+     "diff_expectancy": 0.0104,
      "diff_r20": -0.0742
     }
    }
