@@ -74,6 +74,15 @@ def breakdown(ev: pd.DataFrame) -> dict:
     if "dist_days" in ev:
         res["by_distribution_days"] = {b: summarize(g) for b, g in
                                        ev.groupby(np.where(ev["dist_days"].fillna(0) >= 5, ">=5", "<5"))}
+    for col, name, bins, labels in (
+            ("bench_gap", "by_benchmark_gap_at_entry", [-1, -0.02, -0.01, 0.01, 0.02, 1],
+             ["<=-2%", "-2..-1%", "-1..+1%", "+1..+2%", ">=+2%"]),
+            ("stock_gap", "by_stock_gap_at_entry", [-1, -0.02, 0, 0.02, 0.04, 1],
+             ["<=-2%", "-2..0%", "0..+2%", "+2..+4%", ">=+4%"]),
+            ("breadth50", "by_breadth50", [0, 0.45, 0.6, 0.75, 1.01], ["<45%", "45-60%", "60-75%", ">=75%"])):
+        if col in ev and ev[col].notna().any():
+            cut = pd.cut(ev[col], bins, labels=labels, right=False)
+            res[name] = {str(b): summarize(g) for b, g in ev.groupby(cut, observed=True)}
     sig = {}
     for col in ("flags", "plus"):
         if col not in ev:
@@ -131,7 +140,8 @@ def markdown(title: str, res: dict, notes: list[str]) -> str:
             for m in ("intraday", "close") if a[f"rules_{m}"].get("add_lot_mean") is not None]
     if adds:
         lines += ["", "Add-on: " + "; ".join(adds) + "."]
-    for name in ("by_year", "by_regime", "by_distribution_days", "by_rs_rating"):
+    for name in ("by_year", "by_regime", "by_distribution_days", "by_rs_rating", "by_benchmark_gap_at_entry",
+                 "by_stock_gap_at_entry", "by_breadth50"):
         if name in res:
             lines += ["", f"## {name}", "", "| group | n | win rate | expectancy | 20d mean |", "|---|---|---|---|---|"]
             for g, x in res[name].items():

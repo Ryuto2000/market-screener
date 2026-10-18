@@ -75,6 +75,8 @@ def main(market: str, years: int) -> int:
     bench = ind._clean(bench)
     bench6m = bench["Close"] / bench["Close"].shift(ind.LOOKBACK_6M) - 1
     regime = regime_series(bench)
+    # benchmark opening gap on each session (open vs previous close): the entry day's market mood
+    bench_gap = bench["Open"] / bench["Close"].shift(1) - 1
     prices = download(uni["ticker"].tolist(), period=f"{years}y", auto_adjust=False, intraday=False)
     prices = {t: ind._clean(df) for t, df in prices.items() if df is not None and len(df) > ind.MIN_ROWS + 5}
     log(f"with history: {len(prices)}")
@@ -110,6 +112,9 @@ def main(market: str, years: int) -> int:
             if d in regime.index:
                 ev["regime_state"] = str(regime.at[d, "regime_state"])
                 ev["dist_days"] = float(regime.at[d, "dist_days"]) if not pd.isna(regime.at[d, "dist_days"]) else None
+            ed = df.index[i + 1]
+            ev["bench_gap"] = float(bench_gap.get(ed, np.nan))
+            ev["stock_gap"] = float(df["Open"].iloc[i + 1] / df["Close"].iloc[i] - 1)
             ev.update(simulate.follow(df, i + 1))
             events.append(ev)
         if (k + 1) % 500 == 0:
