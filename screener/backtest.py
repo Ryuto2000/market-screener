@@ -24,7 +24,7 @@ import numpy as np
 import pandas as pd
 
 from . import indicators as ind
-from . import simulate, stats
+from . import rules, simulate, stats
 from .fetch import download
 from .run import CFG
 from .universe import jp_universe, us_universe
@@ -118,7 +118,12 @@ def main(market: str, years: int) -> int:
 
     ev = pd.DataFrame(events)
     OUT.mkdir(parents=True, exist_ok=True)
-    res = stats.breakdown(ev)
+    if len(ev):
+        ev["passes_rules"] = [rules.check(market, r, {"benchmark_state": r.get("regime_state"),
+                                                       "benchmark_distribution_days_25": r.get("dist_days")})[0]
+                              for r in ev.to_dict("records")]
+    res = {"all_signals": stats.breakdown(ev),
+           "with_rules": stats.breakdown(ev[ev["passes_rules"]]) if len(ev) else {}}
     span = (ev["signal_date"].min(), ev["signal_date"].max()) if len(ev) else (None, None)
     notes = [f"market: {market}, signals from {span[0]} to {span[1]}, entry at the next open after the signal day",
              "rules not modelled: market cap, fundamentals, earnings dates, theme/crypto exclusions",
@@ -127,7 +132,9 @@ def main(market: str, years: int) -> int:
     meta = {"generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), "market": market,
             "years": years, "signals": len(ev), "span": span, "notes": notes}
     (OUT / f"backtest_{market}.json").write_text(json.dumps({**meta, "results": res}, ensure_ascii=False, indent=1, default=str))
-    (OUT / f"backtest_{market}.md").write_text(stats.markdown(f"Backtest {market.upper()}", res, notes))
+    md = stats.markdown(f"Backtest {market.upper()}: signals that pass the current rules (screener/rules.py)", res["with_rules"], notes)
+    md += "\n\n" + stats.markdown(f"Backtest {market.upper()}: all breakout signals (before the market rules)", res["all_signals"], [])
+    (OUT / f"backtest_{market}.md").write_text(md)
     if len(ev):
         ev.drop(columns=[c for c in ("name",) if c in ev]).to_csv(OUT / f"backtest_events_{market}.csv", index=False)
     return 0

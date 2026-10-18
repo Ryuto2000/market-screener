@@ -20,6 +20,7 @@ import yfinance as yf
 from . import fetch
 from . import indicators as ind
 from . import prices as price_table
+from . import rules
 from .universe import jp_universe, us_universe
 
 CFG = {
@@ -236,6 +237,12 @@ def main(market: str) -> int:
         # -8% stop is always available; wide_stop only flags that the structural stop is >15% away.
         if rec["rev_yoy"] is None or rec["op_income_yoy"] is None:
             rec["flags"].append("fin_unknown")
+        rec["rs_rating"] = rs_rating.get(tk)
+        rules.tidy_signals(market, rec)
+        ok, why = rules.check(market, rec, regime)
+        checks["backtest_rules"] = ok
+        if not ok:
+            rec["excluded_reason"] = why
         rec["checks"] = checks
         base = all(v for k, v in checks.items() if k not in ("trigger", "chase_ok"))
         rec["rank_hint"] = "A" if base and checks["trigger"] and checks["chase_ok"] else ("B" if base and not checks["trigger"] else None)
@@ -243,12 +250,7 @@ def main(market: str) -> int:
         rec["rs_rating"] = rs_rating.get(tk)
         out.append(rec)
 
-    def score(r):
-        fin_known = "fin_unknown" not in r["flags"]
-        breakout = "a_breakout" in r["triggers"]
-        return (breakout, fin_known, r.get("rs_rating") or 0, len(r["triggers"]), r["vol_ratio"] or 0)
-
-    out.sort(key=score, reverse=True)
+    out.sort(key=lambda r: rules.rank_key(market, r), reverse=True)
     result = {
         "generated_at": started.isoformat(timespec="seconds"),
         "finished_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
@@ -267,6 +269,7 @@ def main(market: str) -> int:
         "A": [r for r in out if r["rank_hint"] == "A"][:40],
         "B": [r for r in out if r["rank_hint"] == "B"][:40],
         "trigger_but_failed": [r for r in out if r["triggers"] and r["rank_hint"] != "A"][:40],
+        "rules_note": "A/B also require the market-specific backtest rules in screener/rules.py (see excluded_reason)",
         "errors": errors[:300],
         "error_count": len(errors),
     }
