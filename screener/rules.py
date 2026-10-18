@@ -10,6 +10,12 @@ benchmark in an uptrend and fewer than 5 distribution days in 25 sessions.
 """
 from __future__ import annotations
 
+# Position risk: Japan risks 0.5% of assets per trade (instead of 0.3%) when >= 75% of liquid names close
+# above their 50-day SMA. Backtest (S-kabu close stop, 2,598 signals): +11.1% per trade vs +4.2%, better in 4 of 5 years.
+RISK_BASE = 0.003
+RISK_STRONG = 0.005
+JP_STRONG_BREADTH = 75.0
+
 JP_EXCLUDE_FLAGS = {"stop_inside_noise", "deep_base", "overheat"}
 JP_MAX_RS = 95
 US_MIN_RS = 90
@@ -52,3 +58,11 @@ def tidy_signals(market: str, rec: dict) -> None:
     if market == "jp" and "power_gap" in (rec.get("plus") or []):
         rec["plus"] = [p for p in rec["plus"] if p != "power_gap"]
         rec.setdefault("info", []).append("power_gap")
+
+
+def risk_per_trade(market: str, regime: dict | None) -> float:
+    """Share of total assets to risk on one new trade, from market breadth (pct_above_sma50, in %)."""
+    b = (regime or {}).get("pct_above_sma50")
+    if market == "jp" and b is not None and b >= JP_STRONG_BREADTH:
+        return RISK_STRONG
+    return RISK_BASE
