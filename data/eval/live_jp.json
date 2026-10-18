@@ -1,0 +1,173 @@
+{
+ "generated_at": "2026-10-18T09:33:21+00:00",
+ "market": "jp",
+ "signals": 1,
+ "notes": [
+  "market: jp, live lists from 2026-10-15 to 2026-10-16",
+  "every A and B name is followed whether or not it was bought; entry at the next open after the list date",
+  "young signals have only a few sessions; horizons without data are left out"
+ ],
+ "results": {
+  "A": {
+   "all": {
+    "n": 1,
+    "enough": false,
+    "mfe60_median": 0.012,
+    "mae60_median": -0.0025,
+    "mae60_p10": -0.0025,
+    "first_hit": {
+     "stop_-8%": 0,
+     "target_+16%": 0,
+     "neither_60d": 1
+    },
+    "rules_intraday": {
+     "n": 1,
+     "still_open": 1,
+     "win_rate": 1.0,
+     "avg_win": 0.0033,
+     "avg_loss": null,
+     "expectancy": 0.0033,
+     "median": 0.0033,
+     "profit_factor": null,
+     "best": 0.0033,
+     "worst": 0.0033,
+     "days_median": null,
+     "days_win_median": null,
+     "days_loss_median": null,
+     "exits": {
+      "open": 1
+     },
+     "share_of_profit_top10pct": 1.0
+    },
+    "rules_close": {
+     "n": 1,
+     "still_open": 1,
+     "win_rate": 1.0,
+     "avg_win": 0.0033,
+     "avg_loss": null,
+     "expectancy": 0.0033,
+     "median": 0.0033,
+     "profit_factor": null,
+     "best": 0.0033,
+     "worst": 0.0033,
+     "days_median": null,
+     "days_win_median": null,
+     "days_loss_median": null,
+     "exits": {
+      "open": 1
+     },
+     "share_of_profit_top10pct": 1.0
+    }
+   },
+   "by_year": {
+    "2026": {
+     "n": 1,
+     "enough": false,
+     "mfe60_median": 0.012,
+     "mae60_median": -0.0025,
+     "mae60_p10": -0.0025,
+     "first_hit": {
+      "stop_-8%": 0,
+      "target_+16%": 0,
+      "neither_60d": 1
+     },
+     "rules_intraday": {
+      "n": 1,
+      "still_open": 1,
+      "win_rate": 1.0,
+      "avg_win": 0.0033,
+      "avg_loss": null,
+      "expectancy": 0.0033,
+      "median": 0.0033,
+      "profit_factor": null,
+      "best": 0.0033,
+      "worst": 0.0033,
+      "days_median": null,
+      "days_win_median": null,
+      "days_loss_median": null,
+      "exits": {
+       "open": 1
+      },
+      "share_of_profit_top10pct": 1.0
+     },
+     "rules_close": {
+      "n": 1,
+      "still_open": 1,
+      "win_rate": 1.0,
+      "avg_win": 0.0033,
+      "avg_loss": null,
+      "expectancy": 0.0033,
+      "median": 0.0033,
+      "profit_factor": null,
+      "best": 0.0033,
+      "worst": 0.0033,
+      "days_median": null,
+      "days_win_median": null,
+      "days_loss_median": null,
+      "exits": {
+       "open": 1
+      },
+      "share_of_profit_top10pct": 1.0
+     }
+    }
+   },
+   "by_rs_rating": {
+    "unknown": {
+     "n": 1,
+     "enough": false,
+     "mfe60_median": 0.012,
+     "mae60_median": -0.0025,
+     "mae60_p10": -0.0025,
+     "first_hit": {
+      "stop_-8%": 0,
+      "target_+16%": 0,
+      "neither_60d": 1
+     },
+     "rules_intraday": {
+      "n": 1,
+      "still_open": 1,
+      "win_rate": 1.0,
+      "avg_win": 0.0033,
+      "avg_loss": null,
+      "expectancy": 0.0033,
+      "median": 0.0033,
+      "profit_factor": null,
+      "best": 0.0033,
+      "worst": 0.0033,
+      "days_median": null,
+      "days_win_median": null,
+      "days_loss_median": null,
+      "exits": {
+       "open": 1
+      },
+      "share_of_profit_top10pct": 1.0
+     },
+     "rules_close": {
+      "n": 1,
+      "still_open": 1,
+      "win_rate": 1.0,
+      "avg_win": 0.0033,
+      "avg_loss": null,
+      "expectancy": 0.0033,
+      "median": 0.0033,
+      "profit_factor": null,
+      "best": 0.0033,
+      "worst": 0.0033,
+      "days_median": null,
+      "days_win_median": null,
+      "days_loss_median": null,
+      "exits": {
+       "open": 1
+      },
+      "share_of_profit_top10pct": 1.0
+     }
+    }
+   },
+   "by_signal": {}
+  },
+  "B": {
+   "n": 0,
+   "enough": false
+  }
+ }
+}
