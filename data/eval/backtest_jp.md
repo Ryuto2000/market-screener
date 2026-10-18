@@ -1,9 +1,78 @@
-# Backtest JP
+# Backtest JP: signals that pass the current rules (screener/rules.py)
 
 - market: jp, signals from 2022-09-08 to 2026-10-15, entry at the next open after the signal day
 - rules not modelled: market cap, fundamentals, earnings dates, theme/crypto exclusions
 - survivorship bias: today's listings only, so results lean optimistic
 - 'intraday' = resting stop order; 'close' = stop checked on the close, sold at the next open (odd lots)
+
+Signals: 2598
+
+| horizon | n | mean | median | % up | p10 | p90 |
+|---|---|---|---|---|---|---|
+| 5d | 2586 | -0.0% | -0.2% | 47% | -5.3% | 5.4% |
+| 10d | 2579 | 0.3% | 0.1% | 50% | -7.1% | 7.7% |
+| 20d | 2561 | 1.2% | 0.6% | 53% | -8.8% | 11.8% |
+| 40d | 2531 | 2.9% | 2.0% | 57% | -11.4% | 17.6% |
+| 60d | 2469 | 4.5% | 3.1% | 59% | -14.1% | 23.6% |
+
+First within 60 sessions: -8% stop 1199, +16% 723, neither 676. Median MFE 11.5%, median MAE -7.6%, MAE p10 -21.2%.
+
+| exit rules | n | win rate | avg win | avg loss | expectancy | profit factor | days (win/loss) | top 10% share of profit |
+|---|---|---|---|---|---|---|---|---|
+| intraday stop | 2598 | 38% | 18.3% | -6.0% | 3.26% | 1.87 | 73.0/20.0 | 48% |
+| close stop | 2598 | 46% | 17.0% | -7.8% | 3.58% | 1.84 | 77.0/24.0 | 46% |
+
+## by_year
+
+| group | n | win rate | expectancy | 20d mean |
+|---|---|---|---|---|
+| 2022 | 143 | 26% | -0.92% | -1.0% |
+| 2023 | 737 | 41% | 3.85% | 1.1% |
+| 2024 | 576 | 28% | 0.20% | 1.1% |
+| 2025 | 710 | 50% | 7.88% | 2.0% |
+| 2026 | 432 | 30% | 0.11% | 1.3% |
+
+## by_regime
+
+| group | n | win rate | expectancy | 20d mean |
+|---|---|---|---|---|
+| downtrend | 37 | 30% | 2.70% | 0.1% |
+| mixed | 526 | 34% | 1.93% | 1.5% |
+| uptrend | 2035 | 39% | 3.61% | 1.2% |
+
+## by_distribution_days
+
+| group | n | win rate | expectancy | 20d mean |
+|---|---|---|---|---|
+| <5 | 1057 | 39% | 2.95% | 1.2% |
+| >=5 | 1541 | 38% | 3.47% | 1.3% |
+
+## by_rs_rating
+
+| group | n | win rate | expectancy | 20d mean |
+|---|---|---|---|---|
+| 70-79 | 734 | 39% | 3.19% | 1.2% |
+| 80-89 | 699 | 37% | 3.38% | 1.8% |
+| 90-99 | 144 | 30% | 1.69% | 0.8% |
+| <70 | 1021 | 40% | 3.45% | 1.0% |
+
+## signals (intraday-stop expectancy, with vs without)
+
+| signal | n with | win rate with | exp. with | exp. without | diff | stop first (with) |
+|---|---|---|---|---|---|---|
+| flags:above_upper_band | 1968 | 39% | 3.48% | 2.55% | +0.93% | 45% |
+| flags:macd_divergence | 1278 | 39% | 3.60% | 2.93% | +0.68% | 46% |
+| plus:accumulation | 1259 | 38% | 3.32% | 3.20% | +0.12% | 46% |
+| plus:power_gap | 448 | 33% | 2.26% | 3.47% | -1.21% | 48% |
+| plus:tight_base | 244 | 39% | 2.97% | 3.29% | -0.32% | 44% |
+| flags:heavy_selling_day | 120 | 35% | 3.89% | 3.23% | +0.66% | 42% |
+| flags:volume_spike_5x | 92 | 41% | 3.37% | 3.25% | +0.11% | 47% |
+| flags:macd_fading | 28 | 32% | -0.04% | 3.29% | -3.33% | 61% |
+| flags:distribution | 11 (small) | 36% | 3.54% | 3.26% | +0.28% | 45% |
+
+
+# Backtest JP: all breakout signals (before the market rules)
+
 
 Signals: 4401
 

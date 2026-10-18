@@ -1,9 +1,73 @@
-# Backtest US
+# Backtest US: signals that pass the current rules (screener/rules.py)
 
 - market: us, signals from 2022-09-07 to 2026-10-15, entry at the next open after the signal day
 - rules not modelled: market cap, fundamentals, earnings dates, theme/crypto exclusions
 - survivorship bias: today's listings only, so results lean optimistic
 - 'intraday' = resting stop order; 'close' = stop checked on the close, sold at the next open (odd lots)
+
+Signals: 252
+
+| horizon | n | mean | median | % up | p10 | p90 |
+|---|---|---|---|---|---|---|
+| 5d | 252 | 0.4% | 0.5% | 56% | -6.7% | 7.6% |
+| 10d | 252 | 1.0% | 0.8% | 55% | -8.5% | 10.1% |
+| 20d | 252 | 2.5% | 2.2% | 60% | -11.3% | 18.2% |
+| 40d | 251 | 6.7% | 4.3% | 62% | -15.3% | 25.0% |
+| 60d | 251 | 10.1% | 5.3% | 61% | -19.0% | 38.8% |
+
+First within 60 sessions: -8% stop 120, +16% 93, neither 39. Median MFE 17.4%, median MAE -8.4%, MAE p10 -28.3%.
+
+| exit rules | n | win rate | avg win | avg loss | expectancy | profit factor | days (win/loss) | top 10% share of profit |
+|---|---|---|---|---|---|---|---|---|
+| intraday stop | 252 | 38% | 21.5% | -5.5% | 4.86% | 2.43 | 62.0/14.0 | 53% |
+| close stop | 252 | 46% | 20.0% | -7.6% | 5.21% | 2.28 | 67.0/19.0 | 48% |
+
+## by_year
+
+| group | n | win rate | expectancy | 20d mean |
+|---|---|---|---|---|
+| 2023 | 69 | 45% | 5.09% | -0.3% |
+| 2024 | 154 | 38% | 5.24% | 3.8% |
+| 2025 | 10 (small) | 30% | 10.38% | -2.8% |
+| 2026 | 19 (small) | 21% | -1.89% | 4.2% |
+
+## by_regime
+
+| group | n | win rate | expectancy | 20d mean |
+|---|---|---|---|---|
+| uptrend | 252 | 38% | 4.86% | 2.5% |
+
+## by_distribution_days
+
+| group | n | win rate | expectancy | 20d mean |
+|---|---|---|---|---|
+| <5 | 252 | 38% | 4.86% | 2.5% |
+
+## by_rs_rating
+
+| group | n | win rate | expectancy | 20d mean |
+|---|---|---|---|---|
+| 90-99 | 252 | 38% | 4.86% | 2.5% |
+
+## signals (intraday-stop expectancy, with vs without)
+
+| signal | n with | win rate with | exp. with | exp. without | diff | stop first (with) |
+|---|---|---|---|---|---|---|
+| flags:above_upper_band | 180 | 39% | 5.44% | 3.43% | +2.01% | 46% |
+| plus:accumulation | 156 | 38% | 4.83% | 4.92% | -0.09% | 46% |
+| flags:overheat | 139 | 35% | 4.39% | 5.45% | -1.06% | 51% |
+| flags:macd_divergence | 102 | 52% | 7.63% | 2.98% | +4.65% | 38% |
+| plus:power_gap | 81 | 36% | 2.65% | 5.91% | -3.26% | 51% |
+| flags:deep_base | 73 | 41% | 6.31% | 4.27% | +2.03% | 53% |
+| flags:stop_inside_noise | 53 | 30% | 3.09% | 5.34% | -2.25% | 64% |
+| flags:heavy_selling_day | 13 (small) | 46% | 3.15% | 4.96% | -1.80% | 46% |
+| plus:tight_base | 10 (small) | 30% | 4.18% | 4.89% | -0.71% | 60% |
+| flags:macd_fading | 4 (small) | 25% | 0.69% | 4.93% | -4.24% | 50% |
+| flags:volume_spike_5x | 4 (small) | 25% | -1.34% | 4.96% | -6.30% | 75% |
+
+
+# Backtest US: all breakout signals (before the market rules)
+
 
 Signals: 2649
 
