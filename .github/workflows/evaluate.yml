@@ -1,0 +1,58 @@
+name: evaluate
+
+on:
+  schedule:
+    - cron: "0 3 * * 6"   # Saturdays 03:00 UTC: follow live candidates and re-run the backtest
+  workflow_dispatch:
+    inputs:
+      market:
+        description: "jp, us or both"
+        required: true
+        default: "both"
+      mode:
+        description: "live, backtest or all"
+        required: true
+        default: "all"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: evaluate
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python -m pytest -q tests
+      - name: Evaluate
+        run: |
+          mkdir -p data/logs data/eval
+          set -o pipefail
+          M="${{ inputs.market || 'both' }}"; MODE="${{ inputs.mode || 'all' }}"
+          [ "$M" = "both" ] && MARKETS="jp us" || MARKETS="$M"
+          for m in $MARKETS; do
+            if [ "$MODE" != "backtest" ]; then python -m screener.evaluate --market $m 2>&1 | tee data/logs/evaluate_$m.log; fi
+            if [ "$MODE" != "live" ]; then python -m screener.backtest --market $m 2>&1 | tee data/logs/backtest_$m.log; fi
+          done
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name "screener-bot"
+          git config user.email "actions@users.noreply.github.com"
+          files=$(git status --porcelain --untracked-files=all data | awk '{print $NF}')
+          [ -n "$files" ] && tar cf /tmp/out.tar $files
+          git fetch origin main
+          git reset --hard origin/main
+          [ -f /tmp/out.tar ] && tar xf /tmp/out.tar
+          git add data
+          git commit -m "data: evaluate $(date -u +%F)" || echo "no changes"
+          git push origin HEAD:main

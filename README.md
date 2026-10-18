@@ -46,6 +46,17 @@ covers all domestic stocks listed on the TSE Prime, Standard and Growth markets.
 | `history/<date>_<market>.json` | daily A/B lists, for checking how the picks did later |
 | `logs/` | log of the latest run |
 
+## Evaluation
+
+Every Saturday (`evaluate` workflow) two things are measured, so the rules can be checked against data instead of anecdotes:
+
+- **Backtest** (`python -m screener.backtest --market jp`): the screener is replayed over five years of daily data. Each day a stock passes the trend, relative-strength, liquidity and breakout-with-volume rules (within the chase limit), a trade is entered at the next open and followed.
+- **Live follow-up** (`python -m screener.evaluate --market jp`): every A and B name from `data/history/` is followed from the next open after its list date, whether or not anyone bought it.
+
+Each signal gets returns after 5/10/20/40/60 sessions, the largest gain and drawdown within 60 sessions, whether −8% or +16% came first, and the result of the exit rules (−8% stop; stop to entry at +8%; sell 1/3 at +16% with the stop at max(+8%, 50-day SMA); then every 5 sessions max(highest close −15%, 50-day SMA)), simulated with a resting stop order and with a close-only stop. Results are split by year, market regime, distribution days, RS rating and each flag (`data/eval/*.md`, `*.json`, per-signal `*.csv`).
+
+Limits: no point-in-time market cap, fundamentals or earnings dates; today's listings only (survivorship bias makes the backtest look somewhat better than reality).
+
 ## Data caveats
 
 - Prices come from Yahoo Finance via [yfinance](https://github.com/ranaroussi/yfinance) (unofficial). It can break or lag.
