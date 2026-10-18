@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-18T10:31:26+00:00",
+ "generated_at": "2026-10-18T10:35:47+00:00",
  "market": "jp",
  "signals": 2598,
  "note": "signals passing screener/rules.py; no fees; returns on the initial position",
@@ -528,6 +528,100 @@
      "add_lot_mean": -0.0021,
      "add_lot_win": 0.397
     }
+   },
+   "combined candidates": {
+    "BE +1%, current ladder, skill add 0.5x": {
+     "n": 2598,
+     "win_rate": 0.382,
+     "avg_win": 0.2151,
+     "avg_loss": -0.0698,
+     "expectancy": 0.039,
+     "profit_factor": 1.9,
+     "days_median": 36.0,
+     "by_year": {
+      "2022": -0.0069,
+      "2023": 0.0431,
+      "2024": 0.001,
+      "2025": 0.1003,
+      "2026": -0.003
+     },
+     "added_share": 0.508,
+     "add_lot_mean": 0.0138,
+     "add_lot_win": 0.554
+    },
+    "BE +1%, high -10%, no trim": {
+     "n": 2598,
+     "win_rate": 0.542,
+     "avg_win": 0.1326,
+     "avg_loss": -0.0806,
+     "expectancy": 0.035,
+     "profit_factor": 1.95,
+     "days_median": 33.0,
+     "by_year": {
+      "2022": -0.0167,
+      "2023": 0.0379,
+      "2024": 0.002,
+      "2025": 0.0882,
+      "2026": 0.0038
+     }
+    },
+    "BE +1%, high -10%, no trim, skill add 0.5x": {
+     "n": 2598,
+     "win_rate": 0.405,
+     "avg_win": 0.2091,
+     "avg_loss": -0.0689,
+     "expectancy": 0.0436,
+     "profit_factor": 2.06,
+     "days_median": 33.0,
+     "by_year": {
+      "2022": -0.0192,
+      "2023": 0.0435,
+      "2024": 0.0012,
+      "2025": 0.1175,
+      "2026": -0.0004
+     },
+     "added_share": 0.523,
+     "add_lot_mean": 0.0164,
+     "add_lot_win": 0.43
+    },
+    "BE +1%, high -10%, no trim, skill add 1x": {
+     "n": 2598,
+     "win_rate": 0.36,
+     "avg_win": 0.2781,
+     "avg_loss": -0.0748,
+     "expectancy": 0.0522,
+     "profit_factor": 2.09,
+     "days_median": 33.0,
+     "by_year": {
+      "2022": -0.0216,
+      "2023": 0.0492,
+      "2024": 0.0003,
+      "2025": 0.1468,
+      "2026": -0.0047
+     },
+     "added_share": 0.523,
+     "add_lot_mean": 0.0328,
+     "add_lot_win": 0.43
+    },
+    "BE +1%, high -12%, no trim, skill add 0.5x": {
+     "n": 2598,
+     "win_rate": 0.366,
+     "avg_win": 0.2416,
+     "avg_loss": -0.0675,
+     "expectancy": 0.0455,
+     "profit_factor": 2.06,
+     "days_median": 35.0,
+     "by_year": {
+      "2022": -0.0152,
+      "2023": 0.0478,
+      "2024": -0.0012,
+      "2025": 0.1246,
+      "2026": -0.0061
+     },
+     "added_share": 0.523,
+     "add_lot_mean": 0.0176,
+     "add_lot_win": 0.431
+    }
    }
   },
   "close": {
@@ -1053,6 +1147,100 @@
      "added_share": 0.08,
      "add_lot_mean": 0.0049,
      "add_lot_win": 0.407
+    }
+   },
+   "combined candidates": {
+    "BE +1%, current ladder, skill add 0.5x": {
+     "n": 2598,
+     "win_rate": 0.418,
+     "avg_win": 0.2213,
+     "avg_loss": -0.0825,
+     "expectancy": 0.0446,
+     "profit_factor": 1.93,
+     "days_median": 43.0,
+     "by_year": {
+      "2022": -0.0058,
+      "2023": 0.0509,
+      "2024": -0.0121,
+      "2025": 0.1169,
+      "2026": 0.0074
+     },
+     "added_share": 0.537,
+     "add_lot_mean": 0.0159,
+     "add_lot_win": 0.561
+    },
+    "BE +1%, high -10%, no trim": {
+     "n": 2598,
+     "win_rate": 0.515,
+     "avg_win": 0.1567,
+     "avg_loss": -0.0838,
+     "expectancy": 0.04,
+     "profit_factor": 1.98,
+     "days_median": 40.0,
+     "by_year": {
+      "2022": -0.0152,
+      "2023": 0.0454,
+      "2024": -0.0068,
+      "2025": 0.1022,
+      "2026": 0.0092
+     }
+    },
+    "BE +1%, high -10%, no trim, skill add 0.5x": {
+     "n": 2598,
+     "win_rate": 0.415,
+     "avg_win": 0.2353,
+     "avg_loss": -0.0808,
+     "expectancy": 0.0505,
+     "profit_factor": 2.07,
+     "days_median": 40.0,
+     "by_year": {
+      "2022": -0.0157,
+      "2023": 0.0526,
+      "2024": -0.0097,
+      "2025": 0.1377,
+      "2026": 0.0059
+     },
+     "added_share": 0.553,
+     "add_lot_mean": 0.0191,
+     "add_lot_win": 0.452
+    },
+    "BE +1%, high -10%, no trim, skill add 1x": {
+     "n": 2598,
+     "win_rate": 0.378,
+     "avg_win": 0.31,
+     "avg_loss": -0.09,
+     "expectancy": 0.0611,
+     "profit_factor": 2.09,
+     "days_median": 40.0,
+     "by_year": {
+      "2022": -0.0162,
+      "2023": 0.0598,
+      "2024": -0.0126,
+      "2025": 0.1731,
+      "2026": 0.0027
+     },
+     "added_share": 0.553,
+     "add_lot_mean": 0.0381,
+     "add_lot_win": 0.452
+    },
+    "BE +1%, high -12%, no trim, skill add 0.5x": {
+     "n": 2598,
+     "win_rate": 0.381,
+     "avg_win": 0.261,
+     "avg_loss": -0.0799,
+     "expectancy": 0.0501,
+     "profit_factor": 2.01,
+     "days_median": 42.0,
+     "by_year": {
+      "2022": -0.0062,
+      "2023": 0.0517,
+      "2024": -0.0192,
+      "2025": 0.1478,
+      "2026": -0.0018
+     },
+     "added_share": 0.554,
+     "add_lot_mean": 0.0188,
+     "add_lot_win": 0.45
     }
    }
   }
