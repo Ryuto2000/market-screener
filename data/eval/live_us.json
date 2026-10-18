@@ -1,0 +1,14 @@
+{
+ "generated_at": "2026-10-18T09:40:56+00:00",
+ "market": "us",
+ "signals": 0,
+ "notes": [
+  "market: us, live lists from 2026-10-16 to 2026-10-16",
+  "every A and B name is followed whether or not it was bought; entry at the next open after the list date",
+  "young signals have only a few sessions; horizons without data are left out"
+ ],
+ "results": {
+  "A": {},
+  "B": {}
+ }
+}
