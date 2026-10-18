@@ -10,7 +10,7 @@ on:
         required: true
         default: "both"
       mode:
-        description: "live, backtest or all"
+        description: "live, backtest, variants or all"
         required: true
         default: "all"
 
@@ -40,8 +40,9 @@ jobs:
           M="${{ inputs.market || 'both' }}"; MODE="${{ inputs.mode || 'all' }}"
           [ "$M" = "both" ] && MARKETS="jp us" || MARKETS="$M"
           for m in $MARKETS; do
-            if [ "$MODE" != "backtest" ]; then python -m screener.evaluate --market $m 2>&1 | tee data/logs/evaluate_$m.log; fi
-            if [ "$MODE" != "live" ]; then python -m screener.backtest --market $m 2>&1 | tee data/logs/backtest_$m.log; fi
+            if [ "$MODE" = "live" ] || [ "$MODE" = "all" ]; then python -m screener.evaluate --market $m 2>&1 | tee data/logs/evaluate_$m.log; fi
+            if [ "$MODE" = "backtest" ] || [ "$MODE" = "all" ]; then python -m screener.backtest --market $m 2>&1 | tee data/logs/backtest_$m.log; fi
+            if [ "$MODE" = "variants" ] || [ "$MODE" = "all" ]; then python -m screener.variants --market $m 2>&1 | tee data/logs/variants_$m.log; fi
           done
       - name: Commit results
         if: always()
