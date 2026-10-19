@@ -246,11 +246,11 @@ def main(market: str) -> int:
             rec["excluded_reason"] = why
         rec["checks"] = checks
         base = all(v for k, v in checks.items() if k not in ("trigger", "chase_ok", "validated_trigger"))
-        checks["validated_trigger"] = rules.validated_trigger(rec)
+        checks["validated_trigger"] = rules.validated_trigger(market, rec)
         if base and checks["validated_trigger"] and checks["chase_ok"]:
             rec["rank_hint"] = "A"
         elif base and not checks["validated_trigger"]:
-            rec["rank_hint"] = "B"  # no trigger yet, or only b_near_high / c_pullback (not backtest-supported)
+            rec["rank_hint"] = "B"  # no trigger yet, or only triggers without backtest support in this market
         else:
             rec["rank_hint"] = None
         rec["rs_excess"] = (m.ret_6m - bench_ret) if bench_ret is not None else None

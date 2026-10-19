@@ -16,9 +16,10 @@ RISK_BASE = 0.003
 RISK_STRONG = 0.005
 JP_STRONG_BREADTH = 75.0
 
-# Entry types with backtest support for A-candidates. b_near_high / c_pullback stay B (watch) until the
-# backtest comparison (data/eval/backtest_*.md, "Entry types") supports them.
-VALIDATED_TRIGGERS = {"a_breakout"}
+# Entry types with backtest support for A-candidates (data/eval/backtest_*.md, "Entry types", 2026-10-19).
+# Japan: near-high (+6.2%) and pullback (+6.5%) entries did as well as breakouts (+5.5%), year by year.
+# US: near-high +2.7-3.7% and pullback +4.0% (2026 -6.8%) vs breakout +7.0% before ~1% fees -> breakout only.
+VALIDATED_TRIGGERS = {"jp": {"a_breakout", "b_near_high", "c_pullback"}, "us": {"a_breakout"}}
 
 JP_EXCLUDE_FLAGS = {"stop_inside_noise", "deep_base", "overheat"}
 JP_MAX_RS = 95
@@ -74,5 +75,5 @@ def risk_per_trade(market: str, regime: dict | None) -> float:
     return RISK_BASE
 
 
-def validated_trigger(rec: dict) -> bool:
-    return bool(VALIDATED_TRIGGERS & set(rec.get("triggers") or []))
+def validated_trigger(market: str, rec: dict) -> bool:
+    return bool(VALIDATED_TRIGGERS.get(market, set()) & set(rec.get("triggers") or []))

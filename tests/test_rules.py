@@ -36,6 +36,7 @@ def test_pinned_price_excluded_both_markets():
 
 
 def test_validated_trigger():
-    assert rules.validated_trigger({"triggers": ["a_breakout"]})
-    assert not rules.validated_trigger({"triggers": ["b_near_high", "c_pullback"]})
-    assert not rules.validated_trigger({"triggers": []})
+    assert rules.validated_trigger("us", {"triggers": ["a_breakout"]})
+    assert not rules.validated_trigger("us", {"triggers": ["b_near_high", "c_pullback"]})
+    assert rules.validated_trigger("jp", {"triggers": ["b_near_high"]})
+    assert not rules.validated_trigger("jp", {"triggers": []})

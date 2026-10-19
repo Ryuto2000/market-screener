@@ -130,6 +130,12 @@ def main(market: str, years: int) -> int:
     bench_gap = bench["Open"] / bench["Close"].shift(1) - 1
     prices = download(uni["ticker"].tolist(), period=f"{years}y", auto_adjust=False, intraday=False)
     prices = {t: ind._clean(df) for t, df in prices.items() if df is not None and len(df) > ind.MIN_ROWS + 5}
+    # drop broken histories (e.g. delisted names with garbage prices): any daily move beyond +200% / -90%
+    bad = [t for t, df in prices.items() if ((df["Close"].pct_change() > 2) | (df["Close"].pct_change() < -0.9)).any()]
+    for t in bad:
+        prices.pop(t)
+    if bad:
+        log(f"dropped {len(bad)} tickers with broken price history")
     log(f"with history: {len(prices)}")
 
     # cross-sectional RS rating per day among liquid names
