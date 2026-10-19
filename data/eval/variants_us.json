@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-18T10:55:32+00:00",
+ "generated_at": "2026-10-19T10:38:02+00:00",
  "market": "us",
  "signals": 252,
  "note": "signals passing screener/rules.py; no fees; returns on the initial position",
@@ -295,6 +295,44 @@
      "added_share": 0.147,
      "add_lot_mean": 0.0251,
      "add_lot_win": 0.486
+    }
+   },
+   "earnings (estimated dates; the other rows ignore earnings)": {
+    "current rule: sell before earnings unless stop >= entry +1%": {
+     "n": 252,
+     "win_rate": 0.444,
+     "avg_win": 0.1813,
+     "avg_loss": -0.061,
+     "expectancy": 0.0467,
+     "profit_factor": 2.38,
+     "days_median": 19.0,
+     "by_year": {
+      "2023": 0.0332,
+      "2024": 0.0611,
+      "2025": 0.0628,
+      "2026": -0.0299
+     },
+     "added_share": 0.46,
+     "add_lot_mean": 0.0174,
+     "add_lot_win": 0.397
+    },
+    "sell before every earnings (rule until 2026-10-19 for odd lots)": {
+     "n": 252,
+     "win_rate": 0.484,
+     "avg_win": 0.1562,
+     "avg_loss": -0.0628,
+     "expectancy": 0.0432,
+     "profit_factor": 2.33,
+     "days_median": 19.0,
+     "by_year": {
+      "2023": 0.0409,
+      "2024": 0.0511,
+      "2025": 0.0682,
+      "2026": -0.0254
+     },
+     "added_share": 0.452,
+     "add_lot_mean": 0.015,
+     "add_lot_win": 0.43
     }
    },
    "profit taking": {
@@ -627,6 +665,44 @@
      "added_share": 0.226,
      "add_lot_mean": 0.0342,
      "add_lot_win": 0.474
+    }
+   },
+   "earnings (estimated dates; the other rows ignore earnings)": {
+    "current rule: sell before earnings unless stop >= entry +1%": {
+     "n": 252,
+     "win_rate": 0.448,
+     "avg_win": 0.2382,
+     "avg_loss": -0.0767,
+     "expectancy": 0.0645,
+     "profit_factor": 2.53,
+     "days_median": 23.0,
+     "by_year": {
+      "2023": 0.037,
+      "2024": 0.0832,
+      "2025": 0.1574,
+      "2026": -0.0361
+     },
+     "added_share": 0.5,
+     "add_lot_mean": 0.0258,
+     "add_lot_win": 0.389
+    },
+    "sell before every earnings (rule until 2026-10-19 for odd lots)": {
+     "n": 252,
+     "win_rate": 0.496,
+     "avg_win": 0.1838,
+     "avg_loss": -0.0761,
+     "expectancy": 0.0528,
+     "profit_factor": 2.38,
+     "days_median": 23.0,
+     "by_year": {
+      "2023": 0.0449,
+      "2024": 0.0591,
+      "2025": 0.171,
+      "2026": -0.0315
+     },
+     "added_share": 0.488,
+     "add_lot_mean": 0.0186,
+     "add_lot_win": 0.431
     }
    },
    "profit taking": {

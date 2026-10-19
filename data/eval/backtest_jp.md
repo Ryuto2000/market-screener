@@ -4,6 +4,7 @@
 - rules not modelled: market cap, fundamentals, earnings dates, theme/crypto exclusions
 - survivorship bias: today's listings only, so results lean optimistic
 - 'intraday' = resting stop order; 'close' = stop checked on the close, sold at the next open (odd lots)
+- earnings: sold at the close before estimated results (volume spike in the reporting season) unless the stop is at entry +1% or higher
 
 Signals: 2596
 
@@ -19,197 +20,197 @@ First within 60 sessions: -8% stop 1200, +16% 723, neither 673. Median MFE 11.5%
 
 | exit rules | n | win rate | avg win | avg loss | expectancy | profit factor | days (win/loss) | top 10% share of profit |
 |---|---|---|---|---|---|---|---|---|
-| intraday stop | 2596 | 40% | 21.6% | -6.9% | 4.58% | 2.11 | 61.0/19.0 | 64% |
-| close stop | 2596 | 41% | 25.3% | -8.1% | 5.54% | 2.16 | 71.0/25.0 | 63% |
+| intraday stop | 2596 | 43% | 15.4% | -6.2% | 3.07% | 1.87 | 40.0/16.0 | 69% |
+| close stop | 2596 | 43% | 17.8% | -7.0% | 3.77% | 1.96 | 46.0/21.0 | 70% |
 
-Add-on: intraday: added in 53%, add lot mean 1.74% of the initial position; close: added in 56%, add lot mean 2.16% of the initial position.
+Add-on: intraday: added in 38%, add lot mean 1.61% of the initial position; close: added in 40%, add lot mean 2.08% of the initial position.
 
 ## by_year
 
 | group | n | win rate | expectancy | 20d mean |
 |---|---|---|---|---|
-| 2022 | 138 | 28% | -1.95% | -0.9% |
-| 2023 | 737 | 42% | 4.84% | 1.1% |
-| 2024 | 576 | 31% | -0.18% | 1.1% |
-| 2025 | 710 | 51% | 12.23% | 2.0% |
-| 2026 | 435 | 35% | 0.01% | 1.4% |
+| 2022 | 138 | 28% | -2.91% | -0.9% |
+| 2023 | 737 | 44% | 3.13% | 1.1% |
+| 2024 | 576 | 35% | -0.08% | 1.1% |
+| 2025 | 710 | 53% | 8.65% | 2.0% |
+| 2026 | 435 | 38% | -0.08% | 1.4% |
 
 ## by_regime
 
 | group | n | win rate | expectancy | 20d mean |
 |---|---|---|---|---|
-| downtrend | 38 | 39% | 3.73% | 0.1% |
-| mixed | 520 | 36% | 3.31% | 1.6% |
-| uptrend | 2038 | 41% | 4.92% | 1.2% |
+| downtrend | 38 | 39% | 2.87% | 0.1% |
+| mixed | 520 | 40% | 1.67% | 1.6% |
+| uptrend | 2038 | 44% | 3.43% | 1.2% |
 
 ## by_distribution_days
 
 | group | n | win rate | expectancy | 20d mean |
 |---|---|---|---|---|
-| <5 | 1057 | 40% | 3.64% | 1.2% |
-| >=5 | 1539 | 40% | 5.23% | 1.3% |
+| <5 | 1057 | 43% | 2.34% | 1.2% |
+| >=5 | 1539 | 42% | 3.57% | 1.3% |
 
 ## by_rs_rating
 
 | group | n | win rate | expectancy | 20d mean |
 |---|---|---|---|---|
-| 70-79 | 734 | 40% | 4.48% | 1.1% |
-| 80-89 | 700 | 41% | 4.96% | 1.8% |
-| 90-99 | 143 | 34% | 2.73% | 0.9% |
-| <70 | 1019 | 41% | 4.65% | 1.0% |
+| 70-79 | 738 | 44% | 3.45% | 1.2% |
+| 80-89 | 696 | 43% | 3.51% | 1.9% |
+| 90-99 | 146 | 38% | 2.14% | 0.7% |
+| <70 | 1016 | 42% | 2.61% | 1.0% |
 
 ## by_benchmark_gap_at_entry
 
 | group | n | win rate | expectancy | 20d mean |
 |---|---|---|---|---|
-| <=-2% | 52 | 33% | 3.27% | 1.0% |
-| -2..-1% | 126 | 34% | 2.89% | 0.0% |
-| -1..+1% | 2200 | 41% | 4.51% | 1.3% |
-| +1..+2% | 196 | 43% | 7.53% | 2.6% |
-| >=+2% | 22 | 32% | -1.83% | -2.6% |
+| <=-2% | 52 | 40% | 4.05% | 1.0% |
+| -2..-1% | 126 | 40% | 2.87% | 0.0% |
+| -1..+1% | 2200 | 43% | 2.96% | 1.3% |
+| +1..+2% | 196 | 44% | 4.51% | 2.6% |
+| >=+2% | 22 | 45% | -0.38% | -2.6% |
 
 ## by_stock_gap_at_entry
 
 | group | n | win rate | expectancy | 20d mean |
 |---|---|---|---|---|
-| <=-2% | 86 | 31% | 0.96% | 1.2% |
-| -2..0% | 969 | 43% | 5.69% | 1.9% |
-| 0..+2% | 1416 | 39% | 4.10% | 0.9% |
-| +2..+4% | 92 | 34% | 3.17% | 0.6% |
-| >=+4% | 33 | 42% | 5.70% | 1.6% |
+| <=-2% | 86 | 35% | 0.31% | 1.2% |
+| -2..0% | 969 | 45% | 3.92% | 1.9% |
+| 0..+2% | 1416 | 42% | 2.63% | 0.9% |
+| +2..+4% | 92 | 41% | 3.46% | 0.6% |
+| >=+4% | 33 | 45% | 2.98% | 1.6% |
 
 ## by_breadth50
 
 | group | n | win rate | expectancy | 20d mean |
 |---|---|---|---|---|
-| <45% | 236 | 42% | 5.03% | 2.4% |
-| 45-60% | 761 | 36% | 3.69% | 1.5% |
-| 60-75% | 1105 | 39% | 3.10% | 0.7% |
-| >=75% | 494 | 47% | 9.03% | 1.6% |
+| <45% | 235 | 46% | 4.82% | 2.4% |
+| 45-60% | 762 | 39% | 2.64% | 1.5% |
+| 60-75% | 1105 | 42% | 2.03% | 0.7% |
+| >=75% | 494 | 48% | 5.21% | 1.6% |
 
 ## signals (intraday-stop expectancy, with vs without)
 
 | signal | n with | win rate with | exp. with | exp. without | diff | stop first (with) |
 |---|---|---|---|---|---|---|
-| flags:above_upper_band | 1963 | 41% | 4.90% | 3.59% | +1.31% | 45% |
-| flags:macd_divergence | 1275 | 41% | 5.11% | 4.06% | +1.06% | 46% |
-| plus:accumulation | 1257 | 41% | 4.60% | 4.56% | +0.04% | 46% |
-| plus:power_gap | 449 | 37% | 2.77% | 4.96% | -2.18% | 48% |
-| plus:tight_base | 244 | 40% | 3.85% | 4.65% | -0.80% | 44% |
-| flags:heavy_selling_day | 119 | 40% | 4.36% | 4.59% | -0.23% | 42% |
-| flags:volume_spike_5x | 92 | 42% | 4.43% | 4.58% | -0.15% | 47% |
-| flags:macd_fading | 28 | 32% | -0.68% | 4.64% | -5.31% | 61% |
-| flags:distribution | 11 (small) | 36% | 2.50% | 4.59% | -2.09% | 45% |
+| flags:above_upper_band | 1963 | 43% | 3.44% | 1.92% | +1.52% | 45% |
+| flags:macd_divergence | 1275 | 43% | 3.76% | 2.40% | +1.37% | 46% |
+| plus:accumulation | 1257 | 44% | 3.16% | 2.98% | +0.18% | 46% |
+| plus:power_gap | 449 | 41% | 2.93% | 3.09% | -0.16% | 48% |
+| plus:tight_base | 244 | 43% | 3.17% | 3.06% | +0.12% | 44% |
+| flags:heavy_selling_day | 119 | 42% | 1.94% | 3.12% | -1.18% | 42% |
+| flags:volume_spike_5x | 92 | 43% | 4.64% | 3.01% | +1.63% | 47% |
+| flags:macd_fading | 28 | 32% | -0.42% | 3.10% | -3.52% | 61% |
+| flags:distribution | 11 (small) | 45% | 3.96% | 3.06% | +0.89% | 45% |
 
 
 ## Entry types (signals passing the market rules)
 
 | entry | n | win (stop/close) | expectancy stop | expectancy close | 20d mean | close-stop expectancy by year: 2022 / 2023 / 2024 / 2025 / 2026 |
 |---|---|---|---|---|---|---|
-| (a) breakout with volume, next open | 2596 | 40% / 41% | 4.58% | 5.54% | 1.3% | -2.1% / 5.9% / -1.5% / 15.4% / 0.6% |
-| (b) within 3% of the 3-month high, next open | 8596 | 41% / 42% | -228287.02% | -228285.86% | 1.4% | 0.4% / -839701.9% / -2.0% / 16.8% / 0.9% |
-| (b) same, buy-stop above the high within 5 sessions | 4941 | 39% / 41% | -198507.88% | -198506.72% | 1.2% | -1.8% / -748736.4% / -1.8% / 17.6% / 0.8% |
-| (c) pullback re-entry, next open | 4461 | 43% / 44% | -220023.20% | -220021.98% | 1.8% | 0.7% / -764439.0% / -2.7% / 17.2% / 1.2% |
+| (a) breakout with volume, next open | 2596 | 43% / 43% | 3.07% | 3.77% | 1.3% | -3.2% / 3.8% / -0.8% / 10.7% / 0.7% |
+| (b) within 3% of the 3-month high, next open | 8591 | 44% / 45% | 3.32% | 4.05% | 1.4% | -1.2% / 4.0% / -1.4% / 11.6% / 0.6% |
+| (b) same, buy-stop above the high within 5 sessions | 4937 | 42% / 44% | 3.15% | 3.90% | 1.2% | -3.1% / 2.9% / -1.4% / 12.3% / 0.6% |
+| (c) pullback re-entry, next open | 4459 | 46% / 47% | 3.55% | 4.29% | 1.8% | -1.4% / 3.8% / -2.0% / 11.7% / 1.0% |
 
 
 # Backtest JP: all breakout signals (before the market rules)
 
 
-Signals: 4397
+Signals: 4396
 
 | horizon | n | mean | median | % up | p10 | p90 |
 |---|---|---|---|---|---|---|
-| 5d | 4378 | -0.1% | -0.3% | 46% | -7.3% | 6.9% |
-| 10d | 4364 | 0.3% | -0.2% | 49% | -9.3% | 9.5% |
-| 20d | 4327 | 0.9% | 0.1% | 50% | -13.1% | 14.1% |
+| 5d | 4377 | -0.1% | -0.3% | 46% | -7.3% | 6.9% |
+| 10d | 4363 | 0.3% | -0.2% | 49% | -9.3% | 9.5% |
+| 20d | 4326 | 0.9% | 0.1% | 50% | -13.1% | 14.1% |
 | 40d | 4269 | 2.4% | 1.0% | 53% | -16.1% | 21.2% |
 | 60d | 4168 | 4.1% | 2.1% | 55% | -19.9% | 29.2% |
 
-First within 60 sessions: -8% stop 2336, +16% 1247, neither 814. Median MFE 13.0%, median MAE -9.5%, MAE p10 -28.0%.
+First within 60 sessions: -8% stop 2335, +16% 1247, neither 814. Median MFE 13.0%, median MAE -9.5%, MAE p10 -28.0%.
 
 | exit rules | n | win rate | avg win | avg loss | expectancy | profit factor | days (win/loss) | top 10% share of profit |
 |---|---|---|---|---|---|---|---|---|
-| intraday stop | 4397 | 37% | 20.7% | -7.0% | 3.25% | 1.73 | 45.0/12.0 | 68% |
-| close stop | 4397 | 38% | 25.2% | -8.5% | 4.33% | 1.82 | 54.0/16.0 | 67% |
+| intraday stop | 4396 | 39% | 15.5% | -6.5% | 2.09% | 1.53 | 31.0/11.0 | 72% |
+| close stop | 4396 | 40% | 18.8% | -7.6% | 2.92% | 1.63 | 37.0/14.0 | 73% |
 
-Add-on: intraday: added in 48%, add lot mean 1.39% of the initial position; close: added in 52%, add lot mean 1.88% of the initial position.
+Add-on: intraday: added in 37%, add lot mean 1.23% of the initial position; close: added in 40%, add lot mean 1.76% of the initial position.
 
 ## by_year
 
 | group | n | win rate | expectancy | 20d mean |
 |---|---|---|---|---|
-| 2022 | 213 | 26% | -2.60% | -1.5% |
-| 2023 | 1134 | 39% | 3.60% | 0.4% |
-| 2024 | 929 | 29% | -0.76% | 0.2% |
-| 2025 | 1122 | 48% | 10.60% | 2.2% |
-| 2026 | 999 | 33% | -0.43% | 1.2% |
+| 2022 | 213 | 26% | -3.15% | -1.5% |
+| 2023 | 1134 | 40% | 2.25% | 0.4% |
+| 2024 | 929 | 33% | -0.65% | 0.2% |
+| 2025 | 1122 | 49% | 7.55% | 2.2% |
+| 2026 | 998 | 35% | -0.58% | 1.2% |
 
 ## by_regime
 
 | group | n | win rate | expectancy | 20d mean |
 |---|---|---|---|---|
-| downtrend | 60 | 42% | 4.46% | 2.5% |
-| mixed | 850 | 35% | 1.99% | 0.7% |
-| uptrend | 3487 | 38% | 3.54% | 0.9% |
+| downtrend | 60 | 42% | 2.86% | 2.5% |
+| mixed | 850 | 38% | 1.00% | 0.7% |
+| uptrend | 3486 | 39% | 2.34% | 0.9% |
 
 ## by_distribution_days
 
 | group | n | win rate | expectancy | 20d mean |
 |---|---|---|---|---|
-| <5 | 1757 | 37% | 2.81% | 0.9% |
-| >=5 | 2640 | 37% | 3.54% | 0.9% |
+| <5 | 1756 | 39% | 1.84% | 0.9% |
+| >=5 | 2640 | 39% | 2.25% | 0.9% |
 
 ## by_rs_rating
 
 | group | n | win rate | expectancy | 20d mean |
 |---|---|---|---|---|
-| 70-79 | 907 | 40% | 4.33% | 1.1% |
-| 80-89 | 1144 | 38% | 3.81% | 1.7% |
-| 90-99 | 1216 | 31% | 0.84% | 0.1% |
-| <70 | 1130 | 40% | 4.41% | 0.8% |
+| 70-79 | 909 | 43% | 3.16% | 1.1% |
+| 80-89 | 1139 | 41% | 2.72% | 1.7% |
+| 90-99 | 1221 | 33% | 0.44% | 0.0% |
+| <70 | 1127 | 41% | 2.36% | 0.8% |
 
 ## by_benchmark_gap_at_entry
 
 | group | n | win rate | expectancy | 20d mean |
 |---|---|---|---|---|
-| <=-2% | 92 | 32% | 2.35% | -0.1% |
-| -2..-1% | 228 | 33% | 1.44% | -0.3% |
-| -1..+1% | 3700 | 37% | 3.16% | 0.9% |
-| +1..+2% | 324 | 43% | 6.34% | 2.2% |
-| >=+2% | 52 | 38% | -0.01% | 2.1% |
+| <=-2% | 92 | 36% | 2.79% | -0.1% |
+| -2..-1% | 227 | 37% | 1.38% | -0.3% |
+| -1..+1% | 3700 | 39% | 1.99% | 0.9% |
+| +1..+2% | 324 | 44% | 3.73% | 2.2% |
+| >=+2% | 52 | 46% | 0.86% | 2.1% |
 
 ## by_stock_gap_at_entry
 
 | group | n | win rate | expectancy | 20d mean |
 |---|---|---|---|---|
-| <=-2% | 243 | 35% | 1.21% | 0.6% |
-| -2..0% | 1542 | 40% | 4.28% | 1.8% |
-| 0..+2% | 2243 | 37% | 3.17% | 0.7% |
-| +2..+4% | 232 | 28% | 0.67% | -0.8% |
-| >=+4% | 137 | 30% | 0.87% | -2.4% |
+| <=-2% | 242 | 38% | 0.84% | 0.6% |
+| -2..0% | 1542 | 41% | 2.83% | 1.8% |
+| 0..+2% | 2243 | 39% | 1.95% | 0.7% |
+| +2..+4% | 232 | 33% | 0.91% | -0.8% |
+| >=+4% | 137 | 31% | 0.21% | -2.4% |
 
 ## by_breadth50
 
 | group | n | win rate | expectancy | 20d mean |
 |---|---|---|---|---|
-| <45% | 397 | 39% | 3.61% | 3.0% |
-| 45-60% | 1309 | 32% | 1.59% | 0.4% |
-| 60-75% | 1777 | 38% | 3.01% | 0.8% |
-| >=75% | 914 | 41% | 5.93% | 0.9% |
+| <45% | 394 | 43% | 3.37% | 3.0% |
+| 45-60% | 1312 | 35% | 0.97% | 0.4% |
+| 60-75% | 1776 | 41% | 2.16% | 0.8% |
+| >=75% | 914 | 41% | 2.99% | 0.9% |
 
 ## signals (intraday-stop expectancy, with vs without)
 
 | signal | n with | win rate with | exp. with | exp. without | diff | stop first (with) |
 |---|---|---|---|---|---|---|
-| flags:above_upper_band | 3266 | 38% | 3.42% | 2.75% | +0.67% | 52% |
-| plus:accumulation | 2520 | 37% | 3.20% | 3.32% | -0.12% | 54% |
-| flags:macd_divergence | 1844 | 37% | 3.81% | 2.84% | +0.97% | 52% |
-| flags:overheat | 1596 | 33% | 1.11% | 4.47% | -3.36% | 63% |
-| plus:power_gap | 1172 | 34% | 1.80% | 3.78% | -1.97% | 59% |
-| flags:deep_base | 869 | 28% | 0.11% | 4.02% | -3.91% | 70% |
-| flags:stop_inside_noise | 857 | 28% | -0.21% | 4.09% | -4.30% | 71% |
-| flags:volume_spike_5x | 263 | 35% | 1.23% | 3.38% | -2.15% | 58% |
-| plus:tight_base | 257 | 41% | 3.78% | 3.22% | +0.56% | 44% |
-| flags:heavy_selling_day | 191 | 36% | 3.03% | 3.26% | -0.23% | 51% |
-| flags:macd_fading | 76 | 39% | 5.01% | 3.22% | +1.79% | 55% |
-| flags:distribution | 13 (small) | 38% | 1.58% | 3.25% | -1.68% | 54% |
+| flags:above_upper_band | 3266 | 39% | 2.26% | 1.59% | +0.67% | 52% |
+| plus:accumulation | 2520 | 39% | 2.20% | 1.94% | +0.25% | 54% |
+| flags:macd_divergence | 1844 | 39% | 2.72% | 1.63% | +1.08% | 52% |
+| flags:overheat | 1595 | 34% | 0.44% | 3.02% | -2.58% | 63% |
+| plus:power_gap | 1172 | 36% | 1.57% | 2.28% | -0.71% | 59% |
+| flags:deep_base | 868 | 29% | -0.19% | 2.65% | -2.84% | 70% |
+| flags:stop_inside_noise | 856 | 28% | -0.39% | 2.69% | -3.07% | 71% |
+| flags:volume_spike_5x | 263 | 36% | 1.10% | 2.15% | -1.05% | 58% |
+| plus:tight_base | 257 | 43% | 2.93% | 2.04% | +0.89% | 44% |
+| flags:heavy_selling_day | 191 | 38% | 1.29% | 2.12% | -0.83% | 51% |
+| flags:macd_fading | 76 | 39% | 3.51% | 2.06% | +1.44% | 55% |
+| flags:distribution | 13 (small) | 46% | 2.81% | 2.09% | +0.72% | 54% |

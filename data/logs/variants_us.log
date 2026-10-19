@@ -1,3 +1,4 @@
+Crumb fetch rate-limited (HTTP 429), continuing without crumb
 downloaded 150/183
 downloaded 183/183
 # Exit and add-on variants US
@@ -48,6 +49,13 @@ downloaded 183/183
 | add 0.33x | 44% | 19.5% | -6.5% | 4.96% | 2.36 | 22 | 55% | 1.08% | 4.2% | 6.2% | 5.5% | -2.7% |
 | add on re-break (pullback >= 5%) | 56% | 14.4% | -7.8% | 4.73% | 2.39 | 22 | 15% | 2.51% | 4.2% | 5.9% | 3.6% | -2.1% |
 
+### earnings (estimated dates; the other rows ignore earnings)
+
+| variant | win rate | avg win | avg loss | expectancy | PF | days | added | add lot mean | 2023 | 2024 | 2025 | 2026 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| current rule: sell before earnings unless stop >= entry +1% | 44% | 18.1% | -6.1% | 4.67% | 2.38 | 19 | 46% | 1.74% | 3.3% | 6.1% | 6.3% | -3.0% |
+| sell before every earnings (rule until 2026-10-19 for odd lots) | 48% | 15.6% | -6.3% | 4.32% | 2.33 | 19 | 45% | 1.50% | 4.1% | 5.1% | 6.8% | -2.5% |
+
 ### profit taking
 
 | variant | win rate | avg win | avg loss | expectancy | PF | days | added | add lot mean | 2023 | 2024 | 2025 | 2026 |
@@ -97,6 +105,13 @@ downloaded 183/183
 | add 1x | 39% | 36.8% | -9.7% | 8.41% | 2.42 | 28 | 60% | 4.63% | 5.8% | 10.4% | 21.1% | -4.7% |
 | add 0.33x | 43% | 25.8% | -7.9% | 6.56% | 2.46 | 28 | 60% | 1.54% | 4.9% | 8.0% | 13.9% | -3.2% |
 | add on re-break (pullback >= 5%) | 48% | 21.7% | -7.9% | 6.41% | 2.57 | 28 | 23% | 3.42% | 4.7% | 7.8% | 14.1% | -2.9% |
+
+### earnings (estimated dates; the other rows ignore earnings)
+
+| variant | win rate | avg win | avg loss | expectancy | PF | days | added | add lot mean | 2023 | 2024 | 2025 | 2026 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| current rule: sell before earnings unless stop >= entry +1% | 45% | 23.8% | -7.7% | 6.45% | 2.53 | 23 | 50% | 2.58% | 3.7% | 8.3% | 15.7% | -3.6% |
+| sell before every earnings (rule until 2026-10-19 for odd lots) | 50% | 18.4% | -7.6% | 5.28% | 2.38 | 23 | 49% | 1.86% | 4.5% | 5.9% | 17.1% | -3.1% |
 
 ### profit taking
 

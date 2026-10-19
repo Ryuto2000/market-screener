@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-19T10:11:01+00:00",
+ "generated_at": "2026-10-19T10:31:50+00:00",
  "market": "jp",
  "signals": 2596,
  "note": "signals passing screener/rules.py; no fees; returns on the initial position",
@@ -313,27 +313,8 @@
      "add_lot_win": 0.485
     }
    },
-   "earnings (estimated dates)": {
-    "sell before every earnings": {
-     "n": 2596,
-     "win_rate": 0.448,
-     "avg_win": 0.1284,
-     "avg_loss": -0.0627,
-     "expectancy": 0.0229,
-     "profit_factor": 1.66,
-     "days_median": 23.0,
-     "by_year": {
-      "2022": -0.0258,
-      "2023": 0.025,
-      "2024": -0.0048,
-      "2025": 0.0689,
-      "2026": -0.0039
-     },
-     "added_share": 0.372,
-     "add_lot_mean": 0.0098,
-     "add_lot_win": 0.464
-    },
-    "sell before earnings unless stop >= entry +1%": {
+   "earnings (estimated dates; the other rows ignore earnings)": {
+    "current rule: sell before earnings unless stop >= entry +1%": {
      "n": 2596,
      "win_rate": 0.428,
      "avg_win": 0.1543,
@@ -351,6 +332,25 @@
      "added_share": 0.385,
      "add_lot_mean": 0.0161,
      "add_lot_win": 0.432
+    },
+    "sell before every earnings (rule until 2026-10-19 for odd lots)": {
+     "n": 2596,
+     "win_rate": 0.448,
+     "avg_win": 0.1284,
+     "avg_loss": -0.0627,
+     "expectancy": 0.0229,
+     "profit_factor": 1.66,
+     "days_median": 23.0,
+     "by_year": {
+      "2022": -0.0258,
+      "2023": 0.025,
+      "2024": -0.0048,
+      "2025": 0.0689,
+      "2026": -0.0039
+     },
+     "added_share": 0.372,
+     "add_lot_mean": 0.0098,
+     "add_lot_win": 0.464
     }
    },
    "profit taking": {
@@ -703,27 +703,8 @@
      "add_lot_win": 0.489
     }
    },
-   "earnings (estimated dates)": {
-    "sell before every earnings": {
-     "n": 2596,
-     "win_rate": 0.463,
-     "avg_win": 0.1346,
-     "avg_loss": -0.0706,
-     "expectancy": 0.0245,
-     "profit_factor": 1.65,
-     "days_median": 27.0,
-     "by_year": {
-      "2022": -0.0289,
-      "2023": 0.0286,
-      "2024": -0.0106,
-      "2025": 0.0737,
-      "2026": 0.0005
-     },
-     "added_share": 0.385,
-     "add_lot_mean": 0.0103,
-     "add_lot_win": 0.48
-    },
-    "sell before earnings unless stop >= entry +1%": {
+   "earnings (estimated dates; the other rows ignore earnings)": {
+    "current rule: sell before earnings unless stop >= entry +1%": {
      "n": 2596,
      "win_rate": 0.435,
      "avg_win": 0.1775,
@@ -741,6 +722,25 @@
      "added_share": 0.4,
      "add_lot_mean": 0.0208,
      "add_lot_win": 0.442
+    },
+    "sell before every earnings (rule until 2026-10-19 for odd lots)": {
+     "n": 2596,
+     "win_rate": 0.463,
+     "avg_win": 0.1346,
+     "avg_loss": -0.0706,
+     "expectancy": 0.0245,
+     "profit_factor": 1.65,
+     "days_median": 27.0,
+     "by_year": {
+      "2022": -0.0289,
+      "2023": 0.0286,
+      "2024": -0.0106,
+      "2025": 0.0737,
+      "2026": 0.0005
+     },
+     "added_share": 0.385,
+     "add_lot_mean": 0.0103,
+     "add_lot_win": 0.48
     }
    },
    "profit taking": {
