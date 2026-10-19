@@ -16,7 +16,7 @@ from pathlib import Path
 import pandas as pd
 
 from . import indicators as ind
-from . import simulate, stats
+from . import earnings, simulate, stats
 from .fetch import download
 
 HIST = Path("data/history")
@@ -64,7 +64,7 @@ def main(market: str) -> int:
         if not later.any():
             continue  # no session after the signal yet
         entry_i = int(later.argmax())
-        rows.append({**s.to_dict(), **simulate.follow(df, entry_i)})
+        rows.append({**s.to_dict(), **simulate.follow(df, entry_i, earn_days=earnings.reaction_days(df, market))})
     ev = pd.DataFrame(rows)
     log(f"followed: {len(ev)} of {len(sig)}")
     res = {"A": stats.breakdown(ev[ev["rank"] == "A"]) if len(ev) else {},

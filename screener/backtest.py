@@ -28,7 +28,7 @@ import numpy as np
 import pandas as pd
 
 from . import indicators as ind
-from . import rules, simulate, stats
+from . import earnings, rules, simulate, stats
 from .fetch import download
 from .run import CFG
 from .universe import jp_universe, us_universe
@@ -152,7 +152,7 @@ def main(market: str, years: int) -> int:
     names = uni.set_index("ticker")["name"].to_dict() if "name" in uni else {}
     events = []
 
-    def record(t, df, i, kind, entry_i, entry_px=None):
+    def record(t, df, i, kind, entry_i, entry_px=None, edays=None):
         d = df.index[i]
         b6 = float(bench6m.reindex([d]).iloc[0]) if d in bench6m.index else None
         m = ind.compute(df.iloc[: i + 1], b6)
@@ -168,12 +168,13 @@ def main(market: str, years: int) -> int:
         ed = df.index[entry_i]
         ev["bench_gap"] = float(bench_gap.get(ed, np.nan))
         ev["stock_gap"] = float(df["Open"].iloc[entry_i] / df["Close"].iloc[entry_i - 1] - 1)
-        ev.update(simulate.follow(df, entry_i, entry_px))
+        ev.update(simulate.follow(df, entry_i, entry_px, edays))
         events.append(ev)
 
     for k, (t, df) in enumerate(prices.items()):
         n = len(df)
         hi63 = df["High"].rolling(ind.LOOKBACK_3M).max().to_numpy(float)
+        edays = earnings.reaction_days(df, market)
         for kind, fn in (("a_breakout", candidate_days), ("b_near_high", near_high_days), ("c_pullback", pullback_days)):
             days = fn(df, bench6m, cfg["min_turnover"])
             last_i = -10 ** 9
@@ -181,13 +182,13 @@ def main(market: str, years: int) -> int:
                 if i - last_i < REFRACTORY or i + 1 >= n:
                     continue
                 last_i = i
-                record(t, df, i, kind, i + 1)
+                record(t, df, i, kind, i + 1, edays=edays)
                 if kind == "b_near_high":
                     # the same setup bought with a buy-stop just above the 3-month high within 5 sessions
                     level = hi63[i] * 1.001
                     for j in range(i + 1, min(n, i + 6)):
                         if df["High"].iloc[j] >= level:
-                            record(t, df, i, "b_near_high_stop", j, max(float(df["Open"].iloc[j]), level))
+                            record(t, df, i, "b_near_high_stop", j, max(float(df["Open"].iloc[j]), level), edays)
                             break
         if (k + 1) % 500 == 0:
             log(f"scanned {k + 1}/{len(prices)}; signals {len(events)}")
@@ -211,7 +212,8 @@ def main(market: str, years: int) -> int:
     notes = [f"market: {market}, signals from {span[0]} to {span[1]}, entry at the next open after the signal day",
              "rules not modelled: market cap, fundamentals, earnings dates, theme/crypto exclusions",
              "survivorship bias: today's listings only, so results lean optimistic",
-             "'intraday' = resting stop order; 'close' = stop checked on the close, sold at the next open (odd lots)"]
+             "'intraday' = resting stop order; 'close' = stop checked on the close, sold at the next open (odd lots)",
+             "earnings: sold at the close before estimated results (volume spike in the reporting season) unless the stop is at entry +1% or higher"]
     meta = {"generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), "market": market,
             "years": years, "signals": len(ev), "span": span, "notes": notes}
     (OUT / f"backtest_{market}.json").write_text(json.dumps({**meta, "results": res}, ensure_ascii=False, indent=1, default=str))

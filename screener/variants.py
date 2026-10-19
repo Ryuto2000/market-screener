@@ -49,9 +49,9 @@ VARIANTS: dict[str, dict[str, dict]] = {
         "add 0.33x": _v(add_frac=1 / 3),
         "add on re-break (pullback >= 5%)": _v(add="rebreak", add_pb=0.05),
     },
-    "earnings (estimated dates)": {
-        "sell before every earnings": _v(earn_mode="always"),
-        "sell before earnings unless stop >= entry +1%": _v(earn_mode="unless_be"),
+    "earnings (estimated dates; the other rows ignore earnings)": {
+        "current rule: sell before earnings unless stop >= entry +1%": _v(earn_mode="unless_be"),
+        "sell before every earnings (rule until 2026-10-19 for odd lots)": _v(earn_mode="always"),
     },
     "profit taking": {
         "1/3 at +16% as well": _v(trim_at=0.16),

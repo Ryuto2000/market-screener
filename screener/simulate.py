@@ -6,7 +6,9 @@ Exit rules for momentum trades (from 2026-10-18, chosen with screener.variants):
 - from then on the stop is max(entry +1%, highest high since entry -10%), updated daily; it never goes down;
 - no partial profit taking;
 - one add-on of half the initial size at the next open when the close is >= +8% and above the prior
-  3-month high (the stop is already at entry +1%).
+  3-month high (the stop is already at entry +1%);
+- earnings (from 2026-10-19): sold at the close before the results unless the stop is already at entry +1%
+  or higher (follow() with earn_days; the backtest estimates the dates from volume spikes, screener.earnings).
 
 Two stop styles are simulated: "intraday" (a resting stop order fills at the stop, or at the open
 if the open gaps below it) and "close" (the stop is checked on the close and the position is sold
@@ -182,9 +184,12 @@ def exit_rules(df: pd.DataFrame, ei: int, mode: str = "intraday", stop: float = 
     return out(j - ei + 1, "max_hold" if last - ei >= max_hold else "open")
 
 
-def follow(df: pd.DataFrame, entry_i: int, entry_px: float | None = None) -> dict:
+def follow(df: pd.DataFrame, entry_i: int, entry_px: float | None = None, earn_days=None) -> dict:
+    """earn_days: (estimated) earnings reaction sessions; positions still below the +8% stage are sold at the
+    close before them (rule from 2026-10-19 for odd lots and unit shares alike)."""
     out = forward(df, entry_i, entry_px)
     for mode in ("intraday", "close"):
-        r = exit_rules(df, entry_i, mode, entry_px=entry_px)
+        r = exit_rules(df, entry_i, mode, entry_px=entry_px, earn_days=earn_days,
+                       earn_mode="unless_be" if earn_days is not None else None)
         out.update({f"{mode}_{k}": v for k, v in r.items()})
     return out
