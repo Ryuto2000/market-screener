@@ -157,3 +157,16 @@ def test_distribution_days():
         c[k] = c[k - 1] * 0.99
         v[k] = 2e6
     assert ind.distribution_days(frame(c, v)) == 5
+
+
+def test_pinned_price_flag():
+    import numpy as np
+    import pandas as pd
+    from screener import indicators as ind
+    n = 300
+    c = np.concatenate([np.linspace(50, 100, n - 15), np.full(15, 120.0)])
+    c[-15:] += np.tile([0.0, 0.1], 8)[:15]
+    idx = pd.bdate_range("2024-01-01", periods=n)
+    df = pd.DataFrame({"Open": c, "High": c * 1.001, "Low": c * 0.999, "Close": c, "Volume": np.full(n, 1e6)}, index=idx)
+    m = ind.compute(df, 0.0)
+    assert "pinned_price" in m.flags

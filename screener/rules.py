@@ -26,6 +26,8 @@ def check(market: str, rec: dict, regime: dict | None) -> tuple[bool, str]:
     """(passes, reason). rec carries flags and rs_rating; regime carries benchmark state and distribution days."""
     flags = set(rec.get("flags") or [])
     rs = rec.get("rs_rating")
+    if "pinned_price" in flags:
+        return False, "excluded: pinned_price (likely tender offer or merger)"
     if market == "jp":
         hit = sorted(flags & JP_EXCLUDE_FLAGS)
         if hit:

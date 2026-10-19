@@ -28,6 +28,8 @@ GAP_MIN = 0.04          # power gap: open >= +4% over prior close ...
 GAP_VOL = 2.0           # ... on >= 2x the 50-day average volume
 GAP_LOOKBACK = 20
 NOISE_ATR = 2.0         # stop closer than 2 ATR = inside normal daily noise
+PINNED_RANGE10 = 0.01   # pinned_price: 10-session close range < 1% ...
+PINNED_ATR = 0.01       # ... and ATR < 1% of price (typical of a tender offer or merger)
 
 
 @dataclass
@@ -77,6 +79,7 @@ class Metrics:
     base_depth: float = math.nan     # (high - low) / high of the 63 sessions before the breakout (or today)
     base_vol_dryup: float = math.nan # avg volume of the 10 sessions before the breakout / 50-day avg
     base_range_contraction: float = math.nan  # stdev of returns, last 10 vs prior 50 sessions before the breakout
+    range10: float = math.nan        # last 10 closes: max / min - 1
     updown_vol_50: float = math.nan  # volume on up days / volume on down days, last 50 sessions
     plus: list = field(default_factory=list)  # supportive signals (the flags list holds the warnings)
 
@@ -282,6 +285,11 @@ def structure(df: pd.DataFrame, m: Metrics) -> None:
     m.stop_atr_mult = (m.close - m.stop_8pct) / m.atr14 if m.atr14 > 0 else math.nan
     if m.stop_atr_mult < NOISE_ATR:
         m.flags.append("stop_inside_noise")
+    # price pinned to a tender offer / merger price: almost no movement for 10 sessions
+    last10 = c.iloc[-10:]
+    m.range10 = float(last10.max() / last10.min() - 1) if len(last10) == 10 and last10.min() > 0 else math.nan
+    if m.range10 < PINNED_RANGE10 and m.atr_pct < PINNED_ATR:
+        m.flags.append("pinned_price")
 
     # power gap within the last GAP_LOOKBACK sessions (most recent first)
     vol50 = v.rolling(50).mean().shift(1)

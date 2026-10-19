@@ -27,3 +27,9 @@ def test_risk_per_trade_breadth():
     assert rules.risk_per_trade("jp", {"pct_above_sma50": 74.9}) == 0.003
     assert rules.risk_per_trade("us", {"pct_above_sma50": 90}) == 0.003
     assert rules.risk_per_trade("jp", None) == 0.003
+
+
+def test_pinned_price_excluded_both_markets():
+    rec = {"flags": ["pinned_price"], "rs_rating": 92}
+    assert not rules.check("jp", rec, None)[0]
+    assert not rules.check("us", rec, {"benchmark_state": "uptrend"})[0]
