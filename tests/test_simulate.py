@@ -58,3 +58,15 @@ def test_forward_horizons_and_first_hit():
     f = sim.forward(df, 60)
     assert f["r5"] > 0 and f["first_hit"] == "target"
     assert f["mae60"] > -0.01
+
+
+def test_earnings_exit_modes():
+    path = [100, 102, 104, 103, 105, 104, 106, 105, 107, 108]
+    df = flat_then(path, pre=80)
+    e = [80 + 5]  # reaction on the 6th session after entry
+    r_always = sim.exit_rules(df, 80, "close", earn_days=e, earn_mode="always")
+    assert r_always["exit"] == "earnings" and abs(r_always["ret"] - 0.05) < 1e-9  # sold at the close before (105)
+    r_be = sim.exit_rules(df, 80, "close", earn_days=e, earn_mode="unless_be")
+    assert r_be["exit"] == "earnings"  # still below +8%, so it also sells
+    r_none = sim.exit_rules(df, 80, "close")
+    assert r_none["exit"] != "earnings"

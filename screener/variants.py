@@ -18,6 +18,7 @@ from pathlib import Path
 
 import pandas as pd
 
+from . import earnings
 from . import indicators as ind
 from .simulate import OLD_RULES, RULES, exit_rules
 
@@ -47,6 +48,10 @@ VARIANTS: dict[str, dict[str, dict]] = {
         "add 1x": _v(add_frac=1.0),
         "add 0.33x": _v(add_frac=1 / 3),
         "add on re-break (pullback >= 5%)": _v(add="rebreak", add_pb=0.05),
+    },
+    "earnings (estimated dates)": {
+        "sell before every earnings": _v(earn_mode="always"),
+        "sell before earnings unless stop >= entry +1%": _v(earn_mode="unless_be"),
     },
     "profit taking": {
         "1/3 at +16% as well": _v(trim_at=0.16),
@@ -94,8 +99,11 @@ def main(market: str) -> int:
         ei = df.index.get_indexer([pd.Timestamp(s["entry_date"])])[0]
         if ei < 0:
             continue
+        edays = earnings.reaction_days(df, market)
         for grp, vs in VARIANTS.items():
             for name, kw in vs.items():
+                if kw.get("earn_mode"):
+                    kw = {**kw, "earn_days": edays}
                 for mode in ("intraday", "close"):
                     r = run(df, ei, mode, atr_pct=s.get("atr_pct"), **kw)
                     rows.append({"grp": grp, "var": name, "mode": mode, "year": s["year"], **r})

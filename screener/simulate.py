@@ -69,13 +69,17 @@ def exit_rules(df: pd.DataFrame, ei: int, mode: str = "intraday", stop: float = 
                full_at: float | None = None, trail: float = 0.15, hi_trail: float | None = 0.10,
                max_hold: int = MAX_HOLD, atr_mult: float | None = None, atr_pct: float | None = None,
                atr_bounds: tuple[float, float] = (0.06, 0.12), add: str | None = "skill", add_frac: float = 0.5,
-               add_pb: float = 0.08, add_after_trim: bool = True, entry_px: float | None = None) -> dict:
+               add_pb: float = 0.08, add_after_trim: bool = True, entry_px: float | None = None,
+               earn_days=None, earn_mode: str | None = None) -> dict:
     """Simulate the exit ladder (defaults = current rules) with every level as a parameter.
 
     Legacy ladder (OLD_RULES): trim_frac of the position at the next open after a close >= trim_at,
     stop then max(entry * (1 + trim_at / 2), 50-day SMA), and every 5 sessions max(highest close * (1 - trail), SMA50).
     add: None, "skill" (close >= +8% and above the prior 3-month high) or "rebreak" (a pullback of add_pb from the
     highest close, then a close above it). Both need the stop at or above the entry.
+
+    earn_days: positions of earnings reaction sessions; earn_mode "always" sells at the close before each one,
+    "unless_be" only while the stop is still below the entry (stage 0), None ignores earnings.
 
     Returns ret (P&L / initial notional), days, exit, stage (0 none, 1 stop at/above entry, 2 trimmed),
     added (bool) and add_ret (P&L of the add lot / initial notional).
@@ -94,6 +98,7 @@ def exit_rules(df: pd.DataFrame, ei: int, mode: str = "intraday", stop: float = 
     hc, hh = e, e                 # highest close / high since entry
     peak, pulled = e, False       # for the re-break add
     last = min(n, ei + max_hold)
+    earn_set = set(int(x) for x in earn_days) if (earn_mode and earn_days is not None) else set()
 
     def close_all(px):
         nonlocal pnl, add_pnl
@@ -168,6 +173,10 @@ def exit_rules(df: pd.DataFrame, ei: int, mode: str = "intraday", stop: float = 
             peak, pulled = c[j], False
         elif c[j] <= peak * (1 - add_pb):
             pulled = True
+        # earnings tomorrow: sell at today's close (odd lots can be sold at the afternoon close)
+        if earn_set and (j + 1) in earn_set and j > ei and (earn_mode == "always" or stage < 1):
+            close_all(c[j])
+            return out(j - ei, "earnings")
     j = last - 1
     close_all(c[j])
     return out(j - ei + 1, "max_hold" if last - ei >= max_hold else "open")
