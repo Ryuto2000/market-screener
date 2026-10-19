@@ -1,6 +1,10 @@
 """Replay the screener on past data and follow every breakout signal forward.
 
-For each trading day in the history, a stock gives a signal when the screener would have shown it
+Three entry types are replayed: (a) breakout (below), (b) near the 3-month high (bought at the next
+open, and separately with a buy-stop just above the high within 5 sessions), (c) pullback re-entry.
+The main tables use (a); a comparison table covers all types.
+
+For each trading day in the history, a stock gives an (a) signal when the screener would have shown it
 as an "a_breakout" A-candidate that day: liquid, trend template passed, 6-month return above the
 benchmark, close above the prior 3-month high on >= 1.5x the 50-day volume, and close within the
 chase limit (breakout level + 3%). The trade is entered at the next session's open (a market order
@@ -42,8 +46,7 @@ def _rs_raw(c: pd.Series) -> pd.Series:
     return 0.4 * r[63] + 0.2 * (r[126] + r[189].fillna(r[126]) + r[252].fillna(r[126]))
 
 
-def candidate_days(df: pd.DataFrame, bench6m: pd.Series, min_turnover: float) -> pd.Series:
-    """Boolean Series: days that pass liquidity, trend, RS, breakout-with-volume and the chase limit."""
+def _base_masks(df: pd.DataFrame, bench6m: pd.Series, min_turnover: float):
     c, h, v = df["Close"], df["High"], df["Volume"]
     s50, s200 = c.rolling(50).mean(), c.rolling(200).mean()
     hi52 = h.rolling(ind.LOOKBACK_52W, min_periods=200).max()
@@ -54,8 +57,56 @@ def candidate_days(df: pd.DataFrame, bench6m: pd.Series, min_turnover: float) ->
     b6 = bench6m.reindex(df.index).ffill()
     rows = pd.Series(np.arange(1, len(df) + 1), index=df.index)
     trend = (s50 > s200) & (c > s50) & (s200 > s200.shift(20)) & (c >= hi52 * 0.85) & (ret6m > b6)
-    breakout = (c > prior63) & (v >= ind.BREAKOUT_VOL_MULT * vol50) & (c <= prior63 * (1 + ind.CHASE_LIMIT))
-    return (rows >= ind.MIN_ROWS) & (turn20 >= min_turnover) & trend & breakout
+    base = (rows >= ind.MIN_ROWS) & (turn20 >= min_turnover) & trend
+    brk_vol = (c > prior63) & (v >= ind.BREAKOUT_VOL_MULT * vol50)
+    return base, prior63, brk_vol
+
+
+def candidate_days(df: pd.DataFrame, bench6m: pd.Series, min_turnover: float) -> pd.Series:
+    """(a) breakout: days that pass liquidity, trend, RS, breakout-with-volume and the chase limit."""
+    base, prior63, brk_vol = _base_masks(df, bench6m, min_turnover)
+    return base & brk_vol & (df["Close"] <= prior63 * (1 + ind.CHASE_LIMIT))
+
+
+def near_high_days(df: pd.DataFrame, bench6m: pd.Series, min_turnover: float) -> pd.Series:
+    """(b) within 3% under the 3-month high (incl. today), not above the prior high, and no
+    volume breakout in the last 3 sessions (as the live screener's b_near_high)."""
+    base, prior63, brk_vol = _base_masks(df, bench6m, min_turnover)
+    hi63 = df["High"].rolling(ind.LOOKBACK_3M).max()
+    recent_a = brk_vol.astype(int).rolling(ind.BREAKOUT_WINDOW).max().fillna(0).astype(bool)
+    c = df["Close"]
+    return base & (c >= hi63 * (1 - ind.NEAR_HIGH)) & (c <= prior63) & ~recent_a
+
+
+def pullback_days(df: pd.DataFrame, bench6m: pd.Series, min_turnover: float) -> pd.Series:
+    """(c) pullback re-entry as in the live screener: a close above the prior 3-month high 4..20 sessions
+    ago, a later low within 3% of that level or of the 20-day SMA, and today an up close above the open."""
+    base, prior63, brk_vol = _base_masks(df, bench6m, min_turnover)
+    c, o, l = (df[k].to_numpy(float) for k in ("Close", "Open", "Low"))
+    p63 = prior63.to_numpy(float)
+    s20 = df["Close"].rolling(20).mean().to_numpy(float)
+    brk = c > p63
+    recent_a = brk_vol.astype(int).rolling(ind.BREAKOUT_WINDOW).max().fillna(0).astype(bool).to_numpy()
+    ok = base.to_numpy()
+    out = np.zeros(len(df), bool)
+    for t in np.flatnonzero(ok & ~recent_a):
+        if t < 1 or not (c[t] > c[t - 1] and c[t] > o[t]):
+            continue
+        lo, hi = t - ind.PULLBACK_WINDOW, t - ind.BREAKOUT_WINDOW - 1
+        ks = np.flatnonzero(brk[max(lo, 0):hi + 1])
+        if not len(ks):
+            continue
+        k = max(lo, 0) + ks[-1]
+        level = p63[k]
+        seg = l[k + 1:t]
+        if len(seg) < 1:
+            continue
+        j = k + 1 + int(seg.argmin())
+        dip = l[j]
+        touched = abs(dip / level - 1) <= ind.PULLBACK_BAND or (not np.isnan(s20[j]) and abs(dip / s20[j] - 1) <= ind.PULLBACK_BAND)
+        if touched and c[t] <= dip * (1 + ind.CHASE_LIMIT):
+            out[t] = True
+    return pd.Series(out, index=df.index)
 
 
 def regime_series(bench: pd.DataFrame) -> pd.DataFrame:
@@ -94,29 +145,44 @@ def main(market: str, years: int) -> int:
 
     names = uni.set_index("ticker")["name"].to_dict() if "name" in uni else {}
     events = []
+
+    def record(t, df, i, kind, entry_i, entry_px=None):
+        d = df.index[i]
+        b6 = float(bench6m.reindex([d]).iloc[0]) if d in bench6m.index else None
+        m = ind.compute(df.iloc[: i + 1], b6)
+        ev = {"ticker": t, "name": names.get(t), "trigger": kind, "signal_date": str(d.date()),
+              "close": round(float(df["Close"].iloc[i]), 2),
+              "rs_rating": float(rs_rating.at[d, t]) if d in rs_rating.index and not pd.isna(rs_rating.at[d, t]) else None,
+              "flags": [f for f in m.flags if f not in ("fin_unknown",)], "plus": list(m.plus),
+              "rsi14": m.rsi14, "atr_pct": m.atr_pct, "base_depth": m.base_depth, "updown_vol_50": m.updown_vol_50,
+              "vol_ratio": m.vol_ratio, "breadth50": float(breadth.get(d, np.nan))}
+        if d in regime.index:
+            ev["regime_state"] = str(regime.at[d, "regime_state"])
+            ev["dist_days"] = float(regime.at[d, "dist_days"]) if not pd.isna(regime.at[d, "dist_days"]) else None
+        ed = df.index[entry_i]
+        ev["bench_gap"] = float(bench_gap.get(ed, np.nan))
+        ev["stock_gap"] = float(df["Open"].iloc[entry_i] / df["Close"].iloc[entry_i - 1] - 1)
+        ev.update(simulate.follow(df, entry_i, entry_px))
+        events.append(ev)
+
     for k, (t, df) in enumerate(prices.items()):
-        days = candidate_days(df, bench6m, cfg["min_turnover"])
-        last_i = -10 ** 9
-        for i in np.flatnonzero(days.to_numpy()):
-            if i - last_i < REFRACTORY or i + 1 >= len(df):
-                continue
-            last_i = i
-            d = df.index[i]
-            b6 = float(bench6m.reindex([d]).iloc[0]) if d in bench6m.index else None
-            m = ind.compute(df.iloc[: i + 1], b6)
-            ev = {"ticker": t, "name": names.get(t), "signal_date": str(d.date()), "close": round(float(df["Close"].iloc[i]), 2),
-                  "rs_rating": float(rs_rating.at[d, t]) if d in rs_rating.index and not pd.isna(rs_rating.at[d, t]) else None,
-                  "flags": [f for f in m.flags if f not in ("fin_unknown",)], "plus": list(m.plus),
-                  "rsi14": m.rsi14, "atr_pct": m.atr_pct, "base_depth": m.base_depth, "updown_vol_50": m.updown_vol_50,
-                  "vol_ratio": m.vol_ratio, "breadth50": float(breadth.get(d, np.nan))}
-            if d in regime.index:
-                ev["regime_state"] = str(regime.at[d, "regime_state"])
-                ev["dist_days"] = float(regime.at[d, "dist_days"]) if not pd.isna(regime.at[d, "dist_days"]) else None
-            ed = df.index[i + 1]
-            ev["bench_gap"] = float(bench_gap.get(ed, np.nan))
-            ev["stock_gap"] = float(df["Open"].iloc[i + 1] / df["Close"].iloc[i] - 1)
-            ev.update(simulate.follow(df, i + 1))
-            events.append(ev)
+        n = len(df)
+        hi63 = df["High"].rolling(ind.LOOKBACK_3M).max().to_numpy(float)
+        for kind, fn in (("a_breakout", candidate_days), ("b_near_high", near_high_days), ("c_pullback", pullback_days)):
+            days = fn(df, bench6m, cfg["min_turnover"])
+            last_i = -10 ** 9
+            for i in np.flatnonzero(days.to_numpy()):
+                if i - last_i < REFRACTORY or i + 1 >= n:
+                    continue
+                last_i = i
+                record(t, df, i, kind, i + 1)
+                if kind == "b_near_high":
+                    # the same setup bought with a buy-stop just above the 3-month high within 5 sessions
+                    level = hi63[i] * 1.001
+                    for j in range(i + 1, min(n, i + 6)):
+                        if df["High"].iloc[j] >= level:
+                            record(t, df, i, "b_near_high_stop", j, max(float(df["Open"].iloc[j]), level))
+                            break
         if (k + 1) % 500 == 0:
             log(f"scanned {k + 1}/{len(prices)}; signals {len(events)}")
     log(f"signals: {len(events)}")
@@ -127,8 +193,14 @@ def main(market: str, years: int) -> int:
         ev["passes_rules"] = [rules.check(market, r, {"benchmark_state": r.get("regime_state"),
                                                        "benchmark_distribution_days_25": r.get("dist_days")})[0]
                               for r in ev.to_dict("records")]
+    trig = {k: stats.summarize(g[g["passes_rules"]]) for k, g in ev.groupby("trigger")} if len(ev) else {}
+    by_year_trig = {k: {str(y): stats.summarize(gy) for y, gy in g[g["passes_rules"]].groupby(g["signal_date"].str[:4])}
+                    for k, g in ev.groupby("trigger")} if len(ev) else {}
+    ev_all = ev
+    ev = ev[ev["trigger"] == "a_breakout"] if len(ev) else ev
     res = {"all_signals": stats.breakdown(ev),
-           "with_rules": stats.breakdown(ev[ev["passes_rules"]]) if len(ev) else {}}
+           "with_rules": stats.breakdown(ev[ev["passes_rules"]]) if len(ev) else {},
+           "by_trigger_with_rules": trig, "by_trigger_year_with_rules": by_year_trig}
     span = (ev["signal_date"].min(), ev["signal_date"].max()) if len(ev) else (None, None)
     notes = [f"market: {market}, signals from {span[0]} to {span[1]}, entry at the next open after the signal day",
              "rules not modelled: market cap, fundamentals, earnings dates, theme/crypto exclusions",
@@ -138,10 +210,12 @@ def main(market: str, years: int) -> int:
             "years": years, "signals": len(ev), "span": span, "notes": notes}
     (OUT / f"backtest_{market}.json").write_text(json.dumps({**meta, "results": res}, ensure_ascii=False, indent=1, default=str))
     md = stats.markdown(f"Backtest {market.upper()}: signals that pass the current rules (screener/rules.py)", res["with_rules"], notes)
+    md += "\n\n" + stats.trigger_table(trig, by_year_trig)
     md += "\n\n" + stats.markdown(f"Backtest {market.upper()}: all breakout signals (before the market rules)", res["all_signals"], [])
     (OUT / f"backtest_{market}.md").write_text(md)
     if len(ev):
         ev.drop(columns=[c for c in ("name",) if c in ev]).to_csv(OUT / f"backtest_events_{market}.csv", index=False)
+        ev_all.drop(columns=[c for c in ("name",) if c in ev_all]).to_csv(OUT / f"backtest_events_all_triggers_{market}.csv", index=False)
     return 0
 
 

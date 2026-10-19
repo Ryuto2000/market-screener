@@ -37,11 +37,12 @@ def _r(x: float | None, nd: int = 4):
     return None if x is None or (isinstance(x, float) and math.isnan(x)) else round(float(x), nd)
 
 
-def forward(df: pd.DataFrame, entry_i: int) -> dict:
-    """Returns at fixed horizons and the max favourable/adverse excursion over 60 sessions."""
+def forward(df: pd.DataFrame, entry_i: int, entry_px: float | None = None) -> dict:
+    """Returns at fixed horizons and the max favourable/adverse excursion over 60 sessions.
+    entry_px: fill price on session entry_i (default: its open), e.g. a buy-stop above the open."""
     o, h, l, c = (df[k].to_numpy(float) for k in ("Open", "High", "Low", "Close"))
     n = len(df)
-    entry = o[entry_i]
+    entry = entry_px if entry_px is not None else o[entry_i]
     out = {"entry": _r(entry, 2), "entry_date": str(df.index[entry_i].date())}
     for k in HORIZONS:
         j = entry_i + k - 1
@@ -68,7 +69,7 @@ def exit_rules(df: pd.DataFrame, ei: int, mode: str = "intraday", stop: float = 
                full_at: float | None = None, trail: float = 0.15, hi_trail: float | None = 0.10,
                max_hold: int = MAX_HOLD, atr_mult: float | None = None, atr_pct: float | None = None,
                atr_bounds: tuple[float, float] = (0.06, 0.12), add: str | None = "skill", add_frac: float = 0.5,
-               add_pb: float = 0.08, add_after_trim: bool = True) -> dict:
+               add_pb: float = 0.08, add_after_trim: bool = True, entry_px: float | None = None) -> dict:
     """Simulate the exit ladder (defaults = current rules) with every level as a parameter.
 
     Legacy ladder (OLD_RULES): trim_frac of the position at the next open after a close >= trim_at,
@@ -82,7 +83,7 @@ def exit_rules(df: pd.DataFrame, ei: int, mode: str = "intraday", stop: float = 
     o, h, l, c = (df[k].to_numpy(float) for k in ("Open", "High", "Low", "Close"))
     sma50 = df["Close"].rolling(50).mean().to_numpy(float)
     hi63 = df["High"].rolling(LOOKBACK_3M).max().shift(1).to_numpy(float)
-    n, e = len(df), o[ei]
+    n, e = len(df), (entry_px if entry_px is not None else o[ei])
     if atr_mult is not None and atr_pct is not None and not math.isnan(atr_pct):
         stop = min(max(atr_mult * atr_pct, atr_bounds[0]), atr_bounds[1])
     sl = e * (1 - stop)
@@ -172,9 +173,9 @@ def exit_rules(df: pd.DataFrame, ei: int, mode: str = "intraday", stop: float = 
     return out(j - ei + 1, "max_hold" if last - ei >= max_hold else "open")
 
 
-def follow(df: pd.DataFrame, entry_i: int) -> dict:
-    out = forward(df, entry_i)
+def follow(df: pd.DataFrame, entry_i: int, entry_px: float | None = None) -> dict:
+    out = forward(df, entry_i, entry_px)
     for mode in ("intraday", "close"):
-        r = exit_rules(df, entry_i, mode)
+        r = exit_rules(df, entry_i, mode, entry_px=entry_px)
         out.update({f"{mode}_{k}": v for k, v in r.items()})
     return out

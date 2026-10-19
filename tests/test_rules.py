@@ -33,3 +33,9 @@ def test_pinned_price_excluded_both_markets():
     rec = {"flags": ["pinned_price"], "rs_rating": 92}
     assert not rules.check("jp", rec, None)[0]
     assert not rules.check("us", rec, {"benchmark_state": "uptrend"})[0]
+
+
+def test_validated_trigger():
+    assert rules.validated_trigger({"triggers": ["a_breakout"]})
+    assert not rules.validated_trigger({"triggers": ["b_near_high", "c_pullback"]})
+    assert not rules.validated_trigger({"triggers": []})

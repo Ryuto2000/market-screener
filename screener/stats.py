@@ -162,3 +162,28 @@ def markdown(title: str, res: dict, notes: list[str]) -> str:
                          f"{fmt(w['expectancy'], '.2%')} | {fmt(wo['expectancy'], '.2%')} | {fmt(v['diff_expectancy'], '+.2%')} | "
                          f"{fmt(w['stop_first'], '.0%')} |")
     return "\n".join(lines) + "\n"
+
+
+TRIGGER_NAMES = {"a_breakout": "(a) breakout with volume, next open",
+                 "b_near_high": "(b) within 3% of the 3-month high, next open",
+                 "b_near_high_stop": "(b) same, buy-stop above the high within 5 sessions",
+                 "c_pullback": "(c) pullback re-entry, next open"}
+
+
+def trigger_table(trig: dict, by_year: dict) -> str:
+    """Comparison of entry types (signals passing the market rules)."""
+    if not trig:
+        return ""
+    years = sorted({y for d in by_year.values() for y in d})
+    lines = ["## Entry types (signals passing the market rules)", "",
+             "| entry | n | win (stop/close) | expectancy stop | expectancy close | 20d mean | close-stop expectancy by year: " + " / ".join(years) + " |",
+             "|---|---|---|---|---|---|---|"]
+    for k, x in trig.items():
+        if not x.get("n"):
+            continue
+        ri, rc = x["rules_intraday"], x["rules_close"]
+        yr = " / ".join(f"{by_year[k][y]['rules_close']['expectancy']:.1%}" if y in by_year[k] and by_year[k][y].get("n") else "-" for y in years)
+        r20 = x.get("r20", {}).get("mean")
+        lines.append(f"| {TRIGGER_NAMES.get(k, k)} | {x['n']} | {ri['win_rate']:.0%} / {rc['win_rate']:.0%} | {ri['expectancy']:.2%} | "
+                     f"{rc['expectancy']:.2%} | {'-' if r20 is None else format(r20, '.1%')} | {yr} |")
+    return "\n".join(lines) + "\n"

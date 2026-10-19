@@ -16,6 +16,10 @@ RISK_BASE = 0.003
 RISK_STRONG = 0.005
 JP_STRONG_BREADTH = 75.0
 
+# Entry types with backtest support for A-candidates. b_near_high / c_pullback stay B (watch) until the
+# backtest comparison (data/eval/backtest_*.md, "Entry types") supports them.
+VALIDATED_TRIGGERS = {"a_breakout"}
+
 JP_EXCLUDE_FLAGS = {"stop_inside_noise", "deep_base", "overheat"}
 JP_MAX_RS = 95
 US_MIN_RS = 90
@@ -68,3 +72,7 @@ def risk_per_trade(market: str, regime: dict | None) -> float:
     if market == "jp" and b is not None and b >= JP_STRONG_BREADTH:
         return RISK_STRONG
     return RISK_BASE
+
+
+def validated_trigger(rec: dict) -> bool:
+    return bool(VALIDATED_TRIGGERS & set(rec.get("triggers") or []))
