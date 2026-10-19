@@ -96,6 +96,16 @@ Add-on: intraday: added in 55%, add lot mean 1.62% of the initial position; clos
 | flags:volume_spike_5x | 4 (small) | 50% | -1.46% | 5.37% | -6.83% | 75% |
 
 
+## Entry types (signals passing the market rules)
+
+| entry | n | win (stop/close) | expectancy stop | expectancy close | 20d mean | close-stop expectancy by year: 2023 / 2024 / 2025 / 2026 |
+|---|---|---|---|---|---|---|
+| (a) breakout with volume, next open | 252 | 42% / 42% | 5.26% | 7.03% | 2.5% | 5.1% / 8.6% / 15.7% / -3.6% |
+| (b) within 3% of the 3-month high, next open | 679 | 33% / 35% | 2.00% | 2.74% | 0.1% | 6.4% / 1.7% / 1.1% / 0.1% |
+| (b) same, buy-stop above the high within 5 sessions | 418 | 34% / 36% | 2.64% | 3.73% | 0.6% | 8.0% / 1.8% / 7.8% / 0.9% |
+| (c) pullback re-entry, next open | 298 | 40% / 41% | 3.51% | 4.02% | 1.7% | 6.0% / 3.6% / 1.7% / -6.8% |
+
+
 # Backtest US: all breakout signals (before the market rules)
 
 
