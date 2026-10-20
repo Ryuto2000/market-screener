@@ -1,7 +1,7 @@
 warning: no symbol table found at https://en.wikipedia.org/wiki/Nasdaq-100
 universe: 903
 downloaded 1/1
-benchmark last bars: ['2026-10-15', '2026-10-16', '2026-10-19']
+benchmark last bars: ['2026-10-16', '2026-10-19', '2026-10-20']
 downloaded 1/1
 downloaded 150/918
 downloaded 300/918
@@ -10,10 +10,10 @@ downloaded 600/918
 downloaded 750/918
 downloaded 900/918
 downloaded 918/918
-last bar dates: {'2026-10-19': 903}
-liquid & enough history: 899
-regime: {'benchmark_close': 766.47998046875, 'benchmark_sma50': 768.3661962890625, 'benchmark_sma200': 725.4373992919922, 'benchmark_state': 'mixed', 'pct_above_sma50': 38.2, 'pct_above_sma200': 46.5, 'pct_trend_template': 13.9, 'benchmark_distribution_days_25': 8, 'risk_per_trade': 0.003, 'caution': '5+ distribution days in 25 sessions'}
-trend + RS pass: 125
-fundamentals known: 119/125
+last bar dates: {'2026-10-20': 903}
+liquid & enough history: 900
+regime: {'benchmark_close': 769.0499877929688, 'benchmark_sma50': 768.2865954589844, 'benchmark_sma200': 725.8667993164063, 'benchmark_state': 'uptrend', 'pct_above_sma50': 46.7, 'pct_above_sma200': 49.3, 'pct_trend_template': 17.0, 'benchmark_distribution_days_25': 7, 'risk_per_trade': 0.003, 'caution': '5+ distribution days in 25 sessions'}
+trend + RS pass: 153
+fundamentals known: 148/153
 price table: 919 tickers
 done: A=0 B=0 errors=0
