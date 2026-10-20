@@ -1,6 +1,6 @@
 universe: 3702
 downloaded 1/1
-benchmark last bars: ['2026-10-15', '2026-10-16', '2026-10-19']
+benchmark last bars: ['2026-10-16', '2026-10-19', '2026-10-20']
 downloaded 150/3737
 downloaded 300/3737
 downloaded 450/3737
@@ -33,11 +33,11 @@ downloaded 2100/3737
 downloaded 2250/3737
 downloaded 2400/3737
 downloaded 2550/3737
-$7255.T: possibly delisted; no price data found  (period=5d)
 $7183.T: possibly delisted; no price data found  (period=5d)
+$7255.T: possibly delisted; no price data found  (period=5d)
 
 2 Failed downloads:
-['7255.T', '7183.T']: possibly delisted; no price data found  (period=5d)
+['7183.T', '7255.T']: possibly delisted; no price data found  (period=5d)
 patch failed 7183.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 patch failed 7255.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 downloaded 2700/3737
@@ -49,23 +49,18 @@ $7490.T: possibly delisted; no price data found  (period=5d)
 patch failed 7490.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 patch failed 7709.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 downloaded 2850/3737
-$7985.T: possibly delisted; no price data found  (period=5d)
 $7946.T: possibly delisted; no price data found  (period=5d)
+$7985.T: possibly delisted; no price data found  (period=5d)
 $7851.T: possibly delisted; no price data found  (period=5d)
 
 3 Failed downloads:
-['7985.T', '7946.T', '7851.T']: possibly delisted; no price data found  (period=5d)
+['7946.T', '7985.T', '7851.T']: possibly delisted; no price data found  (period=5d)
 patch failed 7851.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 patch failed 7946.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 patch failed 7985.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 downloaded 3000/3737
 downloaded 3150/3737
 downloaded 3300/3737
-$9049.T: possibly delisted; no price data found  (period=5d)
-
-1 Failed download:
-['9049.T']: possibly delisted; no price data found  (period=5d)
-patch failed 9049.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 downloaded 3450/3737
 $9691.T: possibly delisted; no price data found  (period=5d)
 
@@ -79,12 +74,12 @@ $3670.T: possibly delisted; no price data found  (period=5d)
 ['3670.T']: possibly delisted; no price data found  (period=5d)
 patch failed 3670.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 downloaded 3737/3737
-latest session rebuilt from 60m bars: 14, official close applied: 14
+latest session rebuilt from 60m bars: 10, official close applied: 10
 downloaded 1/1
-last bar dates: {'2026-10-19': 3658, '2026-10-16': 32, '2026-09-30': 9}
-liquid & enough history: 1144
-regime: {'benchmark_close': 427.1000061035156, 'benchmark_sma50': 427.89799926757814, 'benchmark_sma200': 402.60389892578127, 'benchmark_state': 'mixed', 'pct_above_sma50': 46.9, 'pct_above_sma200': 62.4, 'pct_trend_template': 22.5, 'benchmark_distribution_days_25': 8, 'risk_per_trade': 0.003, 'caution': '5+ distribution days in 25 sessions'}
-trend + RS pass: 257
+last bar dates: {'2026-10-20': 3658, '2026-10-19': 31, '2026-09-30': 9}
+liquid & enough history: 1148
+regime: {'benchmark_close': 421.79998779296875, 'benchmark_sma50': 428.0859991455078, 'benchmark_sma200': 402.93639892578125, 'benchmark_state': 'mixed', 'pct_above_sma50': 39.2, 'pct_above_sma200': 58.2, 'pct_trend_template': 18.5, 'benchmark_distribution_days_25': 8, 'risk_per_trade': 0.003, 'caution': '5+ distribution days in 25 sessions'}
+trend + RS pass: 212
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
@@ -297,44 +292,6 @@ HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","descri
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-fundamentals known: 0/257
+fundamentals known: 0/212
 price table: 3738 tickers
-done: A=79 B=108 errors=0
+done: A=57 B=105 errors=0
