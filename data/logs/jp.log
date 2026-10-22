@@ -1,6 +1,6 @@
 universe: 3702
 downloaded 1/1
-benchmark last bars: ['2026-10-19', '2026-10-20', '2026-10-21']
+benchmark last bars: ['2026-10-20', '2026-10-21', '2026-10-22']
 downloaded 150/3737
 downloaded 300/3737
 downloaded 450/3737
@@ -30,31 +30,38 @@ $6147.T: possibly delisted; no price data found  (period=5d)
 ['6147.T']: possibly delisted; no price data found  (period=5d)
 patch failed 6147.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 downloaded 2100/3737
+$6396.T: possibly delisted; no price data found  (period=5d)
+
+1 Failed download:
+['6396.T']: possibly delisted; no price data found  (period=5d)
+patch failed 6396.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 downloaded 2250/3737
 downloaded 2400/3737
 downloaded 2550/3737
-$7255.T: possibly delisted; no price data found  (period=5d)
 $7183.T: possibly delisted; no price data found  (period=5d)
+$7255.T: possibly delisted; no price data found  (period=5d)
 
 2 Failed downloads:
-['7255.T', '7183.T']: possibly delisted; no price data found  (period=5d)
+['7183.T', '7255.T']: possibly delisted; no price data found  (period=5d)
 patch failed 7183.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 patch failed 7255.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 downloaded 2700/3737
-$7490.T: possibly delisted; no price data found  (period=5d)
 $7709.T: possibly delisted; no price data found  (period=5d)
-
-2 Failed downloads:
-['7490.T', '7709.T']: possibly delisted; no price data found  (period=5d)
-patch failed 7490.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
-patch failed 7709.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
-downloaded 2850/3737
-$7851.T: possibly delisted; no price data found  (period=5d)
-$7985.T: possibly delisted; no price data found  (period=5d)
-$7946.T: possibly delisted; no price data found  (period=5d)
+$7490.T: possibly delisted; no price data found  (period=5d)
+$7509.T: possibly delisted; no price data found  (period=5d)
 
 3 Failed downloads:
-['7851.T', '7985.T', '7946.T']: possibly delisted; no price data found  (period=5d)
+['7709.T', '7490.T', '7509.T']: possibly delisted; no price data found  (period=5d)
+patch failed 7490.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
+patch failed 7509.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
+patch failed 7709.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
+downloaded 2850/3737
+$7985.T: possibly delisted; no price data found  (period=5d)
+$7946.T: possibly delisted; no price data found  (period=5d)
+$7851.T: possibly delisted; no price data found  (period=5d)
+
+3 Failed downloads:
+['7985.T', '7946.T', '7851.T']: possibly delisted; no price data found  (period=5d)
 patch failed 7851.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 patch failed 7946.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 patch failed 7985.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
@@ -74,12 +81,12 @@ $3670.T: possibly delisted; no price data found  (period=5d)
 ['3670.T']: possibly delisted; no price data found  (period=5d)
 patch failed 3670.T: Invalid comparison between dtype=datetime64[s, Asia/Tokyo] and Timestamp
 downloaded 3737/3737
-latest session rebuilt from 60m bars: 10, official close applied: 10
+latest session rebuilt from 60m bars: 12, official close applied: 12
 downloaded 1/1
-last bar dates: {'2026-10-21': 3645, '2026-10-20': 44, '2026-09-30': 9}
-liquid & enough history: 1144
-regime: {'benchmark_close': 425.6000061035156, 'benchmark_sma50': 428.17199951171875, 'benchmark_sma200': 403.27839889526365, 'benchmark_state': 'mixed', 'pct_above_sma50': 40.6, 'pct_above_sma200': 59.6, 'pct_trend_template': 19.1, 'benchmark_distribution_days_25': 8, 'risk_per_trade': 0.003, 'caution': '5+ distribution days in 25 sessions'}
-trend + RS pass: 218
+last bar dates: {'2026-10-22': 3651, '2026-10-21': 38, '2026-09-30': 9}
+liquid & enough history: 1133
+regime: {'benchmark_close': 420.6000061035156, 'benchmark_sma50': 428.10999938964846, 'benchmark_sma200': 403.5873989868164, 'benchmark_state': 'mixed', 'pct_above_sma50': 37.8, 'pct_above_sma200': 55.9, 'pct_trend_template': 18.5, 'benchmark_distribution_days_25': 8, 'risk_per_trade': 0.003, 'caution': '5+ distribution days in 25 sessions'}
+trend + RS pass: 210
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
@@ -290,14 +297,6 @@ HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","descri
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-fundamentals known: 0/218
+fundamentals known: 0/210
 price table: 3738 tickers
-done: A=60 B=101 errors=0
+done: A=74 B=77 errors=0
