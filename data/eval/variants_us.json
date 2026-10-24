@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-19T10:38:02+00:00",
+ "generated_at": "2026-10-24T03:33:47+00:00",
  "market": "us",
  "signals": 252,
  "note": "signals passing screener/rules.py; no fees; returns on the initial position",
@@ -595,19 +595,19 @@
     "high -15%": {
      "n": 252,
      "win_rate": 0.317,
-     "avg_win": 0.3912,
+     "avg_win": 0.3926,
      "avg_loss": -0.0803,
-     "expectancy": 0.0694,
-     "profit_factor": 2.26,
+     "expectancy": 0.0698,
+     "profit_factor": 2.27,
      "days_median": 39.0,
      "by_year": {
       "2023": 0.0751,
       "2024": 0.0743,
       "2025": 0.1329,
-      "2026": -0.0252
+      "2026": -0.0191
      },
      "added_share": 0.599,
-     "add_lot_mean": 0.0227,
+     "add_lot_mean": 0.0229,
      "add_lot_win": 0.397
     }
    },
