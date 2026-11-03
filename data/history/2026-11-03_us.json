@@ -1,0 +1,16 @@
+{
+ "generated_at": "2026-11-03T22:57:31+00:00",
+ "market": "us",
+ "data_date": "2026-11-03",
+ "benchmark": {
+  "ticker": "SPY",
+  "name": "S&P 500 (SPY)",
+  "ret_6m": 0.0423
+ },
+ "counts": {
+  "A": 0,
+  "B": 0
+ },
+ "A": [],
+ "B": []
+}
