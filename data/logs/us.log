@@ -1,7 +1,7 @@
 warning: no symbol table found at https://en.wikipedia.org/wiki/Nasdaq-100
 universe: 903
 downloaded 1/1
-benchmark last bars: ['2026-11-04', '2026-11-05', '2026-11-06']
+benchmark last bars: ['2026-11-05', '2026-11-06', '2026-11-09']
 downloaded 1/1
 downloaded 150/918
 downloaded 300/918
@@ -10,11 +10,10 @@ downloaded 600/918
 downloaded 750/918
 downloaded 900/918
 downloaded 918/918
-latest session rebuilt from 60m bars: 186, official close applied: 186
-last bar dates: {'2026-11-06': 903}
-liquid & enough history: 899
-regime: {'benchmark_close': 735.2899780273438, 'benchmark_sma50': 765.679794921875, 'benchmark_sma200': 730.382548828125, 'benchmark_state': 'mixed', 'pct_above_sma50': 58.3, 'pct_above_sma200': 53.2, 'pct_trend_template': 23.2, 'benchmark_distribution_days_25': 7, 'risk_per_trade': 0.003, 'caution': '5+ distribution days in 25 sessions'}
-trend + RS pass: 209
-fundamentals known: 178/209
+last bar dates: {'2026-11-09': 902, '2026-11-06': 1}
+liquid & enough history: 897
+regime: {'benchmark_close': 752.6900024414062, 'benchmark_sma50': 765.3465954589843, 'benchmark_sma200': 730.6998489379882, 'benchmark_state': 'mixed', 'pct_above_sma50': 67.4, 'pct_above_sma200': 59.8, 'pct_trend_template': 26.3, 'benchmark_distribution_days_25': 7, 'risk_per_trade': 0.003, 'caution': '5+ distribution days in 25 sessions'}
+trend + RS pass: 236
+fundamentals known: 226/236
 price table: 919 tickers
 done: A=0 B=0 errors=0
