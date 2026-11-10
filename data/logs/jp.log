@@ -1,7 +1,7 @@
 universe: 3693
 downloaded 1/1
 latest session rebuilt from 60m bars: 1, official close applied: 1
-benchmark last bars: ['2026-11-05', '2026-11-06', '2026-11-09']
+benchmark last bars: ['2026-11-06', '2026-11-09', '2026-11-10']
 downloaded 150/3728
 downloaded 300/3728
 downloaded 450/3728
@@ -22,17 +22,22 @@ downloaded 2550/3728
 downloaded 2700/3728
 downloaded 2850/3728
 downloaded 3000/3728
+$8093.T: possibly delisted; no price data found  (period=5d)
+
+1 Failed download:
+['8093.T']: possibly delisted; no price data found  (period=5d)
+patch failed 8093.T: Invalid comparison between dtype=datetime64[us, Asia/Tokyo] and Timestamp
 downloaded 3150/3728
 downloaded 3300/3728
 downloaded 3450/3728
 downloaded 3600/3728
 downloaded 3728/3728
-latest session rebuilt from 60m bars: 3680, official close applied: 3679
+latest session rebuilt from 60m bars: 3705, official close applied: 3704
 downloaded 1/1
-last bar dates: {'2026-11-09': 3672, '2026-11-06': 21}
-liquid & enough history: 1183
-regime: {'benchmark_close': 402.1, 'benchmark_sma50': 424.7619993896484, 'benchmark_sma200': 406.27239910888676, 'benchmark_state': 'mixed', 'pct_above_sma50': 33.6, 'pct_above_sma200': 45.4, 'pct_trend_template': 16.6, 'benchmark_distribution_days_25': 7, 'risk_per_trade': 0.003, 'caution': '5+ distribution days in 25 sessions'}
-trend + RS pass: 196
-fundamentals known: 0/196
+last bar dates: {'2026-11-10': 3674, '2026-11-09': 19}
+liquid & enough history: 1182
+regime: {'benchmark_close': 410.5, 'benchmark_sma50': 424.4379992675781, 'benchmark_sma200': 406.4128991699219, 'benchmark_state': 'mixed', 'pct_above_sma50': 38.3, 'pct_above_sma200': 51.0, 'pct_trend_template': 19.6, 'benchmark_distribution_days_25': 6, 'risk_per_trade': 0.003, 'caution': '5+ distribution days in 25 sessions'}
+trend + RS pass: 232
+fundamentals known: 0/232
 price table: 3729 tickers
-done: A=44 B=33 errors=0
+done: A=49 B=62 errors=0
