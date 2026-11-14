@@ -1,19 +1,25 @@
 warning: no symbol table found at https://en.wikipedia.org/wiki/Nasdaq-100
 universe: 903
 downloaded 1/1
-benchmark last bars: ['2026-11-10', '2026-11-11', '2026-11-12']
+benchmark last bars: ['2026-11-11', '2026-11-12', '2026-11-13']
 downloaded 1/1
 downloaded 150/918
 downloaded 300/918
 downloaded 450/918
 downloaded 600/918
 downloaded 750/918
+$TCBI: possibly delisted; no price data found  (period=5d)
+
+1 Failed download:
+['TCBI']: possibly delisted; no price data found  (period=5d)
+patch failed TCBI: Invalid comparison between dtype=datetime64[us, America/New_York] and Timestamp
 downloaded 900/918
 downloaded 918/918
-last bar dates: {'2026-11-12': 902, '2026-11-11': 1}
+latest session rebuilt from 60m bars: 185, official close applied: 185
+last bar dates: {'2026-11-13': 902, '2026-11-12': 1}
 liquid & enough history: 898
-regime: {'benchmark_close': 757.1199951171875, 'benchmark_sma50': 764.8037951660157, 'benchmark_sma200': 731.6158990478516, 'benchmark_state': 'mixed', 'pct_above_sma50': 65.4, 'pct_above_sma200': 57.7, 'pct_trend_template': 27.7, 'benchmark_distribution_days_25': 6, 'risk_per_trade': 0.003, 'caution': '5+ distribution days in 25 sessions'}
-trend + RS pass: 249
-fundamentals known: 243/249
+regime: {'benchmark_close': 754.3699951171875, 'benchmark_sma50': 764.4277954101562, 'benchmark_sma200': 731.9175491333008, 'benchmark_state': 'mixed', 'pct_above_sma50': 66.5, 'pct_above_sma200': 58.6, 'pct_trend_template': 28.3, 'benchmark_distribution_days_25': 7, 'risk_per_trade': 0.003, 'caution': '5+ distribution days in 25 sessions'}
+trend + RS pass: 254
+fundamentals known: 243/254
 price table: 919 tickers
 done: A=0 B=0 errors=0
