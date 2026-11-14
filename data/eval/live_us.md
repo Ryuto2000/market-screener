@@ -10,28 +10,29 @@ Signals: 40
 |---|---|---|---|---|---|---|
 | 5d | 40 | 2.4% | 2.4% | 82% | -0.5% | 5.5% |
 | 10d | 40 | 3.6% | 3.6% | 85% | -0.6% | 7.6% |
+| 20d | 40 | 1.0% | 1.0% | 57% | -9.7% | 10.8% |
 
-First within 60 sessions: -8% stop 14, +16% 1, neither 25. Median MFE 7.1%, median MAE -4.7%, MAE p10 -15.2%.
+First within 60 sessions: -8% stop 15, +16% 2, neither 23. Median MFE 7.4%, median MAE -5.2%, MAE p10 -17.9%.
 
 | exit rules | n | win rate | avg win | avg loss | expectancy | profit factor | days (win/loss) | top 10% share of profit |
 |---|---|---|---|---|---|---|---|---|
-| intraday stop | 40 | 50% | 4.6% | -5.7% | -0.53% | 0.81 | 11.0/12.0 | 37% |
-| close stop | 40 | 52% | 4.5% | -7.0% | -0.99% | 0.70 | 11.0/13.0 | 36% |
+| intraday stop | 40 | 52% | 6.0% | -5.9% | 0.40% | 1.14 | 11.0/12.0 | 39% |
+| close stop | 40 | 55% | 6.1% | -6.8% | 0.33% | 1.11 | 11.0/13.0 | 37% |
 
-Add-on: intraday: added in 22%, add lot mean -2.25% of the initial position; close: added in 22%, add lot mean -2.55% of the initial position.
+Add-on: intraday: added in 22%, add lot mean -1.57% of the initial position; close: added in 22%, add lot mean -1.60% of the initial position.
 
 ## by_year
 
 | group | n | win rate | expectancy | 20d mean |
 |---|---|---|---|---|
-| 2026 | 40 | 50% | -0.53% | None |
+| 2026 | 40 | 52% | 0.40% | 1.0% |
 
 ## by_rs_rating
 
 | group | n | win rate | expectancy | 20d mean |
 |---|---|---|---|---|
-| unknown | 40 | 50% | -0.53% | None |
+| unknown | 40 | 52% | 0.40% | 1.0% |
 
 ## B-candidates (no trigger yet)
 
-n=40, 20d mean None, rules expectancy 0.0092
+n=40, 20d mean 0.0066, rules expectancy 0.0218

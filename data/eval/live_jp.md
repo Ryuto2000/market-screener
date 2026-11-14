@@ -1,55 +1,57 @@
 # Live A-candidates JP
 
-- market: jp, live lists from 2026-10-15 to 2026-11-06
+- market: jp, live lists from 2026-10-15 to 2026-11-13
 - every A and B name is followed whether or not it was bought; entry at the next open after the list date
 - young signals have only a few sessions; horizons without data are left out
 
-Signals: 553
+Signals: 753
 
 | horizon | n | mean | median | % up | p10 | p90 |
 |---|---|---|---|---|---|---|
-| 5d | 393 | -1.7% | -1.5% | 31% | -6.0% | 3.1% |
-| 10d | 201 | -1.9% | -1.8% | 30% | -8.8% | 5.4% |
+| 5d | 593 | -0.9% | -0.8% | 38% | -5.5% | 4.9% |
+| 10d | 393 | -2.0% | -1.9% | 32% | -9.0% | 6.0% |
+| 20d | 1 | 2.8% | 2.8% | 100% | 2.8% | 2.8% |
 
-First within 60 sessions: -8% stop 143, +16% 7, neither 403. Median MFE 2.6%, median MAE -5.0%, MAE p10 -12.4%.
+First within 60 sessions: -8% stop 181, +16% 9, neither 563. Median MFE 2.8%, median MAE -3.9%, MAE p10 -11.7%.
 
 | exit rules | n | win rate | avg win | avg loss | expectancy | profit factor | days (win/loss) | top 10% share of profit |
 |---|---|---|---|---|---|---|---|---|
-| intraday stop | 553 | 24% | 2.0% | -3.9% | -2.45% | 0.17 | 5.0/4.0 | 75% |
-| close stop | 553 | 24% | 2.0% | -4.0% | -2.53% | 0.16 | 5.0/4.0 | 75% |
+| intraday stop | 753 | 52% | 3.3% | -3.8% | -0.08% | 0.96 | 5.0/5.0 | 48% |
+| close stop | 753 | 53% | 3.3% | -3.8% | -0.02% | 0.99 | 5.0/5.0 | 47% |
 
-Add-on: intraday: added in 5%, add lot mean -2.43% of the initial position; close: added in 5%, add lot mean -2.55% of the initial position.
+Add-on: intraday: added in 5%, add lot mean -0.19% of the initial position; close: added in 5%, add lot mean -0.06% of the initial position.
 
 ## by_year
 
 | group | n | win rate | expectancy | 20d mean |
 |---|---|---|---|---|
-| 2026 | 553 | 24% | -2.45% | None |
+| 2026 | 753 | 52% | -0.08% | 2.8% |
 
 ## by_rs_rating
 
 | group | n | win rate | expectancy | 20d mean |
 |---|---|---|---|---|
-| 70-79 | 122 | 32% | -2.68% | None |
-| 80-89 | 129 | 16% | -3.57% | None |
-| 90-99 | 17 (small) | 18% | -5.44% | None |
-| <70 | 284 | 25% | -1.67% | None |
-| unknown | 1 (small) | 100% | 0.36% | None |
+| 70-79 | 178 | 62% | 0.80% | None |
+| 80-89 | 191 | 50% | -0.93% | None |
+| 90-99 | 31 | 42% | -1.88% | None |
+| <70 | 352 | 50% | 0.10% | None |
+| unknown | 1 (small) | 100% | 0.36% | 2.8% |
 
 ## signals (intraday-stop expectancy, with vs without)
 
 | signal | n with | win rate with | exp. with | exp. without | diff | stop first (with) |
 |---|---|---|---|---|---|---|
-| plus:accumulation | 214 | 22% | -2.42% | -2.46% | +0.04% | 26% |
-| flags:macd_divergence | 201 | 27% | -2.19% | -2.59% | +0.40% | 23% |
-| flags:macd_fading | 105 | 29% | -2.99% | -2.32% | -0.68% | 27% |
-| flags:above_upper_band | 102 | 24% | -2.19% | -2.50% | +0.32% | 18% |
-| plus:tight_base | 58 | 12% | -2.16% | -2.48% | +0.32% | 14% |
-| flags:heavy_selling_day | 15 (small) | 27% | -2.83% | -2.43% | -0.40% | 20% |
-| flags:macd_dead_cross | 9 (small) | 11% | -4.71% | -2.41% | -2.30% | 33% |
-| flags:distribution | 8 (small) | 38% | -2.13% | -2.45% | +0.32% | 12% |
-| flags:volume_spike_5x | 8 (small) | 38% | -4.36% | -2.42% | -1.95% | 50% |
+| flags:macd_divergence | 262 | 53% | -0.04% | -0.10% | +0.06% | 25% |
+| plus:accumulation | 243 | 41% | -0.68% | 0.21% | -0.89% | 29% |
+| flags:above_upper_band | 152 | 59% | 0.36% | -0.19% | +0.55% | 18% |
+| flags:macd_fading | 124 | 53% | -0.56% | 0.02% | -0.57% | 27% |
+| plus:tight_base | 58 | 24% | -1.10% | 0.01% | -1.11% | 19% |
+| flags:heavy_selling_day | 38 | 63% | 1.27% | -0.15% | +1.42% | 11% |
+| flags:distribution | 20 | 85% | 2.86% | -0.16% | +3.02% | 5% |
+| flags:macd_dead_cross | 13 (small) | 54% | -0.90% | -0.06% | -0.84% | 23% |
+| flags:volume_spike_5x | 9 (small) | 44% | -2.89% | -0.04% | -2.85% | 44% |
+| flags:wide_stop | 1 (small) | 0% | 0.00% | -0.08% | +0.08% | 0% |
 
 ## B-candidates (no trigger yet)
 
-n=560, 20d mean None, rules expectancy -0.0203
+n=753, 20d mean None, rules expectancy 0.0084
