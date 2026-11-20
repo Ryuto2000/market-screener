@@ -1,0 +1,53 @@
+name: jp-kick
+
+# GitHub's scheduled runs started 8-10 hours late from 2026-11-09 (the 06:35 UTC JP cron
+# ran around 15:00-17:00 UTC). Runs queued at night are delayed less (~4-6 h), so this
+# workflow is queued several times overnight, waits on the runner until just after the
+# Tokyo close, and then dispatches screen.yml (market=jp). A workflow_dispatch made with
+# GITHUB_TOKEN does start a new run and is not delayed. screen.yml's own JP cron stays
+# as a fallback.
+
+on:
+  schedule:
+    - cron: "7 22 * * 0-4"   # 07:07 JST Mon-Fri
+    - cron: "7 0 * * 1-5"    # 09:07 JST
+    - cron: "7 2 * * 1-5"    # 11:07 JST
+    - cron: "7 4 * * 1-5"    # 13:07 JST
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: jp-kick
+  cancel-in-progress: false
+
+jobs:
+  kick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - name: Wait for the close, then dispatch once per day
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -eu
+          today=$(TZ=Asia/Tokyo date +%F)
+          dow=$(TZ=Asia/Tokyo date +%u)
+          [ "$dow" -le 5 ] || { echo "weekend in Tokyo"; exit 0; }
+          target=$(date -u -d "$(date -u +%F) 06:40" +%s)
+          already() {
+            # a JP dispatch already made today (JST), or today's JP data already on main
+            n=$(gh api "repos/$REPO/actions/workflows/screen.yml/runs?event=workflow_dispatch&created=>=$(date -u -d "$today 00:00 +0900" +%FT%TZ)" --jq '.total_count')
+            d=$(gh api "repos/$REPO/contents/data/jp.json" -H "Accept: application/vnd.github.raw" | python3 -c "import json,sys;print(json.load(sys.stdin).get('data_date',''))" || true)
+            [ "$n" -gt 0 ] || [ "$d" = "$today" ]
+          }
+          if already; then echo "already done for $today"; exit 0; fi
+          wait=$(( target - $(date -u +%s) ))
+          if [ "$wait" -gt 19800 ]; then echo "too early (${wait}s); a later kick will handle it"; exit 0; fi
+          if [ "$wait" -gt 0 ]; then echo "sleeping ${wait}s"; sleep "$wait"; fi
+          if already; then echo "already done for $today"; exit 0; fi
+          gh api -X POST "repos/$REPO/actions/workflows/screen.yml/dispatches" -f ref=main -f 'inputs[market]=jp'
+          echo "dispatched screen (jp) for $today"
