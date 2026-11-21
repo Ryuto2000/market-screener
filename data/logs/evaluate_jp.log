@@ -1,3 +1,6 @@
-downloaded 150/264
-downloaded 264/264
-09:43:43 followed: 1506 of 1586
+
+1 Failed download:
+['2871.T']: OperationalError('database is locked')
+downloaded 150/277
+downloaded 277/277
+10:32:22 followed: 1897 of 1986
