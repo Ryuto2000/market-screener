@@ -29,13 +29,9 @@ downloaded 3000/3728
 downloaded 3150/3728
 downloaded 3300/3728
 downloaded 3450/3728
-$9421.T: possibly delisted; no price data found  (period=2y)
-
-1 Failed download:
-['9421.T']: possibly delisted; no price data found  (period=2y)
 downloaded 3600/3728
 downloaded 3728/3728
-latest session rebuilt from 60m bars: 1, official close applied: 1
+latest session rebuilt from 60m bars: 1, official close applied: 0
 downloaded 1/1
 last bar dates: {'2026-11-20': 3692, '2026-11-12': 1}
 liquid & enough history: 1174
