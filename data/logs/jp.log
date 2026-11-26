@@ -1,7 +1,6 @@
 universe: 3693
 downloaded 1/1
-latest session rebuilt from 60m bars: 1, official close applied: 1
-benchmark last bars: ['2026-11-20', '2026-11-24', '2026-11-25']
+benchmark last bars: ['2026-11-24', '2026-11-25', '2026-11-26']
 downloaded 150/3728
 downloaded 300/3728
 downloaded 450/3728
@@ -32,12 +31,12 @@ downloaded 3300/3728
 downloaded 3450/3728
 downloaded 3600/3728
 downloaded 3728/3728
-latest session rebuilt from 60m bars: 3698, official close applied: 3696
+latest session rebuilt from 60m bars: 26, official close applied: 26
 downloaded 1/1
-last bar dates: {'2026-11-25': 3672, '2026-11-24': 20, '2026-11-12': 1}
-liquid & enough history: 1172
-regime: {'benchmark_close': 394.7, 'benchmark_sma50': 419.43199804687504, 'benchmark_sma200': 407.6598993835449, 'benchmark_state': 'mixed', 'pct_above_sma50': 32.9, 'pct_above_sma200': 40.8, 'pct_trend_template': 18.9, 'benchmark_distribution_days_25': 6, 'risk_per_trade': 0.003, 'caution': '5+ distribution days in 25 sessions'}
-trend + RS pass: 222
+last bar dates: {'2026-11-26': 3650, '2026-11-25': 41, '2026-11-24': 1}
+liquid & enough history: 1161
+regime: {'benchmark_close': 394.6000061035156, 'benchmark_sma50': 418.89599853515625, 'benchmark_sma200': 407.77339950561526, 'benchmark_state': 'mixed', 'pct_above_sma50': 32.6, 'pct_above_sma200': 41.0, 'pct_trend_template': 18.9, 'benchmark_distribution_days_25': 6, 'risk_per_trade': 0.003, 'caution': '5+ distribution days in 25 sessions'}
+trend + RS pass: 219
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
@@ -257,9 +256,6 @@ HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","descri
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-fundamentals known: 0/222
+fundamentals known: 0/219
 price table: 3729 tickers
-done: A=112 B=45 errors=0
+done: A=81 B=82 errors=0
