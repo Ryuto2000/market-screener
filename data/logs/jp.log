@@ -1,7 +1,6 @@
 universe: 3693
 downloaded 1/1
-latest session rebuilt from 60m bars: 1, official close applied: 1
-benchmark last bars: ['2026-11-24', '2026-11-25', '2026-11-26']
+benchmark last bars: ['2026-11-25', '2026-11-26', '2026-11-27']
 downloaded 150/3728
 downloaded 300/3728
 downloaded 450/3728
@@ -32,12 +31,12 @@ downloaded 3300/3728
 downloaded 3450/3728
 downloaded 3600/3728
 downloaded 3728/3728
-latest session rebuilt from 60m bars: 3678, official close applied: 3677
+latest session rebuilt from 60m bars: 9, official close applied: 9
 downloaded 1/1
-last bar dates: {'2026-11-26': 3649, '2026-11-25': 42, '2026-11-24': 1}
-liquid & enough history: 1166
-regime: {'benchmark_close': 394.6, 'benchmark_sma50': 418.8959984130859, 'benchmark_sma200': 407.7733994750977, 'benchmark_state': 'mixed', 'pct_above_sma50': 32.6, 'pct_above_sma200': 41.1, 'pct_trend_template': 19.0, 'benchmark_distribution_days_25': 6, 'risk_per_trade': 0.003, 'caution': '5+ distribution days in 25 sessions'}
-trend + RS pass: 222
+last bar dates: {'2026-11-27': 3646, '2026-11-26': 44, '2026-11-24': 1}
+liquid & enough history: 1153
+regime: {'benchmark_close': 401.79998779296875, 'benchmark_sma50': 418.477998046875, 'benchmark_sma200': 407.9103994750977, 'benchmark_state': 'mixed', 'pct_above_sma50': 35.0, 'pct_above_sma200': 43.5, 'pct_trend_template': 20.6, 'benchmark_distribution_days_25': 6, 'risk_per_trade': 0.003, 'caution': '5+ distribution days in 25 sessions'}
+trend + RS pass: 238
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
@@ -260,6 +259,22 @@ HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","descri
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
 HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
-fundamentals known: 0/222
+HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
+HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
+HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
+HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
+HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
+HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
+HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
+HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
+HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
+HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
+HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
+HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
+HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
+HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
+HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
+HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
+fundamentals known: 0/238
 price table: 3729 tickers
-done: A=81 B=83 errors=0
+done: A=72 B=108 errors=0
