@@ -1,4 +1,4 @@
-10:32:24 universe: 3693
+11:15:51 universe: 3693
 downloaded 1/1
 downloaded 150/3693
 downloaded 300/3693
@@ -25,13 +25,13 @@ downloaded 3300/3693
 downloaded 3450/3693
 downloaded 3600/3693
 downloaded 3693/3693
-10:36:08 dropped 3 tickers with broken price history
-10:36:08 with history: 3641
-10:36:32 scanned 500/3641; signals 3726
-10:36:46 scanned 1000/3641; signals 6070
-10:37:03 scanned 1500/3641; signals 9145
-10:37:22 scanned 2000/3641; signals 12646
-10:37:46 scanned 2500/3641; signals 17010
-10:38:10 scanned 3000/3641; signals 21464
-10:38:42 scanned 3500/3641; signals 27283
-10:38:47 signals: 28096
+11:27:27 dropped 2 tickers with broken price history
+11:27:27 with history: 3646
+11:28:15 scanned 500/3646; signals 3733
+11:28:42 scanned 1000/3646; signals 6077
+11:29:17 scanned 1500/3646; signals 9140
+11:29:56 scanned 2000/3646; signals 12669
+11:30:43 scanned 2500/3646; signals 17039
+11:31:31 scanned 3000/3646; signals 21472
+11:32:32 scanned 3500/3646; signals 27304
+11:32:42 signals: 28113

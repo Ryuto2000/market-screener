@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-21T10:43:19+00:00",
+ "generated_at": "2026-11-28T11:43:29+00:00",
  "market": "us",
  "signals": 252,
  "note": "signals passing screener/rules.py; no fees; returns on the initial position",
